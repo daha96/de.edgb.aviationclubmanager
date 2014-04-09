@@ -55,6 +55,7 @@
             </c:if>
         </table:table>
         <c:if test="${not empty flightlist}">
+        <c:if test="${not empty flights}">
             <!-- Links zum Report -->
             <br/>
             <div>
@@ -91,6 +92,7 @@
                     <a href="${link_url}">HTML</a>
                 </span>
             </div>
+            </c:if>
             <!-- Datum ändern -->
             <br/>
             <div>
