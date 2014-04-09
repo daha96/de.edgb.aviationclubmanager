@@ -89,8 +89,13 @@ public class FlightController {
     @PreAuthorize("hasRole('PERMISSION_FLIGHT_CREATE')")
     @RequestMapping(params = "form", produces = "text/html")
     public String createForm(@RequestParam(value = "flightDate", required = false) @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date flightDate, Model uiModel) {
-        Flight flight = new Flight();
-        if (flightDate != null) flight.setFlightDate(flightDate);
+        
+    	Flight flight = new Flight();
+        
+    	if (flightDate != null) flight.setFlightDate(flightDate);
+        flight.setDepartureLocation(messageSource.getMessage("app.homeLocation", null, LocaleContextHolder.getLocale()));
+        flight.setDepartureTime(Util.getCurrentTime());
+        
         populateEditForm(uiModel, flight);
         List<String[]> dependencies = new ArrayList<String[]>();
         if (Aircraft.countAircrafts() == 0) {
