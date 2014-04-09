@@ -9,8 +9,8 @@
     		<field:column id="c_de_edgb_aviationclubmanager_domain_Statistics_flightsPerAircraft_key" property="0" />
     		<field:column id="c_de_edgb_aviationclubmanager_domain_Statistics_flightsPerAircraft_value" property="1" />
     	</field:table> -->
-    	<field:display date="true" dateTimePattern="${statistics_date_date_format}" id="l_de_edgb_aviationclubmanager_domain_Statistics_minDate" object="${statistics}" field="minDate" />
-    	<field:display date="true" dateTimePattern="${statistics_date_date_format}" id="l_de_edgb_aviationclubmanager_domain_Statistics_maxDate" object="${statistics}" field="maxDate" />
+    	<field:display jodaTime="true" dateTimePattern="${statistics_date_date_format}" id="l_de_edgb_aviationclubmanager_domain_Statistics_minDate" object="${statistics}" field="minDate" />
+    	<field:display jodaTime="true" dateTimePattern="${statistics_date_date_format}" id="l_de_edgb_aviationclubmanager_domain_Statistics_maxDate" object="${statistics}" field="maxDate" />
     	<br />
     	<field:display map="true" mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperaircraft_key" mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperaircraft_value" id="l_de_edgb_aviationclubmanager_domain_Statistics_flightsPerAircraft" object="${statistics}" field="flightsPerAircraft" />
     	<field:display map="true" mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flighttimeperaircraft_key" mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flighttimeperaircraft_value" id="l_de_edgb_aviationclubmanager_domain_Statistics_flightTimePerAircraft" object="${statistics}" field="flightTimePerAircraft" />

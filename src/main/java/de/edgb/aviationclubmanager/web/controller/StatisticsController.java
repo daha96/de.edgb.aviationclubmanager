@@ -41,7 +41,7 @@ public class StatisticsController {
     	Statistics stats = new Statistics(Util.convertDateToLocalDate(minDate), Util.convertDateToLocalDate(maxDate));
     	
     	uiModel.addAttribute("statistics", stats);
-    	uiModel.addAttribute("flightsPerAircraft", stats.getFlightsPerAircraft().entrySet());
+   // 	uiModel.addAttribute("flightsPerAircraft", stats.getFlightsPerAircraft().entrySet());
         
         
         
