@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_de_edgb_aviationclubmanager_domain_UserAccount" items="${useraccounts}" z="6DAh90UEC6L3fDLJrVycRt0O3n4=">
+        <table:table data="${useraccounts}" id="l_de_edgb_aviationclubmanager_domain_UserAccount" path="/useraccounts" z="xiJ9wpHzJ5DtO4siO6H4pIdeV90=">
+            <table:column id="c_de_edgb_aviationclubmanager_domain_UserAccount_username" property="username" z="oKCCPOUVU2ZNj5JG7MwE1UORIvE="/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_UserAccount_password" property="password" render="false" z="user-managed"/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_UserAccount_enabled" property="enabled" z="5s9vy41akEBYjSzDs5IdFsYj4lU="/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_UserAccount_userRoles" property="userRoles" z="Tc+gufGkCZ7Ez+1q6dpwqu+xazs="/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_UserAccount_person" property="person" z="5LaUZkBL4qPD4Y+oy/bWACY4mV0="/>
+        </table:table>
+    </page:list>
+</div>

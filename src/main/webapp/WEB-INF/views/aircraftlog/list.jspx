@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_de_edgb_aviationclubmanager_domain_AircraftLogEntry" items="${aircraftLogEntries}">
+    <table:table create="false" delete="false" update="false" show="false" data="${aircraftLogEntries}" id="l_de_edgb_aviationclubmanager_domain_AircraftLogEntry" path="/aircraftlog">            
+            <table:column jodaTime="true" dateTimePattern="${aircraftlogentry_flightdate_date_format}" id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_entryDate" property="entryDate" />
+            <table:column id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_aircraft" property="aircraft" />
+            <table:column id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_pilot" property="pilot" />
+            <table:column id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_occupants" property="occupants" />
+            <table:column id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_departureLocation" property="departureLocation" />
+            <table:column id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_landingLocation" property="landingLocation" />
+            <table:column jodaTime="true" dateTimePattern="${aircraftlogentry_departuretime_date_format}" id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_departureTime" property="departureTime" />
+            <table:column jodaTime="true" dateTimePattern="${aircraftlogentry_landingtime_date_format}" id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_landingTime" property="landingTime" />
+            <table:column id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_operationTime" property="operationTimeString" />
+            <table:column id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_numLandings" property="numLandings" />
+            <table:column id="c_de_edgb_aviationclubmanager_domain_AircraftLogEntry_comments" property="comments" />
+        </table:table>
+    </page:list>
+</div>

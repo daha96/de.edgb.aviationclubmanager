@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_de_edgb_aviationclubmanager_domain_Person" modelAttribute="person" path="/people" render="${empty dependencies}" z="0gxPxRD3KX+zDS7Rfq8Xloxu1SM=">
+        <field:input field="lastName" id="c_de_edgb_aviationclubmanager_domain_Person_lastName" required="true" z="gNGKso9ZF0Beop7ipJC2AzDvThc="/>
+        <field:input field="firstName" id="c_de_edgb_aviationclubmanager_domain_Person_firstName" required="true" z="Bcw2aPeVY/+/je6oYTIZl5OUmEI="/>
+        <field:input field="address" id="c_de_edgb_aviationclubmanager_domain_Person_address" z="C3cgM/k+qbWy6o1HmaKZogDKF8M="/>
+        <field:input field="zipCode" id="c_de_edgb_aviationclubmanager_domain_Person_zipCode" z="1awUMPe+1rxZDMK6rAczQ+2XUG0="/>
+        <field:input field="city" id="c_de_edgb_aviationclubmanager_domain_Person_city" z="IvZUE9kK5YdiS9BpYrbqtN06vtQ="/>
+        <field:input field="landline" id="c_de_edgb_aviationclubmanager_domain_Person_landline" z="aaj6Ihk3wxcslImfx3r2T3i9qd8="/>
+        <field:input field="cellphone" id="c_de_edgb_aviationclubmanager_domain_Person_cellphone" z="0HoiJWDgPOlyN/P399i2Q+G+MrI="/>
+        <field:input field="email" id="c_de_edgb_aviationclubmanager_domain_Person_email" validationMessageCode="field_invalid_email" z="DCgzooVwCBVfOvX+b015wfL1ejE="/>
+        <field:input field="comment" id="c_de_edgb_aviationclubmanager_domain_Person_comment" z="kYoMxl8Ljpin9m76TpCmuxxxekQ="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_de_edgb_aviationclubmanager_domain_Person" render="${not empty dependencies}" z="XKo/1jevkM9VaUSuU35EqRzu8nI="/>
+</div>

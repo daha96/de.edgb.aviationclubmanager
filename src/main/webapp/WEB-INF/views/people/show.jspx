@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_de_edgb_aviationclubmanager_domain_Person" object="${person}" path="/people" z="Y3KA0muBUZdkAvIV6FZ+tY/BjvI=">
+        <field:display field="lastName" id="s_de_edgb_aviationclubmanager_domain_Person_lastName" object="${person}" z="MD4FHpcN5ULrVumWG81zZ6vO2hI="/>
+        <field:display field="firstName" id="s_de_edgb_aviationclubmanager_domain_Person_firstName" object="${person}" z="x3JomWOd5UsU5pxThllpa9WT6dg="/>
+        <field:display field="address" id="s_de_edgb_aviationclubmanager_domain_Person_address" object="${person}" z="gWkW9KF0CVrz58+9xUK363NiD5A="/>
+        <field:display field="zipCode" id="s_de_edgb_aviationclubmanager_domain_Person_zipCode" object="${person}" z="/xnSyQedwV6SR2FnPtLrdrIOiEM="/>
+        <field:display field="city" id="s_de_edgb_aviationclubmanager_domain_Person_city" object="${person}" z="ERVhQw2Mj5CrGfmkX1ivn3VgD/M="/>
+        <field:display field="landline" id="s_de_edgb_aviationclubmanager_domain_Person_landline" object="${person}" z="ry+O1fHUiXS23kgbCTlUW8DKo8g="/>
+        <field:display field="cellphone" id="s_de_edgb_aviationclubmanager_domain_Person_cellphone" object="${person}" z="HpEUf2mnHhkWqyu0Vo6Yizn2Q6c="/>
+        <field:display field="email" id="s_de_edgb_aviationclubmanager_domain_Person_email" object="${person}" z="I0kM7tpX63+UcI5sXhr1Ijtaihc="/>
+        <field:display field="comment" id="s_de_edgb_aviationclubmanager_domain_Person_comment" object="${person}" z="JJVugqPsEYw5f7L+SRaS5D3u3is="/>
+    </page:show>
+</div>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_de_edgb_aviationclubmanager_domain_Bug" items="${bugs}" z="EuiKbC+NWlaRJFxkkCOK8hYITYU=">
+        <table:table data="${bugs}" id="l_de_edgb_aviationclubmanager_domain_Bug" path="/bugs" z="/27Zwae58QLB2zYoGYFu94/6TIo=">
+            <table:column dateTimePattern="${bug_bugdate_date_format}" id="c_de_edgb_aviationclubmanager_domain_Bug_bugDate" jodaTime="true" property="bugDate" z="user-managed"/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Bug_person" property="person" z="q3MhSc7jptHrwy1jmzDy76Ntze8="/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Bug_description" property="description" z="5cwFeX9AI+etb70PsgMEqNHi6X0="/>
+        </table:table>
+    </page:list>
+</div>

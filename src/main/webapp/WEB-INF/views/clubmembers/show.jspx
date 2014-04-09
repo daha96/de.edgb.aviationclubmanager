@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_de_edgb_aviationclubmanager_domain_ClubMember" object="${clubmember}" path="/clubmembers" z="vfsG6RUvub4FKd6xkATJfVEtrwI=">
+        <field:display field="lastName" id="s_de_edgb_aviationclubmanager_domain_ClubMember_lastName" object="${clubmember}" z="lIkE8SE7Ny4gnBI+XgEcdsixpio="/>
+        <field:display field="firstName" id="s_de_edgb_aviationclubmanager_domain_ClubMember_firstName" object="${clubmember}" z="/CQS8ql66Ks0VvQh8g+EjarqbQc="/>
+        <field:display field="address" id="s_de_edgb_aviationclubmanager_domain_ClubMember_address" object="${clubmember}" z="XTwdXyR/8BXeY07/qbPg7bvbUgA="/>
+        <field:display field="zipCode" id="s_de_edgb_aviationclubmanager_domain_ClubMember_zipCode" object="${clubmember}" z="Bh3lUmFSJXxPgk+Swfk9RKda8FI="/>
+        <field:display field="city" id="s_de_edgb_aviationclubmanager_domain_ClubMember_city" object="${clubmember}" z="MyjMlG2kV3+4Skl2zSixODo3d2E="/>
+        <field:display field="landline" id="s_de_edgb_aviationclubmanager_domain_ClubMember_landline" object="${clubmember}" z="4Mq7lHHPputt9HpjSx974vJKc2A="/>
+        <field:display field="cellphone" id="s_de_edgb_aviationclubmanager_domain_ClubMember_cellphone" object="${clubmember}" z="zmp0vty5HOilf8JX7toyoSKLo7U="/>
+        <field:display field="email" id="s_de_edgb_aviationclubmanager_domain_ClubMember_email" object="${clubmember}" z="/W+gd/l57LlWJteiiSntTxSEswE="/>
+        <field:display field="comment" id="s_de_edgb_aviationclubmanager_domain_ClubMember_comment" object="${clubmember}" z="DO3npTqURFjI9Cq0aKbL1y1ARck="/>
+        <field:display jodaTime="true" dateTimePattern="${clubMember_birthday_date_format}" field="birthday" id="s_de_edgb_aviationclubmanager_domain_ClubMember_birthday" object="${clubmember}"/>
+        <field:display jodaTime="true" dateTimePattern="${clubMember_joiningdate_date_format}" field="joiningDate" id="s_de_edgb_aviationclubmanager_domain_ClubMember_joiningDate" object="${clubmember}" />
+        <field:display jodaTime="true" dateTimePattern="${clubMember_exitdate_date_format}" field="exitDate" id="s_de_edgb_aviationclubmanager_domain_ClubMember_exitDate" object="${clubmember}" />
+        <field:display field="clubMemberState" id="s_de_edgb_aviationclubmanager_domain_ClubMember_clubMemberState" object="${clubmember}" z="lAv7LjzZglKSnWlJZBYYNRAKXCk="/>
+        <field:display field="gender" id="s_de_edgb_aviationclubmanager_domain_ClubMember_gender" object="${clubmember}" z="2qfdl3oHYFtBFin0J/4AuN95+Z0="/>
+        <field:display field="glidingFixedRate" id="s_de_edgb_aviationclubmanager_domain_ClubMember_glidingFixedRate" object="${clubmember}" z="cPwIJjRmWqm3gCzB3PHfwXQX9Jk="/>
+        <field:display field="enginedAviationFixedRate" id="s_de_edgb_aviationclubmanager_domain_ClubMember_enginedAviationFixedRate" object="${clubmember}" z="B2UFAOGlsDI/gG/+O9+fnn5Uz0s="/>
+        <field:display field="student" id="s_de_edgb_aviationclubmanager_domain_ClubMember_student" object="${clubmember}" z="L0MhqirvuUcEJPsIMgiirINUPcw="/>
+        <field:display field="cheapPrice" id="s_de_edgb_aviationclubmanager_domain_ClubMember_cheapPrice" object="${clubmember}" z="o24vfLi9j0yQk3jtz7zpCtWKxtE="/>
+        <field:display field="clubCapacity" id="s_de_edgb_aviationclubmanager_domain_ClubMember_clubCapacity" object="${clubmember}" z="q5UdRVwanukZEjZkPXPRMDU8dk4="/>
+        <field:display field="instructor" id="s_de_edgb_aviationclubmanager_domain_ClubMember_instructor" object="${clubmember}" z="4VP5NBnwkZ2Ud1vBZm+y3ou6+8s="/>
+        <field:display field="winchDriver" id="s_de_edgb_aviationclubmanager_domain_ClubMember_winchDriver" object="${clubmember}" z="RCSjDYrYE9TrtDQXnVn2Jisnoxg="/>
+    </page:show>
+</div>

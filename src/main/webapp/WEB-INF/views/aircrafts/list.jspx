@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_de_edgb_aviationclubmanager_domain_Aircraft" items="${aircrafts}" z="qSPl+XXz+/DNxxLpP7SNFZwTAfk=">
+        <table:table data="${aircrafts}" id="l_de_edgb_aviationclubmanager_domain_Aircraft" path="/aircrafts" z="76gorfzXveg52e2uri37VqvnSHk=">
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Aircraft_registration" property="registration" z="HQf40BZ5PntiiBWCPfpRRHwB/z0="/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Aircraft_callsign" property="callsign" z="lkSc6XbYsALNkXlUlDJetlNm/h4="/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Aircraft_type" property="type" z="9QNjAZpwrJ/UuMi0IZLtrtZfAL4="/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Aircraft_model" property="model" z="FwT/0vf6Ah74jitHQ3CjXhlWblo="/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Aircraft_holder" property="holder" z="F/MKXTG7Gx9I4nsEIgBhmw47ixs="/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Aircraft_seats" property="seats" render="false" z="user-managed"/>
+        </table:table>
+    </page:list>
+</div>

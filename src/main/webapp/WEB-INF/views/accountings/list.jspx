@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_de_edgb_aviationclubmanager_domain_Accounting" items="${accountings}" z="mqTFtdOgamPVck7juC/Gg9Yu1aQ=">
+        <table:table data="${accountings}" id="l_de_edgb_aviationclubmanager_domain_Accounting" path="/accountings" z="XoO6CBWPATZbiIfUnmxv/5DYCkI=">
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Accounting_name" property="name" z="vMQm86GcEcq0GeQ07G9SweJLXWc="/>
+        </table:table>
+    </page:list>
+</div>

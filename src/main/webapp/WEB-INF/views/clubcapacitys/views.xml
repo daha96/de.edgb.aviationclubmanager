@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+    <definition extends="default" name="clubcapacitys/list">
+        <put-attribute name="body" value="/WEB-INF/views/clubcapacitys/list.jspx"/>
+    </definition>
+<definition extends="default" name="clubcapacitys/show">
+        <put-attribute name="body" value="/WEB-INF/views/clubcapacitys/show.jspx"/>
+    </definition>
+<definition extends="default" name="clubcapacitys/create">
+        <put-attribute name="body" value="/WEB-INF/views/clubcapacitys/create.jspx"/>
+    </definition>
+<definition extends="default" name="clubcapacitys/update">
+        <put-attribute name="body" value="/WEB-INF/views/clubcapacitys/update.jspx"/>
+    </definition>
+</tiles-definitions>

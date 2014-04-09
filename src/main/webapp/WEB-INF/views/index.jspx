@@ -1,0 +1,61 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags" xmlns:sec="http://www.springframework.org/security/tags" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+  <jsp:directive.page contentType="text/html;charset=UTF-8" />
+  <jsp:output omit-xml-declaration="yes" />
+  <spring:message var="app_name" code="application_name" htmlEscape="false" />
+  <spring:message var="title" code="welcome_titlepane" arguments="${app_name}" htmlEscape="false" />
+  <util:panel id="title" title="${title}">
+		<h3>
+			<spring:message code="welcome_h3" arguments="${app_name}" />
+			<c:out value=" in " />
+			<spring:message code="app.homeLocation" />
+		</h3>
+		<p>Willkommen zum Vereinsmanager der LSG Breitscheid-Haiger e.V.</p>
+
+		<h4>Wichtige Links:</h4>
+		<p>
+		
+		<ul>
+			<li><spring:url value="/flights/flightlist" var="flightlist_url" />
+				<a href="${flightlist_url}">Startliste von heute</a></li>
+			<li><spring:url value="/flights?form" var="new_flight_url" /> <a
+				href="${new_flight_url}">Flug eintragen</a></li>
+
+			<li><spring:url value="/flights/pilotlog?form" var="pilotlog_url" /> <a
+				href="${pilotlog_url}">persönliches Flugbuch</a></li>
+			<li><spring:url value="/aircraftlog?form" var="aircraftlog_url" />
+				<a href="${aircraftlog_url}">Bordbücher</a></li>
+		</ul>
+		</p>
+		
+		<br />
+
+		<!-- 	<sec:authorize access="!isAuthenticated()">
+    	
+    	<spring:url value="/login" var="login"/>
+		<p>Bitte loggen Sie sich <a href="${login}">hier</a> ein, um den Vereinsmanager zu nutzen.</p>
+		     			
+	 <p>Bei Problemen, Fragen, Anregungen oder um einen Benutzerzugang zur Startkladde zu erhalten oder schreiben Sie einfach eine E-Mail an
+		<a href="mailto:info@edgb-startkladde.de">info@edgb-startkladde.de</a>.</p>
+		 
+		</sec:authorize>
+		-->
+
+		<!--	<sec:authorize access="isAuthenticated()">
+    	
+    	     			
+		
+		<p>
+ <a href="files/sk_web.pdf">Hier</a>
+ist eine Anleitung zur Benutzung der Webschnittstelle.
+</p>
+      <spring:message code="welcome_text" />
+    </p> 
+		</sec:authorize>-->
+
+		<p>
+			Bei Problemen, Fragen oder Anregungen, schreiben Sie einfach eine
+			E-Mail an <a href="mailto:info@edgb-startkladde.de">info@edgb-startkladde.de</a>.
+		</p>
+
+	</util:panel>
+</div>

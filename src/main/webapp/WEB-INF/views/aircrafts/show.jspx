@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_de_edgb_aviationclubmanager_domain_Aircraft" object="${aircraft}" path="/aircrafts" z="vZQvHxsyj1oCin5fxJrNrjoTxUI=">
+        <field:display field="registration" id="s_de_edgb_aviationclubmanager_domain_Aircraft_registration" object="${aircraft}" z="7bMHnIXafsVxOrLIk6MxbLD2S+s="/>
+        <field:display field="callsign" id="s_de_edgb_aviationclubmanager_domain_Aircraft_callsign" object="${aircraft}" z="9G912xy/vDo/QkyaQTx8+5PlHjY="/>
+        <field:display field="type" id="s_de_edgb_aviationclubmanager_domain_Aircraft_type" object="${aircraft}" z="Z5I7SwY2WGC9MFhDmKIyxMEDWts="/>
+        <field:display field="model" id="s_de_edgb_aviationclubmanager_domain_Aircraft_model" object="${aircraft}" z="DpE1tf7geUZ0T+133yTeAOtCkps="/>
+        <field:display field="holder" id="s_de_edgb_aviationclubmanager_domain_Aircraft_holder" object="${aircraft}" z="xKhp980bn47L/o/iX35H/sXMkRQ="/>
+        <field:display field="seats" id="s_de_edgb_aviationclubmanager_domain_Aircraft_seats" object="${aircraft}" z="1XbffzaUB6iJNVOe04MxZzaC9vc="/>
+        <field:display field="comment" id="s_de_edgb_aviationclubmanager_domain_Aircraft_comment" object="${aircraft}" z="dBJj9x0SiB8RHgVxma7/Bggdqa4="/>
+    </page:show>
+</div>

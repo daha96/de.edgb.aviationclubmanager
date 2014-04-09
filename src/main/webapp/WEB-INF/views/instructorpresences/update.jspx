@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_de_edgb_aviationclubmanager_domain_InstructorPresence" modelAttribute="instructorPresence" path="/instructorpresences" versionField="Version" z="j1YXVCZOGKh60bghScEF6fUSL5I=">
+        <field:datetime dateTimePattern="${instructorPresence_presencedate_date_format}" field="presenceDate" id="c_de_edgb_aviationclubmanager_domain_InstructorPresence_presenceDate" required="true" z="iNb1gK6thsy6uImTftzdih6bimo="/>
+        <field:select field="instructor" id="c_de_edgb_aviationclubmanager_domain_InstructorPresence_instructor" itemValue="id" items="${clubmembers}" path="/clubmembers" required="true" z="pZgZ6eO1NJoVSZVVsITvrPvNu14="/>
+        <field:input field="comment" id="c_de_edgb_aviationclubmanager_domain_InstructorPresence_comment" z="pnbqo2SAZXTu/bydED8HEg9uMIM="/>
+    </form:update>
+</div>

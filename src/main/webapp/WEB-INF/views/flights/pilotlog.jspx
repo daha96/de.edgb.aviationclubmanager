@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:spring="http://www.springframework.org/tags" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    
+    <spring:message code="de_edgb_aviationclubmanager_domain_flight_pilotlog" var="label" htmlEscape="false" />
+    <form:find label="${label}" finderName="pilotlog" hiddenFindField="false" id="ff_de_edgb_aviationclubmanager_domain_Flight" path="/flights/pilotlog" >
+        <field:datetime dateTimePattern="${flight_flightdate_date_format}" disableFormBinding="true" field="minFlightDate" id="f_de_edgb_aviationclubmanager_domain_Flight_minFlightDate" required="true" />
+        <field:datetime dateTimePattern="${flight_flightdate_date_format}" disableFormBinding="true" field="maxFlightDate" id="f_de_edgb_aviationclubmanager_domain_Flight_maxFlightDate" required="true" />
+   		<field:select id="f_de_edgb_aviationclubmanager_domain_Flight_copilotMode" items="${copilotModes}" disableFormBinding="true" field="copilotMode" path="copilotmodes" required="true" />
+    </form:find>
+</div>

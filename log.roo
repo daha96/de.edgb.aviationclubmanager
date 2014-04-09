@@ -1,0 +1,95 @@
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-07 03:04:31
+project --topLevelPackage de.edgb.aviationclubmanager --projectName AviationClubManager --java 7 --packaging WAR
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-07 03:04:49
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-07 03:06:13
+jpa setup --database MYSQL --provider HIBERNATE --hostName 127.0.0.1 --databaseName AviationClubManager --userName acm --password acm
+entity jpa --class ~.domain.UserAccount
+entity jpa --class ~.domain.UserRole
+web mvc setup
+security setup
+backup
+// [failed] web mvc language --code de 
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-07 03:25:26
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-07 03:42:58
+web mvc language --code de 
+web report setup
+field string --class ~.domain.UserAccount --fieldName username --notNull --unique 
+field string --class ~.domain.UserAccount --fieldName password --notNull
+field boolean --class ~.domain.UserAccount --fieldName enabled --notNull
+entity jpa --class ~.domain.UserPermission
+// [failed] field reference --fieldName roles --class ~.domain.UserAccount --type ~.domain.UserRole --cardinality MANY_TO_MANY
+field set --fieldName userRoles --type ~.domain.UserRole --class ~.domain.UserAccount --cardinality MANY_TO_MANY
+field set --fieldName userPermissions --type ~.domain.UserPermission --class ~.domain.UserRole
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-07 04:41:44
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-07 08:21:45
+finder list --class ~.domain.UserAccount
+finder add --finderName findUserAccountsByUsernameEquals 
+backup
+// [failed] field reference --fieldName userAccount --type ~.domain.UserAccount --class 
+field reference --fieldName userAccount --type ~.domain.UserAccount --class ~.domain.Person
+enum type --class ~.domain.ClubMemberState 
+web mvc scaffold --class ~.web.UserRoleController --backingType ~.domain.UserRole
+backup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-07 10:23:09
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-07 18:10:35
+web mvc scaffold --class ~.web.UserAccountController --backingType ~.domain.UserAccount
+web mvc all --package ~.web 
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-08 01:16:45
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-08 19:59:17
+backup
+web mvc all --package ~.web 
+backup
+backup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-09 02:36:28
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-09 02:38:42
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-09 03:08:36
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-09 10:55:26
+backup
+backup
+backup
+backup
+backup
+backup
+backup
+web report add --controller ~.web.FlightController --reportName testReport
+web report add --controller ~.web.FlightController --reportName testReport --format pdf,xls
+web report add --controller ~.web.FlightController --reportName testReport --format pdf,xls
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-09 14:37:53
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-09 14:46:06
+backup
+backup
+backup
+backup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-09 18:50:01
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-10 14:07:21
+backup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-10 18:20:42
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-10 18:20:50
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-10 18:21:26
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-10 18:21:36
+backup
+backup
+backup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-11 02:00:55
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-11 21:50:50
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-11 22:31:36
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-11 22:31:44
+backup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-11 23:19:17
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-11 23:21:02
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-11 23:48:44
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-12 02:21:20
+backup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-12 02:59:01
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-12 03:26:41
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-12 04:41:05
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-12 04:41:13
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-12 04:42:41
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-12 04:42:49
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-12 04:57:04
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-12 11:29:29
+backup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-12 13:21:36
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-01-12 23:29:46
+backup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-01-13 00:39:04

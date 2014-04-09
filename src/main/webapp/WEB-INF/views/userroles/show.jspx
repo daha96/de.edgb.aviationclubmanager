@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_de_edgb_aviationclubmanager_domain_UserRole" object="${userrole}" path="/userroles" z="1UZcqqaZPzbUxXpKBV1eYKDbu08=">
+        <field:display field="name" id="s_de_edgb_aviationclubmanager_domain_UserRole_name" object="${userrole}" z="9Bu35LLlPkXhA9GztFxBMY9h1/E="/>
+        <field:display field="userPermissions" id="s_de_edgb_aviationclubmanager_domain_UserRole_userPermissions" object="${userrole}" z="BWceM+Cf6JRhBgQP2v1SZ98yp3M="/>
+    </page:show>
+</div>
