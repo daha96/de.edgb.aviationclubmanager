@@ -82,14 +82,14 @@ public class Flight {
 
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(style = "-S")
-    @Past
+//    @Past
     private Date departureTime;
 
     private String landingLocation;
 
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(style = "-S")
-    @Past
+//    @Past
     private Date landingTime;
     
     
@@ -225,6 +225,10 @@ public class Flight {
         for (String s : landLoc) {
             if (!depLoc.contains(s)) depLoc.add(s);
         }
+        
+        if (depLoc.contains(null))
+        	depLoc.remove(null);
+        
         Collections.sort(depLoc);
         return depLoc;
     }
