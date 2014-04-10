@@ -3,6 +3,7 @@ package de.edgb.aviationclubmanager.web;
 
 import javax.persistence.NoResultException;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,7 +24,7 @@ public class UserAccountDetailsService implements UserDetailsService {
 		{
 			account = UserAccount.findUserAccountsByUsernameEquals(username).getSingleResult();
 		}
-		catch (NoResultException e)
+		catch (EmptyResultDataAccessException e)
 		{
 			throw new UsernameNotFoundException("User not found: " + username);
 		}
