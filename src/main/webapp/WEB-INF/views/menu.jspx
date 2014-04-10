@@ -6,6 +6,7 @@
         <menu:menu id="menu">
             <menu:category id="c_flight">
                 <menu:item id="i_flight_flights" url="/flights/flightlist"/>
+                <menu:item id="i_flight_aircraftlog" url="/aircraftlog?form"/>
                 <menu:item id="i_flight_aircrafts" url="/aircrafts"/>
                 <menu:item id="i_flight_people" url="/people"/>
                 <menu:item id="i_flight_accountings" url="/accountings"/>
@@ -37,9 +38,9 @@
             </menu:category>
             <menu:category id="c_user">
                 <menu:item id="i_user_changepassword" url="/changepassword?form"/>
-                <menu:item id="i_user_people" url="/people"/>
+               <!--  <menu:item id="i_user_people" url="/people"/>
                 <menu:item id="i_user_useraccounts" url="/useraccounts"/>
-                <menu:item id="i_user_userroles" url="/userroles"/>
+                <menu:item id="i_user_userroles" url="/userroles"/> -->
                 <menu:item id="i_user_pilotlog" url="/flights/pilotlog?form"/>
                 <!--         <menu:item id="i_user_userpermissions" url="/userpermissions"/>
           -->
@@ -47,40 +48,17 @@
             <menu:category id="c_club">
                 <menu:item id="i_club_clubmembers" url="/clubmembers"/>
                 <menu:item id="i_club_clubcapacitys" url="/clubcapacitys"/>
+                <menu:item id="i_club_instructorpresences" url="/instructorpresences?latest"/>
+                <menu:item id="i_club_winchdriverpresences" url="/winchdriverpresences?latest"/>
                 <menu:item id="i_club_statistics" url="/statistics?form"/>
             </menu:category>
-            <menu:category id="c_duty">
-                <menu:item id="i_duty_instructorpresences" url="/instructorpresences?latest"/>
-                <menu:item id="i_duty_winchdriverpresences" url="/winchdriverpresences?latest"/>
+            
+            <menu:category id="c_admin">
+                <menu:item id="i_admin_useraccounts" url="/useraccounts"/>
+                <menu:item id="i_admin_userroles" url="/userroles"/>
             </menu:category>
-            <menu:category id="c_aircraft">
-                <menu:item id="i_aircraft_aircrafts" url="/aircrafts"/>
-                <menu:item id="i_aircraft_aircraftlog" url="/aircraftlog?form"/>
-            </menu:category>
-            <menu:category id="c_app">
-                <menu:item id="i_app_bugs" url="/bugs"/>
-                <!--  
-           <sec:authorize access="hasRole('admin')">
-                <menu:category id="c_adminmenu">
-                    <menu:item id="i_adminmenu_accounting" url="/admin/accounting"/>
-                    <menu:item id="i_adminmenu_aircraft" url="/admin/aircraft"/>
-                    <menu:item id="i_adminmenu_clubaircraft" url="/admin/clubaircraft"/>
-                    <menu:item id="i_adminmenu_clubaircraftcosts" url="/admin/clubaircraftcosts"/>
-                    <menu:item id="i_adminmenu_clubcapacity" url="/admin/clubcapacity"/>
-                    <menu:item id="i_adminmenu_clubmember" url="/admin/clubmembers"/>
-                    <menu:item id="i_adminmenu_instructorpresence" url="/admin/instructorpresence"/>
-                    <menu:item id="i_adminmenu_persons" url="/admin/persons"/>
-                      <menu:item id="i_adminmenu_presence" url="/admin/presence"/>
-                    <menu:item id="i_adminmenu_reservation" url="/admin/reservation"/>
-                 
-                    <menu:item id="i_adminmenu_winchdriverpresence" url="/admin/winchdriverpresence"/>
-                       <menu:item id="i_adminmenu_workinghours" url="/admin/workinghours"/>
-                  
-                    <menu:item id="i_adminmenu_bug" url="/admin/bug"/>
-                </menu:category>
-            </sec:authorize> 
-             -->
-            </menu:category>
+       
+           
         </menu:menu>
     </sec:authorize>
     <menu:menu id="_menu" render="false" z="user-managed">
