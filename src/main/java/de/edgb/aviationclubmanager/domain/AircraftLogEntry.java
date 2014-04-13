@@ -104,7 +104,7 @@ public class AircraftLogEntry {
 		
 		entry.entryDate = flight.getFlightDate();
 		entry.aircraft = flight.getAircraft();
-		entry.pilot = flight.getPilot();
+	//	entry.pilot = flight.getPilot();
 		entry.departureLocation = flight.getDepartureLocation();
 		entry.departureTime = flight.getDepartureTime();
 		
@@ -123,6 +123,8 @@ public class AircraftLogEntry {
 		
 		for (Flight f : flightList)
 		{
+			entry.pilot = flight.getPilot();
+			
 			if (entry.minOccupants==0 || f.getNumPassengers() < entry.minOccupants)
 				entry.minOccupants=f.getNumPassengers();
 			if (entry.maxOccupants==0 || f.getNumPassengers() > entry.maxOccupants)
