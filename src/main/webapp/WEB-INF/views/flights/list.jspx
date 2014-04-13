@@ -29,8 +29,14 @@
             <c:if test="${empty flightlist}">
                 <table:column jodaTime="true" dateTimePattern="${flight_flightdate_date_format}" id="c_de_edgb_aviationclubmanager_domain_Flight_flightDate" property="flightDate"/>
             </c:if>
-            <table:column id="c_de_edgb_aviationclubmanager_domain_Flight_flightType" property="flightType" z="PCpfL1pjcconbTBpdn7SQcAc7Hk="/>
+            <c:if test="${not empty flightlist}">
+                <table:column id="c_de_edgb_aviationclubmanager_domain_Flight_flightType" property="flightType" z="PCpfL1pjcconbTBpdn7SQcAc7Hk="/>
+            </c:if>
             <table:column id="c_de_edgb_aviationclubmanager_domain_Flight_aircraft" property="aircraft" z="UKXe852ETg3PHvZD4OLn32+m4ec="/>
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Flight_pilot" property="pilot" />
+            <table:column id="c_de_edgb_aviationclubmanager_domain_Flight_copilot" property="copilot" />
+            
+            
             <c:if test="${empty flightlist}"/>
             <table:column id="c_de_edgb_aviationclubmanager_domain_Flight_launchMethod" property="launchMethod"/>
             <c:choose>
