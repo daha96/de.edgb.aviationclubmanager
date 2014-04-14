@@ -83,7 +83,7 @@ public class FlightController {
         }
         uiModel.asMap().clear();
         flight.persist();
-        return "redirect:/flights/" + encodeUrlPathSegment(flight.getId().toString(), httpServletRequest);
+        return "redirect:/flights/flightlist?flightDate=" + encodeUrlPathSegment(flight.getFlightDate().toString(DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale())), httpServletRequest);
     }
 
     @PreAuthorize("hasRole('PERMISSION_FLIGHT_CREATE')")
@@ -168,7 +168,7 @@ public class FlightController {
         }
         uiModel.asMap().clear();
         flight.merge();
-        return "redirect:/flights/" + encodeUrlPathSegment(flight.getId().toString(), httpServletRequest);
+        return "redirect:/flights/flightlist?flightDate=" + encodeUrlPathSegment(flight.getFlightDate().toString(DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale())), httpServletRequest);
     }
 
     @PreAuthorize("hasRole('PERMISSION_FLIGHT_UPDATE')")
