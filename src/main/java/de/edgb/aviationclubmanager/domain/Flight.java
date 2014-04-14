@@ -352,4 +352,22 @@ public class Flight {
             return 0;
         }
     }
+    
+    public static Flight repeatFlight(Flight flight)
+    {
+    	Flight newFlight = new Flight();
+    	
+    	newFlight.setFlightType(flight.getFlightType());
+    	newFlight.setAircraft(flight.getAircraft());
+    	newFlight.setPilot(flight.getPilot());
+    	newFlight.setCopilot(flight.getCopilot());
+    	newFlight.setAccounting(flight.getAccounting());
+    	newFlight.setFlightMode(flight.getFlightMode());
+    	newFlight.setFlightDate(flight.getFlightDate());
+    	newFlight.setLaunchMethod(flight.getLaunchMethod());
+    	newFlight.setDepartureLocation(flight.getDepartureLocation());
+    	newFlight.setLandingLocation(flight.getLandingLocation());
+    	
+    	return newFlight;
+    }
 }

@@ -149,6 +149,20 @@ public class FlightController {
         populateEditForm(uiModel, Flight.findFlight(id));
         return "flights/update";
     }
+    
+    @PreAuthorize("hasRole('PERMISSION_FLIGHT_CREATE')")
+    @RequestMapping(value = "/{id}", params = "repeat", produces = "text/html")
+    public String repeat(@PathVariable("id") Long id, Model uiModel) {
+        
+    	Flight flight = Flight.findFlight(id);
+    	
+        Flight newFlight = Flight.repeatFlight(flight);
+        
+    	
+        populateEditForm(uiModel, newFlight);
+
+        return "flights/create";
+    }
 
     @PreAuthorize("hasRole('PERMISSION_FLIGHT_DELETE')")
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
@@ -208,7 +222,7 @@ public class FlightController {
     		date = Util.convertDateToLocalDate(flightDate);
         uiModel.addAttribute("flights", Flight.findFlightsByFlightDateEquals(date));
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("flightlist", true);
+ //       uiModel.addAttribute("flightlist", true);
         uiModel.addAttribute("flightlistDate", date);
         return "flights/flightlist/list";
     }
@@ -226,7 +240,7 @@ public class FlightController {
     public String pilotlog(@RequestParam("copilotMode") CopilotMode copilotMode, @RequestParam("minFlightDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date minFlightDate, @RequestParam("maxFlightDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date maxFlightDate, Model uiModel) {
         uiModel.addAttribute("flights", Flight.findFlightsByPersonAndFlightDateBetweenAndCopilotMode(((UserAccountDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserAccount().getPerson(), Util.convertDateToLocalDate(minFlightDate), Util.convertDateToLocalDate(maxFlightDate), copilotMode));
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("pilotlog", true);
+//        uiModel.addAttribute("pilotlog", true);
         return "flights/pilotlog/list";
     }
 
@@ -242,7 +256,7 @@ public class FlightController {
     public String flightdb(@RequestParam("minFlightDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date minFlightDate, @RequestParam("maxFlightDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date maxFlightDate, Model uiModel) {
         uiModel.addAttribute("flights", Flight.findFlightsByFlightDateBetween(Util.convertDateToLocalDate(minFlightDate), Util.convertDateToLocalDate(maxFlightDate)));
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("flightdb", true);
+   //     uiModel.addAttribute("flightdb", true);
         return "flights/flightdb/list";
     }
 
