@@ -44,6 +44,17 @@
 						<spring:param name="format" value="html" />
 						<spring:param name="flightDate" value="${flightlistDate}" />
 					</spring:url> <a href="${link_url}">HTML</a>
+				</span> <br /> <br />
+
+				<!-- Bordbücher -->
+				<span> <spring:url value="/aircraftlog" var="aircraftlog_url">
+						<spring:param name="flightDate" value="${flightlistDate}" />
+					</spring:url> <spring:message
+						code="de_edgb_aviationclubmanager_domain_aircraftlogentry_aircraftlog_plural"
+						var="aircraftlog_label" /> <a href="${aircraftlog_url}"> <spring:message
+							arguments="${aircraftlog_label}" code="entity_show"
+							htmlEscape="false" />
+				</a>
 				</span>
 			</div>
 

@@ -1,10 +1,8 @@
 package de.edgb.aviationclubmanager.domain;
-
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
@@ -13,7 +11,6 @@ import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-
 import org.apache.poi.ss.formula.eval.NotImplementedException;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
@@ -23,12 +20,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
-
 import de.edgb.aviationclubmanager.web.Util;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord//(finders = { "findFlightsByFlightDateBetween" })
+@RooJpaActiveRecord//(finders = { "findFlightsByFlightDateEqualsAndAircraft" })
 public class Flight {
 
     @NotNull
@@ -45,10 +41,9 @@ public class Flight {
 
     @ManyToOne
     private Person copilot;
-    
-    public int getNumPassengers()
-    {
-    	return (copilot != null) ? 2 : 1;
+
+    public int getNumPassengers() {
+        return (copilot != null) ? 2 : 1;
     }
 
     @NotNull
@@ -69,11 +64,11 @@ public class Flight {
     public LocalDate getFlightDate() {
         return Util.convertDateToLocalDate(this.flightDate);
     }
-    
+
     public void setFlightDate(LocalDate flightDate) {
         this.flightDate = Util.convertLocalDateToDate(flightDate);
     }
-    
+
     @NotNull
     @Enumerated
     private LaunchMethod launchMethod;
@@ -82,116 +77,99 @@ public class Flight {
 
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(style = "-S")
-//    @Past
+    //    @Past
     private Date departureTime;
 
     private String landingLocation;
 
     @Temporal(TemporalType.TIME)
     @DateTimeFormat(style = "-S")
-//    @Past
+    //    @Past
     private Date landingTime;
-    
-    
+
     public LocalTime getDepartureTime() {
         return Util.convertDateToLocalTime(this.departureTime);
     }
-    
+
     public void setDepartureTime(LocalTime departureTime) {
         this.departureTime = Util.convertLocalTimeToDate(departureTime);
     }
-    
+
     public LocalTime getLandingTime() {
         return Util.convertDateToLocalTime(this.landingTime);
     }
-    
+
     public void setLandingTime(LocalTime landingTime) {
         this.landingTime = Util.convertLocalTimeToDate(landingTime);
     }
-    
-    public Period getDuration()
-    {
-    	if (departureTime != null)
-    	{
-    		if (landingTime != null)
-    			return new Period(getDepartureTime(), getLandingTime());
-    		else if (getLandsHere())
-    			return new Period(getDepartureTime(), Util.getCurrentTime());    		
-    	}
-    	
-    	return null;
-    }
-    
-    public String getDurationString()
-    {
-    	Period period = getDuration();
-    	
-    	if (period != null)
-    		return Util.convertPeriodToString(period);
-    	else
-    		return null;
-    }
-    
- /*   // Wird in FlightController.list und im Report flightlist benutzt:
-    // Wenn duration verwendet wird, wird Date als Zeit interpretiert und mit der aktuellen TimeZone angezeigt
-    public String getDurationString()
-    {
-    	Date dur = getDuration();
-    	
-    	if(dur == null)
-    		return "";
-    	
-    	Long time = dur.getTime();
-    	Integer diffMinutes = (int)(time / (60 * 1000) % 60);
-    	Integer diffHours = (int)(time / (60 * 60 * 1000) % 24);
-    	return String.format("%02d", diffHours) + ":" + String.format("%02d", diffMinutes);    	
-    }
-	
-    public Date getDuration()
-    {
-    	if (departureTime != null)
-    	{
-    		if (landingTime != null)
-    		{
-    			return new Date(landingTime.getTime() - departureTime.getTime());/*
-    			long diff = landingTime.getTime() - departureTime.getTime();
-    			long dminutes = diff / (60 * 1000) % 60;
-    			long dhours = diff / (60 * 60 * 1000) % 24;
-    			Util.getNullPoint().
-    			return new Date(1970, 1, 1, (int)dhours, (int)dminutes);*
 
-    		}
-    		// TODO: überprüfen!
-    		else if (getLandsHere())
-    		{
-    			return new Date(Util.getCurrentTime().getTime() - departureTime.getTime());/*
-    			long diff = Util.getCurrentTime().getTime() - departureTime.getTime();
-    			long dminutes = diff / (60 * 1000) % 60;
-    			long dhours = diff / (60 * 60 * 1000) % 24;    			   			
-    			return new Date(1970, 1, 1, (int)dhours, (int)dminutes);*
-    		}
-    	}
-    	/*if (departureTime != null)
-    	{
-    		if (landingTime != null)
-    		{
-    			long diff = landingTime.getTime() - departureTime.getTime();
-    			int diffMinutes = (int)(diff / (60 * 1000) % 60);
-    			int diffHours = (int)(diff / (60 * 60 * 1000) % 24);
-    			return new Date(1970, 1, 1, diffHours, diffMinutes);
-    		}
-    		else if (getLandsHere())
-    		{
-    			long diff = new Date().getTime() - departureTime.getTime();
-    			int diffMinutes = (int)(diff / (60 * 1000) % 60);
-    			int diffHours = (int)(diff / (60 * 60 * 1000) % 24);
-    			return new Date(1970, 1, 1, diffHours, diffMinutes);
-    		}
-    	}*
-    	
-    	return null;
+    public Period getDuration() {
+        if (departureTime != null) {
+            if (landingTime != null) return new Period(getDepartureTime(), getLandingTime()); else if (getLandsHere()) return new Period(getDepartureTime(), Util.getCurrentTime());
+        }
+        return null;
     }
-*/
+
+    public String getDurationString() {
+        Period period = getDuration();
+        if (period != null) return Util.convertPeriodToString(period); else return null;
+    }
+
+    /*   // Wird in FlightController.list und im Report flightlist benutzt:
+     // Wenn duration verwendet wird, wird Date als Zeit interpretiert und mit der aktuellen TimeZone angezeigt
+     public String getDurationString()
+     {
+     Date dur = getDuration();
+     if(dur == null)
+     return "";
+     Long time = dur.getTime();
+     Integer diffMinutes = (int)(time / (60 * 1000) % 60);
+     Integer diffHours = (int)(time / (60 * 60 * 1000) % 24);
+     return String.format("%02d", diffHours) + ":" + String.format("%02d", diffMinutes);
+     }
+     public Date getDuration()
+     {
+     if (departureTime != null)
+     {
+     if (landingTime != null)
+     {
+     return new Date(landingTime.getTime() - departureTime.getTime());/*
+     long diff = landingTime.getTime() - departureTime.getTime();
+     long dminutes = diff / (60 * 1000) % 60;
+     long dhours = diff / (60 * 60 * 1000) % 24;
+     Util.getNullPoint().
+     return new Date(1970, 1, 1, (int)dhours, (int)dminutes);*
+     }
+     // TODO: überprüfen!
+     else if (getLandsHere())
+     {
+     return new Date(Util.getCurrentTime().getTime() - departureTime.getTime());/*
+     long diff = Util.getCurrentTime().getTime() - departureTime.getTime();
+     long dminutes = diff / (60 * 1000) % 60;
+     long dhours = diff / (60 * 60 * 1000) % 24;
+     return new Date(1970, 1, 1, (int)dhours, (int)dminutes);*
+     }
+     }
+     /*if (departureTime != null)
+     {
+     if (landingTime != null)
+     {
+     long diff = landingTime.getTime() - departureTime.getTime();
+     int diffMinutes = (int)(diff / (60 * 1000) % 60);
+     int diffHours = (int)(diff / (60 * 60 * 1000) % 24);
+     return new Date(1970, 1, 1, diffHours, diffMinutes);
+     }
+     else if (getLandsHere())
+     {
+     long diff = new Date().getTime() - departureTime.getTime();
+     int diffMinutes = (int)(diff / (60 * 1000) % 60);
+     int diffHours = (int)(diff / (60 * 60 * 1000) % 24);
+     return new Date(1970, 1, 1, diffHours, diffMinutes);
+     }
+     }*
+     return null;
+     }
+     */
     private String comment;
 
     // ------------------------------------------
@@ -204,17 +182,14 @@ public class Flight {
     @DateTimeFormat(style = "MM")
     private Date lastManipulationDate;
 
-
-    
     public LocalDateTime getLastManipulationDate() {
         return Util.convertDateToLocalDateTime(this.lastManipulationDate);
     }
-    
+
     public void setLastManipulationDate(LocalDateTime lastManipulationDate) {
         this.lastManipulationDate = Util.convertLocalDateTimeToDate(lastManipulationDate);
     }
-    
-    
+
     // Finder
     public static List<String> findLocations() {
         EntityManager em = Flight.entityManager();
@@ -225,10 +200,7 @@ public class Flight {
         for (String s : landLoc) {
             if (!depLoc.contains(s)) depLoc.add(s);
         }
-        
-        if (depLoc.contains(null))
-        	depLoc.remove(null);
-        
+        if (depLoc.contains(null)) depLoc.remove(null);
         Collections.sort(depLoc);
         return depLoc;
     }
@@ -254,8 +226,20 @@ public class Flight {
         return resultList;
     }
 
+	public static List<Flight> findFlightsByFlightDateEqualsAndAircraft(LocalDate flightDate, Aircraft aircraft) {
+        if (flightDate == null) throw new IllegalArgumentException("The flightDate argument is required");
+        if (aircraft == null) throw new IllegalArgumentException("The aircraft argument is required");
+        EntityManager em = Flight.entityManager();
+        TypedQuery<Flight> q = em.createQuery("SELECT o FROM Flight AS o WHERE o.flightDate = :flightDate  AND o.aircraft = :aircraft", Flight.class);
+        q.setParameter("flightDate", Util.convertLocalDateToDate(flightDate));
+        q.setParameter("aircraft", aircraft);
+        List<Flight> resultList = q.getResultList();
+        Collections.sort(resultList, new Flight.FlightComparator());
+        return resultList;
+    }
+
     public static List<Flight> findFlightsByPersonAndFlightDateBetweenAndCopilotMode(Person person, LocalDate minFlightDate, LocalDate maxFlightDate, CopilotMode copilotMode) {
-    	if (minFlightDate == null) throw new IllegalArgumentException("The minFlightDate argument is required");
+        if (minFlightDate == null) throw new IllegalArgumentException("The minFlightDate argument is required");
         if (maxFlightDate == null) throw new IllegalArgumentException("The maxFlightDate argument is required");
         if (copilotMode == null) throw new IllegalArgumentException("The copilotMode argument is required");
         EntityManager em = Flight.entityManager();
@@ -272,7 +256,7 @@ public class Flight {
         return resultList;
     }
 
-	public static List<Flight> findFlightsByFlightDateBetween(LocalDate minFlightDate, LocalDate maxFlightDate) {
+    public static List<Flight> findFlightsByFlightDateBetween(LocalDate minFlightDate, LocalDate maxFlightDate) {
         if (minFlightDate == null) throw new IllegalArgumentException("The minFlightDate argument is required");
         if (maxFlightDate == null) throw new IllegalArgumentException("The maxFlightDate argument is required");
         EntityManager em = Flight.entityManager();
@@ -282,18 +266,16 @@ public class Flight {
         List<Flight> resultList = q.getResultList();
         Collections.sort(resultList, new Flight.FlightComparator());
         return resultList;
-	}
-	
-	
+    }
 
-	public boolean getDepartsHere() {
+    public boolean getDepartsHere() {
         return flightMode == FlightMode.local || flightMode == FlightMode.leaving;
     }
 
     public boolean getLandsHere() {
         return flightMode == FlightMode.local || flightMode == FlightMode.coming;
     }
-    
+
     public boolean getCanDepart() {
         return getDepartsHere() && !getDeparted() && !getLanded();
     }
@@ -319,7 +301,7 @@ public class Flight {
     }
 
     public boolean getFinished() {
-        return getLandsHere() ? getLanded () : getDeparted();
+        return getLandsHere() ? getLanded() : getDeparted();
     }
 
     private LocalTime getSortTime() {
@@ -352,22 +334,19 @@ public class Flight {
             return 0;
         }
     }
-    
-    public static Flight repeatFlight(Flight flight)
-    {
-    	Flight newFlight = new Flight();
-    	
-    	newFlight.setFlightType(flight.getFlightType());
-    	newFlight.setAircraft(flight.getAircraft());
-    	newFlight.setPilot(flight.getPilot());
-    	newFlight.setCopilot(flight.getCopilot());
-    	newFlight.setAccounting(flight.getAccounting());
-    	newFlight.setFlightMode(flight.getFlightMode());
-    	newFlight.setFlightDate(flight.getFlightDate());
-    	newFlight.setLaunchMethod(flight.getLaunchMethod());
-    	newFlight.setDepartureLocation(flight.getDepartureLocation());
-    	newFlight.setLandingLocation(flight.getLandingLocation());
-    	
-    	return newFlight;
+
+    public static Flight repeatFlight(Flight flight) {
+        Flight newFlight = new Flight();
+        newFlight.setFlightType(flight.getFlightType());
+        newFlight.setAircraft(flight.getAircraft());
+        newFlight.setPilot(flight.getPilot());
+        newFlight.setCopilot(flight.getCopilot());
+        newFlight.setAccounting(flight.getAccounting());
+        newFlight.setFlightMode(flight.getFlightMode());
+        newFlight.setFlightDate(flight.getFlightDate());
+        newFlight.setLaunchMethod(flight.getLaunchMethod());
+        newFlight.setDepartureLocation(flight.getDepartureLocation());
+        newFlight.setLandingLocation(flight.getLandingLocation());
+        return newFlight;
     }
 }

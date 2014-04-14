@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.util.UriUtils;
 import org.springframework.web.util.WebUtils;
 
+import de.edgb.aviationclubmanager.domain.Aircraft;
 import de.edgb.aviationclubmanager.domain.AircraftLogEntry;
 import de.edgb.aviationclubmanager.domain.Flight;
 import de.edgb.aviationclubmanager.web.Util;
@@ -30,14 +31,22 @@ public class AircraftLogEntryController {
     @RequestMapping(params = { "form" }, method = RequestMethod.GET)
     public String pilotlogForm(Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
+        
+        uiModel.addAttribute("aircrafts", Aircraft.findAllAircrafts());
         return "aircraftlog/find";
     }
  
 	@PreAuthorize("hasRole('PERMISSION_AIRCRAFTLOG')")
     @RequestMapping(produces = "text/html")
-    public String list(@RequestParam @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date flightDate, Model uiModel) {
+    public String list(@RequestParam @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date flightDate, @RequestParam(required = false) Aircraft aircraft, Model uiModel) {
         
-    	List<Flight> fl = Flight.findFlightsByFlightDateEquals(Util.convertDateToLocalDate(flightDate));
+		List<Flight> fl;
+		
+		if (aircraft != null)
+			fl = Flight.findFlightsByFlightDateEqualsAndAircraft(Util.convertDateToLocalDate(flightDate), aircraft);
+		else
+			fl = Flight.findFlightsByFlightDateEquals(Util.convertDateToLocalDate(flightDate));
+		
     	if (fl.size() > 0)
     		uiModel.addAttribute("aircraftLogEntries", AircraftLogEntry.createAircraftLogEntriesFromFlights(fl));
     	else

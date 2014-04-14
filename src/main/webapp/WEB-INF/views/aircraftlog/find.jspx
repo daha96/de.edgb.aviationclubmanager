@@ -6,5 +6,6 @@
     <spring:message code="de_edgb_aviationclubmanager_domain_aircraftlogentry_aircraftlog" htmlEscape="false" var="label"/>
     <form:find finderName="aircraftlog" hiddenFindField="false" id="ff_de_edgb_aviationclubmanager_domain_AircraftLogEntry" label="${label}" path="/aircraftlog">
         <field:datetime dateTimePattern="${aircraftlogentry_flightdate_date_format}" disableFormBinding="true" field="flightDate" id="f_de_edgb_aviationclubmanager_domain_AircraftLogEntry_flightDate" required="true"/>
+        <field:select disableFormBinding="true" field="aircraft" itemValue="id" items="${aircrafts}" path="aircrafts" id="f_de_edgb_aviationclubmanager_domain_AircraftLogEntry_aircraft" required="true"/>
     </form:find>
 </div>
