@@ -160,7 +160,7 @@
 					<reportElement style="Detail" x="240" y="0" width="60" height="15" uuid="b4bc5c4b-889a-4d3b-b246-b8353e2c3252"/>
 					<textFieldExpression><![CDATA[$F{copilot}.getLastName() + ", " + $F{copilot}.getFirstName()]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true">
+				<textField isStretchWithOverflow="true" isBlankWhenNull="false">
 					<reportElement style="Detail" x="300" y="0" width="60" height="15" uuid="7ca5b6c1-401e-4c33-b590-f14624d25da6"/>
 					<textFieldExpression><![CDATA[$P{enumConverter}.convert($F{launchMethod})]]></textFieldExpression>
 				</textField>
