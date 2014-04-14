@@ -195,7 +195,7 @@ public class FlightController {
     @RequestMapping(value = "/flightlist", params = { "form" }, method = RequestMethod.GET)
     public String flightlistForm(Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        return "flights/flightlist";
+        return "flights/flightlist/form";
     }
 
     @PreAuthorize("hasRole('PERMISSION_FLIGHT')")
@@ -210,7 +210,7 @@ public class FlightController {
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("flightlist", true);
         uiModel.addAttribute("flightlistDate", date);
-        return "flights/list";
+        return "flights/flightlist/list";
     }
 
     @PreAuthorize("hasRole('PERMISSION_FLIGHT')")
@@ -218,7 +218,7 @@ public class FlightController {
     public String pilotlogForm(Model uiModel) {
         uiModel.addAttribute("copilotModes", Arrays.asList(CopilotMode.values()));
         addDateTimeFormatPatterns(uiModel);
-        return "flights/pilotlog";
+        return "flights/pilotlog/form";
     }
 
     @PreAuthorize("hasRole('PERMISSION_FLIGHT')")
@@ -227,14 +227,14 @@ public class FlightController {
         uiModel.addAttribute("flights", Flight.findFlightsByPersonAndFlightDateBetweenAndCopilotMode(((UserAccountDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserAccount().getPerson(), Util.convertDateToLocalDate(minFlightDate), Util.convertDateToLocalDate(maxFlightDate), copilotMode));
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("pilotlog", true);
-        return "flights/list";
+        return "flights/pilotlog/list";
     }
 
     @PreAuthorize("hasRole('PERMISSION_FLIGHT')")
     @RequestMapping(value = "/flightdb", params = { "form" }, method = RequestMethod.GET)
     public String flightdbForm(Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        return "flights/flightdb";
+        return "flights/flightdb/form";
     }
 
     @PreAuthorize("hasRole('PERMISSION_FLIGHT')")
@@ -243,7 +243,7 @@ public class FlightController {
         uiModel.addAttribute("flights", Flight.findFlightsByFlightDateBetween(Util.convertDateToLocalDate(minFlightDate), Util.convertDateToLocalDate(maxFlightDate)));
         addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("flightdb", true);
-        return "flights/list";
+        return "flights/flightdb/list";
     }
 
     // AJAX

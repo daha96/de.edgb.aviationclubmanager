@@ -11,14 +11,12 @@
 	<jsp:output omit-xml-declaration="yes" />
 
 	<spring:message
-		code="label_de_edgb_aviationclubmanager_domain_flight_plural"
-		htmlEscape="false" var="labelPlural" />
-	<spring:message arguments="${labelPlural}" code="entity_list_all"
+		code="de_edgb_aviationclubmanager_domain_flight_pilotlog"
 		htmlEscape="false" var="label" />
 
 	<page:list id="pl_de_edgb_aviationclubmanager_domain_Flight"
 		items="${flights}" titleMessage="${label}" z="user-managed">
-		<table:table createURL="${createURL}" data="${flights}"
+		<table:table data="${flights}"
 			id="l_de_edgb_aviationclubmanager_domain_Flight" path="/flights"
 			z="user-managed">
 			<table:column jodaTime="true"

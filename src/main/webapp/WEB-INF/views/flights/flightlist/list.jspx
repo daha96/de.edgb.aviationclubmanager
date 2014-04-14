@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:joda="http://www.joda.org/joda/time/tags"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<joda:format pattern="${fn:escapeXml(flight_flightdate_date_format)}"
+		value="${flightlistDate}" var="flightlistDate" />
+	<spring:message arguments="${flightlistDate}"
+		code="de_edgb_aviationclubmanager_domain_flight_flightlist_from"
+		htmlEscape="false" var="label" />
+
+	<page:list id="pl_de_edgb_aviationclubmanager_domain_Flight"
+		items="${flights}" titleMessage="${label}" z="user-managed">
+		<c:if test="${not empty flightlist}">
+			<spring:url value="/flights" var="createURL">
+				<spring:param name="flightDate" value="${flightlistDate}" />
+				<spring:param name="form" />
+			</spring:url>
+		</c:if>
+		<table:table createURL="${createURL}" data="${flights}"
+			id="l_de_edgb_aviationclubmanager_domain_Flight" path="/flights"
+			z="user-managed">
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_Flight_flightType"
+				property="flightType" z="PCpfL1pjcconbTBpdn7SQcAc7Hk=" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_Flight_aircraft"
+				property="aircraft" z="UKXe852ETg3PHvZD4OLn32+m4ec=" />
+			<table:column id="c_de_edgb_aviationclubmanager_domain_Flight_pilot"
+				property="pilot" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_Flight_copilot"
+				property="copilot" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_Flight_launchMethod"
+				property="launchMethod" />
+			<spring:message
+				code="label_de_edgb_aviationclubmanager_domain_flight_departnow"
+				var="link_text" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_Flight_departureTime"
+				linkIfEmpty="true" linkParameter="depart" linkPath="/flights"
+				linkProperty="canDepart" linkText="${link_text}"
+				property="departureTime" />
+			<spring:message
+				code="label_de_edgb_aviationclubmanager_domain_flight_landnow"
+				var="link_text" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_Flight_landingTime"
+				linkIfEmpty="true" linkParameter="land" linkPath="/flights"
+				linkProperty="canLand" linkText="${link_text}"
+				property="landingTime" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_Flight_duration"
+				property="durationString" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_Flight_departureLocation"
+				property="departureLocation" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_Flight_landingLocation"
+				property="landingLocation" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_Flight_comment"
+				property="comment" />
+		</table:table>
+
+		<!-- Links zum Report -->
+		<br />
+		<div>
+			<spring:message
+				code="de_edgb_aviationclubmanager_domain_flight_report_as" />
+			<span> <spring:url value="/flights/reports/flightlist"
+					var="link_url">
+					<spring:param name="format" value="pdf" />
+					<spring:param name="flightDate" value="${flightlistDate}" />
+				</spring:url> <a href="${link_url}">PDF</a>
+			</span> | <span> <spring:url value="/flights/reports/flightlist"
+					var="link_url">
+					<spring:param name="format" value="xls" />
+					<spring:param name="flightDate" value="${flightlistDate}" />
+				</spring:url> <a href="${link_url}">XLS</a>
+			</span> | <span> <spring:url value="/flights/reports/flightlist"
+					var="link_url">
+					<spring:param name="format" value="csv" />
+					<spring:param name="flightDate" value="${flightlistDate}" />
+				</spring:url> <a href="${link_url}">CSV</a>
+			</span> | <span> <spring:url value="/flights/reports/flightlist"
+					var="link_url">
+					<spring:param name="format" value="html" />
+					<spring:param name="flightDate" value="${flightlistDate}" />
+				</spring:url> <a href="${link_url}">HTML</a>
+			</span>
+		</div>
+
+		<!-- Datum ändern -->
+		<br />
+		<div>
+			<spring:url value="/flights/flightlist?form" var="link_url" />
+			<a href="${link_url}"> <spring:message
+					code="de_edgb_aviationclubmanager_domain_flight_flightDate_change" />
+			</a>
+		</div>
+
+	</page:list>
+</div>
