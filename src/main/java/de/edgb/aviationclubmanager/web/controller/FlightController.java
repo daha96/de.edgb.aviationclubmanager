@@ -93,8 +93,8 @@ public class FlightController {
     	Flight flight = new Flight();
         
     	if (flightDate != null) flight.setFlightDate(flightDate);
-        flight.setDepartureLocation(messageSource.getMessage("app.homeLocation", null, LocaleContextHolder.getLocale()));
-        flight.setDepartureTime(Util.getCurrentTime());
+    //    flight.setDepartureLocation(messageSource.getMessage("app.homeLocation", null, LocaleContextHolder.getLocale()));
+   //     flight.setDepartureTime(Util.getCurrentTime());
         
         populateEditForm(uiModel, flight);
         List<String[]> dependencies = new ArrayList<String[]>();
@@ -112,6 +112,34 @@ public class FlightController {
         }
         uiModel.addAttribute("dependencies", dependencies);
         return "flights/create";
+    }
+    
+    @PreAuthorize("hasRole('PERMISSION_FLIGHT_CREATE')")
+    @RequestMapping(params = "prepare", produces = "text/html")
+    public String prepareForm(@RequestParam(value = "flightDate", required = false) @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date flightDate, Model uiModel) {
+        
+    	Flight flight = new Flight();
+        
+    	if (flightDate != null) flight.setFlightDate(flightDate);
+      //  flight.setDepartureLocation(messageSource.getMessage("app.homeLocation", null, LocaleContextHolder.getLocale()));
+      //  flight.setDepartureTime(Util.getCurrentTime());
+        
+        populateEditForm(uiModel, flight);
+        List<String[]> dependencies = new ArrayList<String[]>();
+        if (Aircraft.countAircrafts() == 0) {
+            dependencies.add(new String[] { "aircraft", "aircrafts" });
+        }
+        if (Person.countPeople() == 0) {
+            dependencies.add(new String[] { "person", "people" });
+        }
+        if (Accounting.countAccountings() == 0) {
+            dependencies.add(new String[] { "accounting", "accountings" });
+        }
+        if (Person.countPeople() == 0) {
+            dependencies.add(new String[] { "person", "people" });
+        }
+        uiModel.addAttribute("dependencies", dependencies);
+        return "flights/prepare";
     }
 
     @PreAuthorize("hasRole('PERMISSION_FLIGHT')")

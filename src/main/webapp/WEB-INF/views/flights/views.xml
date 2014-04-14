@@ -10,6 +10,9 @@
 <definition extends="default" name="flights/create">
         <put-attribute name="body" value="/WEB-INF/views/flights/create.jspx"/>
     </definition>
+<definition extends="default" name="flights/prepare">
+        <put-attribute name="body" value="/WEB-INF/views/flights/prepare.jspx"/>
+    </definition>
 <definition extends="default" name="flights/update">
         <put-attribute name="body" value="/WEB-INF/views/flights/update.jspx"/>
     </definition>

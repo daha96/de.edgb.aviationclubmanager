@@ -18,67 +18,69 @@
 
 	<page:list id="pl_de_edgb_aviationclubmanager_domain_Flight"
 		items="${flights}" titleMessage="${label}" z="user-managed">
+		<div>
+			<!-- Links zum Report -->
 
-		<!-- Links zum Report -->
-		<br />
-		<div style="float:right;">
-			<spring:message
-				code="de_edgb_aviationclubmanager_domain_flight_report_as" />
-			<span> <spring:url value="/flights/reports/flightlist"
-					var="link_url">
-					<spring:param name="format" value="pdf" />
-					<spring:param name="flightDate" value="${flightlistDate}" />
-				</spring:url> <a href="${link_url}">PDF</a>
-			</span> | <span> <spring:url value="/flights/reports/flightlist"
-					var="link_url">
-					<spring:param name="format" value="xls" />
-					<spring:param name="flightDate" value="${flightlistDate}" />
-				</spring:url> <a href="${link_url}">XLS</a>
-			</span> | <span> <spring:url value="/flights/reports/flightlist"
-					var="link_url">
-					<spring:param name="format" value="csv" />
-					<spring:param name="flightDate" value="${flightlistDate}" />
-				</spring:url> <a href="${link_url}">CSV</a>
-			</span> | <span> <spring:url value="/flights/reports/flightlist"
-					var="link_url">
-					<spring:param name="format" value="html" />
-					<spring:param name="flightDate" value="${flightlistDate}" />
-				</spring:url> <a href="${link_url}">HTML</a>
-			</span>
+			<div style="float: right;">
+				<spring:message
+					code="de_edgb_aviationclubmanager_domain_flight_report_as" />
+				<span> <spring:url value="/flights/reports/flightlist"
+						var="link_url">
+						<spring:param name="format" value="pdf" />
+						<spring:param name="flightDate" value="${flightlistDate}" />
+					</spring:url> <a href="${link_url}">PDF</a>
+				</span> | <span> <spring:url value="/flights/reports/flightlist"
+						var="link_url">
+						<spring:param name="format" value="xls" />
+						<spring:param name="flightDate" value="${flightlistDate}" />
+					</spring:url> <a href="${link_url}">XLS</a>
+				</span> | <span> <spring:url value="/flights/reports/flightlist"
+						var="link_url">
+						<spring:param name="format" value="csv" />
+						<spring:param name="flightDate" value="${flightlistDate}" />
+					</spring:url> <a href="${link_url}">CSV</a>
+				</span> | <span> <spring:url value="/flights/reports/flightlist"
+						var="link_url">
+						<spring:param name="format" value="html" />
+						<spring:param name="flightDate" value="${flightlistDate}" />
+					</spring:url> <a href="${link_url}">HTML</a>
+				</span>
+			</div>
+
+			<!-- Datum ändern -->
+
+			<div style="margin-bottom: 25px;">
+				<spring:url value="/flights/flightlist?form" var="link_url" />
+				<a href="${link_url}"> <spring:message
+						code="de_edgb_aviationclubmanager_domain_flight_flightDate_change" />
+				</a> <br /> <br />
+
+				<!-- Flug vorbereiten/hinzufügen -->
+
+				<span> <spring:url value="/flights" var="prepare_url">
+						<spring:param name="flightDate" value="${flightlistDate}" />
+						<spring:param name="prepare" />
+					</spring:url> <spring:message
+						code="label_de_edgb_aviationclubmanager_domain_flight"
+						var="prepare_label" /> <a href="${prepare_url}"> <spring:message
+							arguments="${prepare_label}" code="global_menu_prepare"
+							htmlEscape="false" />
+				</a>
+				</span> | <span> <spring:url value="/flights" var="create_url">
+						<spring:param name="flightDate" value="${flightlistDate}" />
+						<spring:param name="form" />
+					</spring:url> <spring:message
+						code="label_de_edgb_aviationclubmanager_domain_flight"
+						var="flight_label" /> <a href="${create_url}"> <spring:message
+							arguments="${flight_label}" code="global_menu_new"
+							htmlEscape="false" />
+				</a></span>
+			</div>
 		</div>
 
-		<!-- Datum ändern -->
-
-		<div style="float: left; margin-bottom: 25px;">
-			<spring:url value="/flights/flightlist?form" var="link_url" />
-			<a href="${link_url}"> <spring:message
-					code="de_edgb_aviationclubmanager_domain_flight_flightDate_change" />
-			</a> <br /> <br />
-
-			<!-- Flug hinzufügen -->
-
-
-			<spring:url value="/flights?form" var="create_url" />
-			<spring:message
-				code="label_de_edgb_aviationclubmanager_domain_flight"
-				var="flight_label" />
-			<a href="${create_url}"> <spring:message
-					arguments="${flight_label}" code="global_menu_new"
-					htmlEscape="false" />
-			</a>
-		</div>
-		<br />
-
-		<c:if test="${not empty flightlist}">
-			<spring:url value="/flights" var="createURL">
-				<spring:param name="flightDate" value="${flightlistDate}" />
-				<spring:param name="form" />
-			</spring:url>
-		</c:if>
-		
 		<!-- TODO: create="false" ? -->
-		
-		<table:table createURL="${createURL}" data="${flights}" repeat="true" create="false"
+
+		<table:table data="${flights}" repeat="true" create="false"
 			id="l_de_edgb_aviationclubmanager_domain_Flight" path="/flights"
 			z="user-managed">
 			<table:column
@@ -124,8 +126,5 @@
 				id="c_de_edgb_aviationclubmanager_domain_Flight_comment"
 				property="comment" />
 		</table:table>
-
-		
-
 	</page:list>
 </div>
