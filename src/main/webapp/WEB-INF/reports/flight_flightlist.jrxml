@@ -130,7 +130,7 @@
 				<text><![CDATA[Landeort]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" stretchType="RelativeToTallestObject" x="660" y="0" width="60" height="15" uuid="4dd3ee9c-4c5b-477d-bb10-9e9b4941d0d5"/>
+				<reportElement style="Column header" stretchType="RelativeToTallestObject" x="660" y="0" width="120" height="15" uuid="4dd3ee9c-4c5b-477d-bb10-9e9b4941d0d5"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[Bemerkungen]]></text>
 			</staticText>
@@ -185,7 +185,7 @@
 					<textFieldExpression><![CDATA[$F{landingLocation}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-					<reportElement style="Detail" x="660" y="0" width="60" height="15" uuid="24c8873d-f9cf-42c4-892a-0ab4c113ab79"/>
+					<reportElement style="Detail" x="660" y="0" width="120" height="15" uuid="24c8873d-f9cf-42c4-892a-0ab4c113ab79"/>
 					<textFieldExpression><![CDATA[$F{comment}]]></textFieldExpression>
 				</textField>
 			</frame>

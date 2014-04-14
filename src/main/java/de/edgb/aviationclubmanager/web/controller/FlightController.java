@@ -23,6 +23,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -343,7 +344,7 @@ public class FlightController {
             	if (value == null)
             		return "";
             	else
-            		return DateTimeFormat.mediumDate().print(value);
+            		return DateTimeFormat.mediumDate().withLocale(LocaleContextHolder.getLocale()).print(value);
             }
         });
         uiModel.addAttribute("localTimeConverter", new Converter<LocalTime, String>() {
@@ -352,7 +353,7 @@ public class FlightController {
             	if (value == null)
             		return "";
             	else
-            		return DateTimeFormat.shortTime().print(value);
+            		return DateTimeFormat.shortTime().withLocale(LocaleContextHolder.getLocale()).print(value);
             }
         });
         uiModel.addAttribute("flightlistList", dataSource);
