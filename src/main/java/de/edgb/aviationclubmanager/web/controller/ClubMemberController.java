@@ -2,17 +2,31 @@ package de.edgb.aviationclubmanager.web.controller;
 import de.edgb.aviationclubmanager.domain.ClubCapacity;
 import de.edgb.aviationclubmanager.domain.ClubMember;
 import de.edgb.aviationclubmanager.domain.ClubMemberState;
+import de.edgb.aviationclubmanager.domain.Flight;
 import de.edgb.aviationclubmanager.domain.Gender;
 import de.edgb.aviationclubmanager.web.UserAccountDetails;
+import de.edgb.aviationclubmanager.web.Util;
 
 import java.io.UnsupportedEncodingException;
+import java.security.InvalidParameterException;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,6 +46,8 @@ import org.springframework.web.util.WebUtils;
 @RooWebScaffold(path = "clubmembers", formBackingObject = ClubMember.class)
 public class ClubMemberController {
 	
+	@Autowired
+    MessageSource messageSource;	
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER_CREATE')")
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
@@ -123,7 +139,48 @@ public class ClubMemberController {
 	
 	
 	
-	
+	// Reports
+    @PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
+    @RequestMapping(value = "/reports/clubmemberlist", method = RequestMethod.GET)
+    public String generateClubmemberlist(@RequestParam(value = "format", required = true) String format, Model uiModel) {
+        if (null == format || format.length() <= 0) throw new InvalidParameterException();
+        final String REGEX = "(pdf|xls|csv|html)";
+        Pattern pattern = Pattern.compile(REGEX, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(format);
+        if (!matcher.matches()) throw new InvalidParameterException();
+        
+        
+        Collection<ClubMember> dataSource = ClubMember.findAllClubMembers();
+        if (dataSource.isEmpty()) throw new EmptyResultDataAccessException(0);
+        uiModel.addAttribute("format", format);
+        uiModel.addAttribute("filename", "Mitgliederliste_" + DateTimeFormat.forPattern("yyyy-MM-dd").print(Util.getCurrentDate()));
+        uiModel.addAttribute("version", messageSource.getMessage("app.version", null, LocaleContextHolder.getLocale()));
+        uiModel.addAttribute("enumConverter", new Converter<Enum<?>, String>() {
+
+            @Override
+            public String convert(Enum<?> value) {
+                String output = value.toString();
+                try {
+                    output = messageSource.getMessage(value.toString(), null, LocaleContextHolder.getLocale());
+                } catch (NoSuchMessageException e) {
+                    System.err.println("No message resource found for " + value + " add this to the resource bundle");
+                }
+                return output;
+            }
+        });
+        uiModel.addAttribute("localDateConverter", new Converter<LocalDate, String>() {
+            @Override
+            public String convert(LocalDate value) {
+            	if (value == null)
+            		return "";
+            	else
+            		return DateTimeFormat.mediumDate().withLocale(LocaleContextHolder.getLocale()).print(value);
+            }
+        });
+
+        uiModel.addAttribute("clubmemberList", dataSource);
+        return "clubmember_clubmemberlist";
+    }
 	
 	
 	

@@ -37,7 +37,7 @@
     </c:if>
 
  	<c:if test="${empty repeat}">
-      <c:set var="show" value="false" />
+      <c:set var="repeat" value="false" />
     </c:if>
 
  	<c:if test="${empty show}">

@@ -1,16 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_de_edgb_aviationclubmanager_domain_ClubMember" items="${clubmembers}" z="GUwrQSfZd8IVaASrqQo5Id6Fej0=">
-        <table:table data="${clubmembers}" id="l_de_edgb_aviationclubmanager_domain_ClubMember" path="/clubmembers" z="7JqKbgLgzfqO32laQgjeYRAPUnQ=">
-            <table:column id="c_de_edgb_aviationclubmanager_domain_ClubMember_lastName" property="lastName" z="ejVIb3dYr6CMAVPhU0xooe9zLxI="/>
-            <table:column id="c_de_edgb_aviationclubmanager_domain_ClubMember_firstName" property="firstName" z="PTubszO/iUeC/d250dmbEi0lLPc="/>
-            <table:column id="c_de_edgb_aviationclubmanager_domain_ClubMember_address" property="address" z="EbJjdcnbWUSPMnW2B+YIdLdl0BA="/>
-            <table:column id="c_de_edgb_aviationclubmanager_domain_ClubMember_zipCode" property="zipCode" z="SS3cBPVJYOY53lzw03fLoci3NX8="/>
-            <table:column id="c_de_edgb_aviationclubmanager_domain_ClubMember_city" property="city" z="UZtjJoyVrrs10eW9cczBtpaxu+0="/>
-            <table:column id="c_de_edgb_aviationclubmanager_domain_ClubMember_landline" property="landline" render="false" z="user-managed"/>
-            <table:column id="c_de_edgb_aviationclubmanager_domain_ClubMember_clubMemberState" property="clubMemberState" />
-        </table:table>
-    </page:list>
+<div xmlns:spring="http://www.springframework.org/tags"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<page:list id="pl_de_edgb_aviationclubmanager_domain_ClubMember"
+		items="${clubmembers}" z="GUwrQSfZd8IVaASrqQo5Id6Fej0=">
+
+		<div>
+			<!-- Links zum Report -->
+
+			<div style="float: right;">
+
+				<spring:message
+					code="de_edgb_aviationclubmanager_domain_clubmerbers_clubmberlist_export_as" />
+				<span> <spring:url
+						value="/clubmembers/reports/clubmemberlist" var="link_url">
+						<spring:param name="format" value="pdf" />
+					</spring:url> <a href="${link_url}">PDF</a>
+				</span> | <span> <spring:url
+						value="/clubmembers/reports/clubmemberlist" var="link_url">
+						<spring:param name="format" value="xls" />
+					</spring:url> <a href="${link_url}">XLS</a>
+				</span> | <span> <spring:url
+						value="/clubmembers/reports/clubmemberlist" var="link_url">
+						<spring:param name="format" value="csv" />
+					</spring:url> <a href="${link_url}">CSV</a>
+				</span> | <span> <spring:url
+						value="/clubmembers/reports/clubmemberlist" var="link_url">
+						<spring:param name="format" value="html" />
+					</spring:url> <a href="${link_url}">HTML</a>
+				</span> <br /> <br />
+			</div>
+		</div>
+
+
+		<table:table data="${clubmembers}"
+			id="l_de_edgb_aviationclubmanager_domain_ClubMember"
+			path="/clubmembers" z="7JqKbgLgzfqO32laQgjeYRAPUnQ=">
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubMember_lastName"
+				property="lastName" z="ejVIb3dYr6CMAVPhU0xooe9zLxI=" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubMember_firstName"
+				property="firstName" z="PTubszO/iUeC/d250dmbEi0lLPc=" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubMember_address"
+				property="address" z="EbJjdcnbWUSPMnW2B+YIdLdl0BA=" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubMember_zipCode"
+				property="zipCode" z="SS3cBPVJYOY53lzw03fLoci3NX8=" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubMember_city"
+				property="city" z="UZtjJoyVrrs10eW9cczBtpaxu+0=" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubMember_landline"
+				property="landline" render="false" z="user-managed" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubMember_clubMemberState"
+				property="clubMemberState" />
+		</table:table>
+	</page:list>
 </div>

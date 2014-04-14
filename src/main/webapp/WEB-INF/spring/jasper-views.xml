@@ -17,4 +17,5 @@
     <!--  <value>DataForMySubReport</value> -->
   </util:list>
 <bean class="de.edgb.aviationclubmanager.web.servlet.view.jasperreports.CustomJasperReportsMultiFormatView" id="flight_flightlist" p:reportDataKey="flightlistList" p:subReportDataKeys-ref="subReportDataKeys" p:subReportUrls-ref="subReportUrls" p:url="/WEB-INF/reports/flight_flightlist.jrxml"/>
+<bean class="de.edgb.aviationclubmanager.web.servlet.view.jasperreports.CustomJasperReportsMultiFormatView" id="clubmember_clubmemberlist" p:reportDataKey="clubmemberList" p:subReportDataKeys-ref="subReportDataKeys" p:subReportUrls-ref="subReportUrls" p:url="/WEB-INF/reports/clubmember_clubmemberlist.jrxml"/>
 </beans>
