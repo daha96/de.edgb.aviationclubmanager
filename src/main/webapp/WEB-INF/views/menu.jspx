@@ -5,12 +5,12 @@
     <sec:authorize access="isAuthenticated()">
         <menu:menu id="menu">
             <menu:category id="c_flight">
-                <menu:item id="i_flight_flights" url="/flights/flightlist"/>
-                <menu:item id="i_flight_aircraftlog" url="/aircraftlog?form"/>
-                <menu:item id="i_flight_aircrafts" url="/aircrafts"/>
-                <menu:item id="i_flight_people" url="/people"/>
-                <menu:item id="i_flight_accountings" url="/accountings"/>
-                <menu:item id="i_flight_flightdb" url="/flights/flightdb?form"/>
+                <menu:item id="i_flight_flights" url="/flights/flightlist" requiredPermission="PERMISSION_FLIGHT" />
+                <menu:item id="i_flight_aircraftlog" url="/aircraftlog?form" requiredPermission="PERMISSION_AIRCRAFTLOG" />
+                <menu:item id="i_flight_aircrafts" url="/aircrafts" requiredPermission="PERMISSION_AIRCRAFT" />
+                <menu:item id="i_flight_people" url="/people" requiredPermission="PERMISSION_PERSON" />
+                <menu:item id="i_flight_accountings" url="/accountings" requiredPermission="PERMISSION_ACCOUNTING" />
+                <menu:item id="i_flight_flightdb" url="/flights/flightdb?form" requiredPermission="PERMISSION_FLIGHT" />
                 <!--      	
             
             
@@ -37,25 +37,25 @@
                 <menu:item id="i_membermenu_bug" url="/member/bug"/> -->
             </menu:category>
             <menu:category id="c_user">
-                <menu:item id="i_user_changepassword" url="/changepassword?form"/>
+                <menu:item id="i_user_changepassword" url="/changepassword?form" requiredPermission="PERMISSION_CHANGEPASSWORD" />
                <!--  <menu:item id="i_user_people" url="/people"/>
                 <menu:item id="i_user_useraccounts" url="/useraccounts"/>
                 <menu:item id="i_user_userroles" url="/userroles"/> -->
-                <menu:item id="i_user_pilotlog" url="/flights/pilotlog?form"/>
+                <menu:item id="i_user_pilotlog" url="/flights/pilotlog?form" requiredPermission="PERMISSION_FLIGHT" />
                 <!--         <menu:item id="i_user_userpermissions" url="/userpermissions"/>
           -->
             </menu:category>
             <menu:category id="c_club">
-                <menu:item id="i_club_clubmembers" url="/clubmembers"/>
-                <menu:item id="i_club_clubcapacitys" url="/clubcapacitys"/>
-                <menu:item id="i_club_instructorpresences" url="/instructorpresences?latest"/>
-                <menu:item id="i_club_winchdriverpresences" url="/winchdriverpresences?latest"/>
-                <menu:item id="i_club_statistics" url="/statistics?form"/>
+                <menu:item id="i_club_clubmembers" url="/clubmembers" requiredPermission="PERMISSION_CLUBMEMBER" />
+                <menu:item id="i_club_clubcapacitys" url="/clubcapacitys" requiredPermission="PERMISSION_CLUBCAPACITY" />
+                <menu:item id="i_club_instructorpresences" url="/instructorpresences?latest" requiredPermission="PERMISSION_INSTRUCTORPRESENCE" />
+                <menu:item id="i_club_winchdriverpresences" url="/winchdriverpresences?latest" requiredPermission="PERMISSION_WINCHDRIVERPRESENCE" />
+                <menu:item id="i_club_statistics" url="/statistics?form" requiredPermission="PERMISSION_STATISTICS" />
             </menu:category>
             
             <menu:category id="c_admin">
-                <menu:item id="i_admin_useraccounts" url="/useraccounts"/>
-                <menu:item id="i_admin_userroles" url="/userroles"/>
+                <menu:item id="i_admin_useraccounts" url="/useraccounts" requiredPermission="PERMISSION_USERACCOUNT" />
+                <menu:item id="i_admin_userroles" url="/userroles" requiredPermission="PERMISSION_USERROLE" />
             </menu:category>
        
            
