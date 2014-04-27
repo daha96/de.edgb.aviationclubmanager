@@ -7,11 +7,37 @@
 	<jsp:output omit-xml-declaration="yes" />
 	<sec:authorize access="isAuthenticated()">
 		<menu:menu id="menu">
+
 			<menu:category id="c_flight">
 				<menu:item id="i_flight_flights" url="/flights/flightlist"
 					requiredPermission="PERMISSION_FLIGHT" />
-				<menu:item id="i_flight_aircraftlog" url="/aircraftlog?form"
-					requiredPermission="PERMISSION_AIRCRAFTLOG" />
+
+				<menu:category id="c_flight_aircraftlog" topLevelCategory="false">
+
+
+					<menu:category id="c_flight_aircraftlog_clubaircraft" topLevelCategory="false">
+				 		<menu:item id="i_flight_aircraftlog_clubaircraft_today"
+							url="/aircraftlog/clubaircraft?today"
+							requiredPermission="PERMISSION_AIRCRAFTLOG" />
+						<menu:item id="i_flight_aircraftlog_clubaircraft_yesterday"
+							url="/aircraftlog/clubaircraft?yesterday"
+							requiredPermission="PERMISSION_AIRCRAFTLOG" />
+						<menu:item id="i_flight_aircraftlog_clubaircraft_form"
+							url="/aircraftlog/clubaircraft?form"
+							requiredPermission="PERMISSION_AIRCRAFTLOG" /> 
+					</menu:category>
+
+					<menu:item id="i_flight_aircraftlog_form" url="/aircraftlog?form"
+						requiredPermission="PERMISSION_AIRCRAFTLOG" />
+
+				</menu:category>
+
+
+
+
+
+
+
 				<menu:item id="i_flight_aircrafts" url="/aircrafts"
 					requiredPermission="PERMISSION_AIRCRAFT" />
 				<menu:item id="i_flight_people" url="/people"
@@ -45,48 +71,21 @@
                 <menu:item id="i_membermenu_winchdriverpresence" url="/member/winchdriverpresence?latest"/>
                 <menu:item id="i_membermenu_bug" url="/member/bug"/> -->
 			</menu:category>
+
 			<menu:category id="c_user">
 				<menu:item id="i_user_changepassword" url="/changepassword?form"
 					requiredPermission="PERMISSION_CHANGEPASSWORD" />
-				<!--  <menu:item id="i_user_people" url="/people"/>
-                <menu:item id="i_user_useraccounts" url="/useraccounts"/>
-                <menu:item id="i_user_userroles" url="/userroles"/> -->
-
-
-
-
-
 				<menu:category id="c_user_pilotlog" topLevelCategory="false">
 					<menu:item id="i_user_pilotlog_today" url="/flights/pilotlog?today"
 						requiredPermission="PERMISSION_FLIGHT" />
-						<menu:item id="i_user_pilotlog_yesterday" url="/flights/pilotlog?yesterday"
+					<menu:item id="i_user_pilotlog_yesterday"
+						url="/flights/pilotlog?yesterday"
 						requiredPermission="PERMISSION_FLIGHT" />
-						<menu:item id="i_user_pilotlog_form" url="/flights/pilotlog?form"
+					<menu:item id="i_user_pilotlog_form" url="/flights/pilotlog?form"
 						requiredPermission="PERMISSION_FLIGHT" />
 				</menu:category>
-				<!-- <menu:item id="i_user_pilotlog" url="/flights/pilotlog?form"
-					requiredPermission="PERMISSION_FLIGHT" /> -->
-
-
-
-
-
-				<!--      <menu:item id="i_user_userpermissions" url="/userpermissions"/>
-                
-                 -->
-
-	<!--  		<div dojoType="dijit.PopupMenuBarItem">
-					<span> sdfgsdgdsg </span>
-					<div dojoType="dijit.Menu">
-						<div dojoType="dijit.MenuItem">sdfgsdgfg</div>
-						<div dojoType="dijit.MenuItem">dfgsdgds</div>
-					</div>
-				</div>
- 	 -->
-
-
-
 			</menu:category>
+
 			<menu:category id="c_club">
 				<menu:item id="i_club_clubmembers" url="/clubmembers"
 					requiredPermission="PERMISSION_CLUBMEMBER" />

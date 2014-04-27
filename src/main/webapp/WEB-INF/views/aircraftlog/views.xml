@@ -6,7 +6,11 @@
         <put-attribute name="body" value="/WEB-INF/views/aircraftlog/list.jspx"/>
     </definition>
     
-<definition extends="default" name="aircraftlog/find">
+<definition extends="default" name="aircraftlog/find_clubaircraftlog">
+        <put-attribute name="body" value="/WEB-INF/views/aircraftlog/find_clubaircraftlog.jspx"/>
+    </definition>
+    
+    <definition extends="default" name="aircraftlog/find">
         <put-attribute name="body" value="/WEB-INF/views/aircraftlog/find.jspx"/>
     </definition>
     

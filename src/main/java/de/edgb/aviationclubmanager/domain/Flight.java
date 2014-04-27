@@ -3,6 +3,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
@@ -11,15 +12,25 @@ import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+
 import org.apache.poi.ss.formula.eval.NotImplementedException;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 import org.joda.time.Period;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.MessageSource;
+import org.springframework.context.access.ContextSingletonBeanFactoryLocator;
+import org.springframework.context.i18n.LocaleContext;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.orm.hibernate3.LocalCacheProviderProxy;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+
+import de.edgb.aviationclubmanager.ApplicationContextHolder;
 import de.edgb.aviationclubmanager.web.Util;
 
 @RooJavaBean
@@ -233,6 +244,18 @@ public class Flight {
         TypedQuery<Flight> q = em.createQuery("SELECT o FROM Flight AS o WHERE o.flightDate = :flightDate  AND o.aircraft = :aircraft", Flight.class);
         q.setParameter("flightDate", Util.convertLocalDateToDate(flightDate));
         q.setParameter("aircraft", aircraft);
+        List<Flight> resultList = q.getResultList();
+        Collections.sort(resultList, new Flight.FlightComparator());
+        return resultList;
+    }
+
+	public static List<Flight> findFlightsByFlightDateEqualsAndClubaircraft(LocalDate flightDate, String club) {
+        if (flightDate == null) throw new IllegalArgumentException("The flightDate argument is required");
+        //if (aircraft == null) throw new IllegalArgumentException("The aircraft argument is required");
+        EntityManager em = Flight.entityManager();
+        TypedQuery<Flight> q = em.createQuery("SELECT o FROM Flight AS o Inner JOIN o.aircraft as a WHERE o.flightDate = :flightDate  AND a.holder = :club", Flight.class);
+        q.setParameter("flightDate", Util.convertLocalDateToDate(flightDate));
+        q.setParameter("club", club);
         List<Flight> resultList = q.getResultList();
         Collections.sort(resultList, new Flight.FlightComparator());
         return resultList;

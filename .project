@@ -52,4 +52,11 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>eclipseJettyPlugin.AviationClubManager_Jetty.xml</name>
+			<type>1</type>
+			<location>/tmp/eclipseJettyPlugin.AviationClubManager_Jetty.xml</location>
+		</link>
+	</linkedResources>
 </projectDescription>
