@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" xmlns:sec="http://www.springframework.org/security/tags" id="menu" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <sec:authorize access="isAuthenticated()">
-        <menu:menu id="menu">
-            <menu:category id="c_flight">
-                <menu:item id="i_flight_flights" url="/flights/flightlist" requiredPermission="PERMISSION_FLIGHT" />
-                <menu:item id="i_flight_aircraftlog" url="/aircraftlog?form" requiredPermission="PERMISSION_AIRCRAFTLOG" />
-                <menu:item id="i_flight_aircrafts" url="/aircrafts" requiredPermission="PERMISSION_AIRCRAFT" />
-                <menu:item id="i_flight_people" url="/people" requiredPermission="PERMISSION_PERSON" />
-                <menu:item id="i_flight_accountings" url="/accountings" requiredPermission="PERMISSION_ACCOUNTING" />
-                <menu:item id="i_flight_flightdb" url="/flights/flightdb?form" requiredPermission="PERMISSION_FLIGHT" />
-                <!--      	
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu"
+	xmlns:sec="http://www.springframework.org/security/tags" id="menu"
+	version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<sec:authorize access="isAuthenticated()">
+		<menu:menu id="menu">
+			<menu:category id="c_flight">
+				<menu:item id="i_flight_flights" url="/flights/flightlist"
+					requiredPermission="PERMISSION_FLIGHT" />
+				<menu:item id="i_flight_aircraftlog" url="/aircraftlog?form"
+					requiredPermission="PERMISSION_AIRCRAFTLOG" />
+				<menu:item id="i_flight_aircrafts" url="/aircrafts"
+					requiredPermission="PERMISSION_AIRCRAFT" />
+				<menu:item id="i_flight_people" url="/people"
+					requiredPermission="PERMISSION_PERSON" />
+				<menu:item id="i_flight_accountings" url="/accountings"
+					requiredPermission="PERMISSION_ACCOUNTING" />
+				<menu:item id="i_flight_flightdb" url="/flights/flightdb?form"
+					requiredPermission="PERMISSION_FLIGHT" />
+				<!--      	
             
             
             
@@ -35,108 +44,226 @@
                 <menu:item id="i_membermenu_instructorpresence" url="/member/instructorpresence?latest"/>
                 <menu:item id="i_membermenu_winchdriverpresence" url="/member/winchdriverpresence?latest"/>
                 <menu:item id="i_membermenu_bug" url="/member/bug"/> -->
-            </menu:category>
-            <menu:category id="c_user">
-                <menu:item id="i_user_changepassword" url="/changepassword?form" requiredPermission="PERMISSION_CHANGEPASSWORD" />
-               <!--  <menu:item id="i_user_people" url="/people"/>
+			</menu:category>
+			<menu:category id="c_user">
+				<menu:item id="i_user_changepassword" url="/changepassword?form"
+					requiredPermission="PERMISSION_CHANGEPASSWORD" />
+				<!--  <menu:item id="i_user_people" url="/people"/>
                 <menu:item id="i_user_useraccounts" url="/useraccounts"/>
                 <menu:item id="i_user_userroles" url="/userroles"/> -->
-                <menu:item id="i_user_pilotlog" url="/flights/pilotlog?form" requiredPermission="PERMISSION_FLIGHT" />
-                <!--         <menu:item id="i_user_userpermissions" url="/userpermissions"/>
-          -->
-            </menu:category>
-            <menu:category id="c_club">
-                <menu:item id="i_club_clubmembers" url="/clubmembers" requiredPermission="PERMISSION_CLUBMEMBER" />
-                <menu:item id="i_club_clubcapacitys" url="/clubcapacitys" requiredPermission="PERMISSION_CLUBCAPACITY" />
-                <menu:item id="i_club_instructorpresences" url="/instructorpresences?latest" requiredPermission="PERMISSION_INSTRUCTORPRESENCE" />
-                <menu:item id="i_club_winchdriverpresences" url="/winchdriverpresences?latest" requiredPermission="PERMISSION_WINCHDRIVERPRESENCE" />
-                <menu:item id="i_club_statistics" url="/statistics?form" requiredPermission="PERMISSION_STATISTICS" />
-            </menu:category>
-            
-            <menu:category id="c_admin">
-                <menu:item id="i_admin_useraccounts" url="/useraccounts" requiredPermission="PERMISSION_USERACCOUNT" />
-                <menu:item id="i_admin_userroles" url="/userroles" requiredPermission="PERMISSION_USERROLE" />
-            </menu:category>
-       
-           
-        </menu:menu>
-    </sec:authorize>
-    <menu:menu id="_menu" render="false" z="user-managed">
-        <menu:category id="c_clubcapacity" z="nJ9tBL73PNPqa8q8lvFaRQIjcaI=">
-            <menu:item id="i_clubcapacity_list" messageCode="global_menu_list" url="/member/clubcapacity?page=1&amp;size=${empty param.size ? 10 : param.size}" z="1nE6YXd57p33D+JJB7/x6wfFEAE="/>
-            <menu:item id="i_clubcapacity_new" messageCode="global_menu_new" url="/clubcapacitys?form" z="YRtxodjBjdVGHWKb2dSJsz7+TN4="/>
-        </menu:category>
-        <menu:category id="c_workinghours" z="gV9UnNv/A8tiHLhXSq969R3RIvM=">
-            <menu:item id="i_workinghours_new" messageCode="global_menu_new" url="/admin/workinghours?form" z="4IHmysuVphPq4K+ZpIMycKQ5YMg="/>
-            <menu:item id="i_workinghours_list" messageCode="global_menu_list" url="/admin/workinghours?page=1&amp;size=${empty param.size ? 10 : param.size}" z="MylwJGB9GDoGNWKd2QHO7uuMGxg="/>
-        </menu:category>
-        <menu:category id="c_winchdriverpresence" z="4+2buUWnC/wZjgHFm1m16kxs6KM=">
-            <menu:item id="i_winchdriverpresence_list" messageCode="global_menu_list" url="/admin/winchdriverpresence?page=1&amp;size=${empty param.size ? 10 : param.size}" z="EFhbAm9V2ZHSgBt+VZeCNVBXhUc="/>
-            <menu:item id="i_winchdriverpresence_new" messageCode="global_menu_new" url="/winchdriverpresences?form" z="LoTmYKWklhQmY+hFOrVflbod5hs="/>
-        </menu:category>
-        <menu:category id="c_clubaircraft" z="x2xITwbQYITMCSWBD+Bikc9B90s=">
-            <menu:item id="i_clubaircraft_list" messageCode="global_menu_list" url="/admin/clubaircraft?page=1&amp;size=${empty param.size ? 10 : param.size}" z="gfoKiKm2aDPLd2Y4bDXRi+Cfoo8="/>
-        </menu:category>
-        <menu:category id="c_flight" z="My3aw7st9/lPi4/72GrekPCYuWM=">
-            <menu:item id="i_flight_new" messageCode="global_menu_new" url="/admin/flight?form" z="vbsRTrwV6VCgFxyehrf3D7IF80I="/>
-            <menu:item id="i_flight_list" messageCode="global_menu_list" url="/admin/flight?page=1&amp;size=${empty param.size ? 10 : param.size}" z="FrEU/6EjMLLuMUeEnZ4gFx5mckI="/>
-            <menu:item id="i_flight_flightreport_report" messageCode="menu_flight_flightreport_report" url="/member/flight/reports/flightreport?form" z="JcRYRERJpDgWO723tb82vR7HRTI="/>
-            <menu:item id="i_flight_startlist_report" messageCode="menu_flight_startlist_report" url="/member/flight/reports/startlist?form" z="IGV/xqIxxZSGiVoIqOorWL8LFAM="/>
-            <menu:item id="i_flight_flightlist_report" messageCode="menu_flight_flightlist_report" url="/member/flight/reports/flightlist?form" z="Im3HzKd/DyUrF5zQx+YhNFNLihY="/>
-        </menu:category>
-        <menu:category id="c_aircraft" z="zbXxMu5onrCgbUMcbD98w9Mw178=">
-            <menu:item id="i_aircraft_new" messageCode="global_menu_new" url="/admin/aircraft?form" z="pYz9/PygYzK1+j1XOO5IMEWHZyo="/>
-            <menu:item id="i_aircraft_list" messageCode="global_menu_list" url="/admin/aircraft?page=1&amp;size=${empty param.size ? 10 : param.size}" z="XNG3vrA98IxIhtGjq+ufvC25hB0="/>
-        </menu:category>
-        <menu:category id="c_bug" z="GjVp18fBlweGaO7oOHa7wKwbeZg=">
-            <menu:item id="i_bug_new" messageCode="global_menu_new" url="/admin/bug?form" z="NlzAHvI0vDj12DDukV5aF+itzl4="/>
-            <menu:item id="i_bug_list" messageCode="global_menu_list" url="/admin/bug?page=1&amp;size=${empty param.size ? 10 : param.size}" z="9PlzDcRcmw2d8FxEKMgBfLDtlJw="/>
-        </menu:category>
-        <menu:category id="c_accounting" z="user-managed">
-            <menu:item id="i_accounting_new" messageCode="global_menu_new" url="/admin/accountingnote?form" z="user-managed"/>
-            <menu:item id="i_accounting_list" messageCode="global_menu_list" url="/admin/accountingnote?page=1&amp;size=${empty param.size ? 10 : param.size}" z="user-managed"/>
-        </menu:category>
-        <menu:category id="c_clubaircraftcosts" z="d9C52xk8Ol/R8dENEIM1nOKwoT4=">
-            <menu:item id="i_clubaircraftcosts_new" messageCode="global_menu_new" url="/admin/clubaircraftcosts?form" z="2VEQgjFyr96CTqj3cp/v6pUtm7M="/>
-            <menu:item id="i_clubaircraftcosts_list" messageCode="global_menu_list" url="/admin/clubaircraftcosts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="s6yqJMIOS+oo+Vt9piTgghVRAUA="/>
-        </menu:category>
-        <menu:category id="c_instructorpresence" z="yA9zT4wwHRvpF65schSD6Pd8j/w=">
-            <menu:item id="i_instructorpresence_list" messageCode="global_menu_list" url="/member/instructorpresence?page=1&amp;size=${empty param.size ? 10 : param.size}" z="M0to9jNX+qA+Q+E+7qZ0QFK2Tvg="/>
-            <menu:item id="i_instructorpresence_new" messageCode="global_menu_new" url="/instructorpresences?form" z="WykTYeR3uo8GZQ+eS/MGBaURKm4="/>
-        </menu:category>
-        <menu:category id="c_person" z="Cz66KzcF6GdyygpbYfiE+EkFFFA=">
-            <menu:item id="i_person_new" messageCode="global_menu_new" url="/admin/persons?form" z="EyxgemgnSslMXzMOtPcq4ygoD8Q="/>
-            <menu:item id="i_person_list" messageCode="global_menu_list" url="/admin/persons?page=1&amp;size=${empty param.size ? 10 : param.size}" z="a//9Rk1CqpPeFGMUxho2FyW8UV0="/>
-        </menu:category>
-        <menu:category id="c_reservation" z="QOKmLQs8mRLEvu7n5roIvJzPgHc=">
-            <menu:item id="i_reservation_new" messageCode="global_menu_new" url="/admin/reservation?form" z="ZD3/HBzx7S/FS3kVmduUetTPt2A="/>
-            <menu:item id="i_reservation_list" messageCode="global_menu_list" url="/admin/reservation?page=1&amp;size=${empty param.size ? 10 : param.size}" z="cyTuTdU3DpGMd6v9hAUnTQvNyYA="/>
-        </menu:category>
-        <menu:category id="c_clubmember" z="Gca7Zf3GxG9LGuHg5xRPIq38SNc=">
-            <menu:item id="i_clubmember_new" messageCode="global_menu_new" url="/admin/clubmembers?form" z="T5p++DZ57od3w8XBSfk+F1FFA4o="/>
-            <menu:item id="i_clubmember_list" messageCode="global_menu_list" url="/clubmembers?page=1&amp;size=${empty param.size ? 10 : param.size}" z="2pZiIUnY0Quo9qijmPyQ3tyS/hs="/>
-        </menu:category>
-        <menu:category id="c_presence" z="Xgjckal37biXQadtAYW6QtwaOZQ=">
-            <menu:item id="i_presence_new" messageCode="global_menu_new" url="/admin/presence?form" z="gtuiZZP8mZqiyL29ypuw8vYDJxg="/>
-            <menu:item id="i_presence_list" messageCode="global_menu_list" url="/admin/presence?page=1&amp;size=${empty param.size ? 10 : param.size}" z="cZGvgQRJ29nWaBEV6p4hDkKrMQQ="/>
-            <menu:item id="fi_presence_clubmemberandpresencedateequals" messageCode="global_menu_find" url="/admin/presence?find=ByClubMemberAndPresenceDateEquals&amp;form" z="bIx5ulmQ+4hzAHHXNym1dJyNxMA="/>
-            <menu:item id="fi_presence_presencedateequals" messageCode="global_menu_find" url="/admin/presence?find=ByPresenceDateEquals&amp;form" z="uCru/7Sl2THhBBZjNemwJKrWpUE="/>
-        </menu:category>
-        <menu:category id="c_accounting" z="cJheHP9jgKIVcHKLO7k70ER/zRA=">
-            <menu:item id="i_accounting_new" messageCode="global_menu_new" url="/admin/accounting?form" z="gHoZGfguLmT3rOhVDQnFxrPHWbk="/>
-            <menu:item id="i_accounting_list" messageCode="global_menu_list" url="/admin/accounting?page=1&amp;size=${empty param.size ? 10 : param.size}" z="H1NWmZ5CDVLwb58RyzxoC4CvmDI="/>
-        </menu:category>
-        <menu:category id="c_userrole" z="C4C1ZBdes4PUIjEM3Ajwwhn1EwA=">
-            <menu:item id="i_userrole_new" messageCode="global_menu_new" url="/userroles?form" z="qYpuuJuPupoYjD8LM0ISnxylj4o="/>
-            <menu:item id="i_userrole_list" messageCode="global_menu_list" url="/userroles?page=1&amp;size=${empty param.size ? 10 : param.size}" z="fTjcT4INZTypLgu+ZHmwzE55ORs="/>
-        </menu:category>
-        <menu:category id="c_useraccount" z="Yb8cyPB5AwOfYXCcrEpGXNT9C+k=">
-            <menu:item id="i_useraccount_new" messageCode="global_menu_new" url="/useraccounts?form" z="dm6iErpLQmgISoPCTS3yLiH8XFA="/>
-            <menu:item id="i_useraccount_list" messageCode="global_menu_list" url="/useraccounts?page=1&amp;size=${empty param.size ? 10 : param.size}" z="nijRCp2PPYuD2D3D7hljcdDK4vs="/>
-        </menu:category>
-        <menu:category id="c_userpermission" z="LmO+mNrsdpuPk7DpT6fmRHPxylo=">
-            <menu:item id="i_userpermission_new" messageCode="global_menu_new" url="/userpermissions?form" z="Fh8jl5xP54VFevhFQGvMDrxG30I="/>
-            <menu:item id="i_userpermission_list" messageCode="global_menu_list" url="/userpermissions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="7R+xvPeTDWR3plL8Nss1w6tUb94="/>
-        </menu:category>
-    </menu:menu>
+
+
+
+
+
+				<menu:category id="c_user_pilotlog" topLevelCategory="false">
+					<menu:item id="i_user_pilotlog_today" url="/flights/pilotlog?today"
+						requiredPermission="PERMISSION_FLIGHT" />
+						<menu:item id="i_user_pilotlog_yesterday" url="/flights/pilotlog?yesterday"
+						requiredPermission="PERMISSION_FLIGHT" />
+						<menu:item id="i_user_pilotlog_form" url="/flights/pilotlog?form"
+						requiredPermission="PERMISSION_FLIGHT" />
+				</menu:category>
+				<!-- <menu:item id="i_user_pilotlog" url="/flights/pilotlog?form"
+					requiredPermission="PERMISSION_FLIGHT" /> -->
+
+
+
+
+
+				<!--      <menu:item id="i_user_userpermissions" url="/userpermissions"/>
+                
+                 -->
+
+	<!--  		<div dojoType="dijit.PopupMenuBarItem">
+					<span> sdfgsdgdsg </span>
+					<div dojoType="dijit.Menu">
+						<div dojoType="dijit.MenuItem">sdfgsdgfg</div>
+						<div dojoType="dijit.MenuItem">dfgsdgds</div>
+					</div>
+				</div>
+ 	 -->
+
+
+
+			</menu:category>
+			<menu:category id="c_club">
+				<menu:item id="i_club_clubmembers" url="/clubmembers"
+					requiredPermission="PERMISSION_CLUBMEMBER" />
+				<menu:item id="i_club_clubcapacitys" url="/clubcapacitys"
+					requiredPermission="PERMISSION_CLUBCAPACITY" />
+				<menu:item id="i_club_instructorpresences"
+					url="/instructorpresences?latest"
+					requiredPermission="PERMISSION_INSTRUCTORPRESENCE" />
+				<menu:item id="i_club_winchdriverpresences"
+					url="/winchdriverpresences?latest"
+					requiredPermission="PERMISSION_WINCHDRIVERPRESENCE" />
+				<menu:item id="i_club_statistics" url="/statistics?form"
+					requiredPermission="PERMISSION_STATISTICS" />
+			</menu:category>
+
+			<menu:category id="c_admin">
+				<menu:item id="i_admin_useraccounts" url="/useraccounts"
+					requiredPermission="PERMISSION_USERACCOUNT" />
+				<menu:item id="i_admin_userroles" url="/userroles"
+					requiredPermission="PERMISSION_USERROLE" />
+			</menu:category>
+
+
+		</menu:menu>
+	</sec:authorize>
+	<menu:menu id="_menu" render="false" z="user-managed">
+		<menu:category id="c_clubcapacity" z="nJ9tBL73PNPqa8q8lvFaRQIjcaI=">
+			<menu:item id="i_clubcapacity_list" messageCode="global_menu_list"
+				url="/member/clubcapacity?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="1nE6YXd57p33D+JJB7/x6wfFEAE=" />
+			<menu:item id="i_clubcapacity_new" messageCode="global_menu_new"
+				url="/clubcapacitys?form" z="YRtxodjBjdVGHWKb2dSJsz7+TN4=" />
+		</menu:category>
+		<menu:category id="c_workinghours" z="gV9UnNv/A8tiHLhXSq969R3RIvM=">
+			<menu:item id="i_workinghours_new" messageCode="global_menu_new"
+				url="/admin/workinghours?form" z="4IHmysuVphPq4K+ZpIMycKQ5YMg=" />
+			<menu:item id="i_workinghours_list" messageCode="global_menu_list"
+				url="/admin/workinghours?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="MylwJGB9GDoGNWKd2QHO7uuMGxg=" />
+		</menu:category>
+		<menu:category id="c_winchdriverpresence"
+			z="4+2buUWnC/wZjgHFm1m16kxs6KM=">
+			<menu:item id="i_winchdriverpresence_list"
+				messageCode="global_menu_list"
+				url="/admin/winchdriverpresence?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="EFhbAm9V2ZHSgBt+VZeCNVBXhUc=" />
+			<menu:item id="i_winchdriverpresence_new"
+				messageCode="global_menu_new" url="/winchdriverpresences?form"
+				z="LoTmYKWklhQmY+hFOrVflbod5hs=" />
+		</menu:category>
+		<menu:category id="c_clubaircraft" z="x2xITwbQYITMCSWBD+Bikc9B90s=">
+			<menu:item id="i_clubaircraft_list" messageCode="global_menu_list"
+				url="/admin/clubaircraft?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="gfoKiKm2aDPLd2Y4bDXRi+Cfoo8=" />
+		</menu:category>
+		<menu:category id="c_flight" z="My3aw7st9/lPi4/72GrekPCYuWM=">
+			<menu:item id="i_flight_new" messageCode="global_menu_new"
+				url="/admin/flight?form" z="vbsRTrwV6VCgFxyehrf3D7IF80I=" />
+			<menu:item id="i_flight_list" messageCode="global_menu_list"
+				url="/admin/flight?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="FrEU/6EjMLLuMUeEnZ4gFx5mckI=" />
+			<menu:item id="i_flight_flightreport_report"
+				messageCode="menu_flight_flightreport_report"
+				url="/member/flight/reports/flightreport?form"
+				z="JcRYRERJpDgWO723tb82vR7HRTI=" />
+			<menu:item id="i_flight_startlist_report"
+				messageCode="menu_flight_startlist_report"
+				url="/member/flight/reports/startlist?form"
+				z="IGV/xqIxxZSGiVoIqOorWL8LFAM=" />
+			<menu:item id="i_flight_flightlist_report"
+				messageCode="menu_flight_flightlist_report"
+				url="/member/flight/reports/flightlist?form"
+				z="Im3HzKd/DyUrF5zQx+YhNFNLihY=" />
+		</menu:category>
+		<menu:category id="c_aircraft" z="zbXxMu5onrCgbUMcbD98w9Mw178=">
+			<menu:item id="i_aircraft_new" messageCode="global_menu_new"
+				url="/admin/aircraft?form" z="pYz9/PygYzK1+j1XOO5IMEWHZyo=" />
+			<menu:item id="i_aircraft_list" messageCode="global_menu_list"
+				url="/admin/aircraft?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="XNG3vrA98IxIhtGjq+ufvC25hB0=" />
+		</menu:category>
+		<menu:category id="c_bug" z="GjVp18fBlweGaO7oOHa7wKwbeZg=">
+			<menu:item id="i_bug_new" messageCode="global_menu_new"
+				url="/admin/bug?form" z="NlzAHvI0vDj12DDukV5aF+itzl4=" />
+			<menu:item id="i_bug_list" messageCode="global_menu_list"
+				url="/admin/bug?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="9PlzDcRcmw2d8FxEKMgBfLDtlJw=" />
+		</menu:category>
+		<menu:category id="c_accounting" z="user-managed">
+			<menu:item id="i_accounting_new" messageCode="global_menu_new"
+				url="/admin/accountingnote?form" z="user-managed" />
+			<menu:item id="i_accounting_list" messageCode="global_menu_list"
+				url="/admin/accountingnote?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="user-managed" />
+		</menu:category>
+		<menu:category id="c_clubaircraftcosts"
+			z="d9C52xk8Ol/R8dENEIM1nOKwoT4=">
+			<menu:item id="i_clubaircraftcosts_new" messageCode="global_menu_new"
+				url="/admin/clubaircraftcosts?form" z="2VEQgjFyr96CTqj3cp/v6pUtm7M=" />
+			<menu:item id="i_clubaircraftcosts_list"
+				messageCode="global_menu_list"
+				url="/admin/clubaircraftcosts?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="s6yqJMIOS+oo+Vt9piTgghVRAUA=" />
+		</menu:category>
+		<menu:category id="c_instructorpresence"
+			z="yA9zT4wwHRvpF65schSD6Pd8j/w=">
+			<menu:item id="i_instructorpresence_list"
+				messageCode="global_menu_list"
+				url="/member/instructorpresence?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="M0to9jNX+qA+Q+E+7qZ0QFK2Tvg=" />
+			<menu:item id="i_instructorpresence_new"
+				messageCode="global_menu_new" url="/instructorpresences?form"
+				z="WykTYeR3uo8GZQ+eS/MGBaURKm4=" />
+		</menu:category>
+		<menu:category id="c_person" z="Cz66KzcF6GdyygpbYfiE+EkFFFA=">
+			<menu:item id="i_person_new" messageCode="global_menu_new"
+				url="/admin/persons?form" z="EyxgemgnSslMXzMOtPcq4ygoD8Q=" />
+			<menu:item id="i_person_list" messageCode="global_menu_list"
+				url="/admin/persons?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="a//9Rk1CqpPeFGMUxho2FyW8UV0=" />
+		</menu:category>
+		<menu:category id="c_reservation" z="QOKmLQs8mRLEvu7n5roIvJzPgHc=">
+			<menu:item id="i_reservation_new" messageCode="global_menu_new"
+				url="/admin/reservation?form" z="ZD3/HBzx7S/FS3kVmduUetTPt2A=" />
+			<menu:item id="i_reservation_list" messageCode="global_menu_list"
+				url="/admin/reservation?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="cyTuTdU3DpGMd6v9hAUnTQvNyYA=" />
+		</menu:category>
+		<menu:category id="c_clubmember" z="Gca7Zf3GxG9LGuHg5xRPIq38SNc=">
+			<menu:item id="i_clubmember_new" messageCode="global_menu_new"
+				url="/admin/clubmembers?form" z="T5p++DZ57od3w8XBSfk+F1FFA4o=" />
+			<menu:item id="i_clubmember_list" messageCode="global_menu_list"
+				url="/clubmembers?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="2pZiIUnY0Quo9qijmPyQ3tyS/hs=" />
+		</menu:category>
+		<menu:category id="c_presence" z="Xgjckal37biXQadtAYW6QtwaOZQ=">
+			<menu:item id="i_presence_new" messageCode="global_menu_new"
+				url="/admin/presence?form" z="gtuiZZP8mZqiyL29ypuw8vYDJxg=" />
+			<menu:item id="i_presence_list" messageCode="global_menu_list"
+				url="/admin/presence?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="cZGvgQRJ29nWaBEV6p4hDkKrMQQ=" />
+			<menu:item id="fi_presence_clubmemberandpresencedateequals"
+				messageCode="global_menu_find"
+				url="/admin/presence?find=ByClubMemberAndPresenceDateEquals&amp;form"
+				z="bIx5ulmQ+4hzAHHXNym1dJyNxMA=" />
+			<menu:item id="fi_presence_presencedateequals"
+				messageCode="global_menu_find"
+				url="/admin/presence?find=ByPresenceDateEquals&amp;form"
+				z="uCru/7Sl2THhBBZjNemwJKrWpUE=" />
+		</menu:category>
+		<menu:category id="c_accounting" z="cJheHP9jgKIVcHKLO7k70ER/zRA=">
+			<menu:item id="i_accounting_new" messageCode="global_menu_new"
+				url="/admin/accounting?form" z="gHoZGfguLmT3rOhVDQnFxrPHWbk=" />
+			<menu:item id="i_accounting_list" messageCode="global_menu_list"
+				url="/admin/accounting?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="H1NWmZ5CDVLwb58RyzxoC4CvmDI=" />
+		</menu:category>
+		<menu:category id="c_userrole" z="C4C1ZBdes4PUIjEM3Ajwwhn1EwA=">
+			<menu:item id="i_userrole_new" messageCode="global_menu_new"
+				url="/userroles?form" z="qYpuuJuPupoYjD8LM0ISnxylj4o=" />
+			<menu:item id="i_userrole_list" messageCode="global_menu_list"
+				url="/userroles?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="fTjcT4INZTypLgu+ZHmwzE55ORs=" />
+		</menu:category>
+		<menu:category id="c_useraccount" z="Yb8cyPB5AwOfYXCcrEpGXNT9C+k=">
+			<menu:item id="i_useraccount_new" messageCode="global_menu_new"
+				url="/useraccounts?form" z="dm6iErpLQmgISoPCTS3yLiH8XFA=" />
+			<menu:item id="i_useraccount_list" messageCode="global_menu_list"
+				url="/useraccounts?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="nijRCp2PPYuD2D3D7hljcdDK4vs=" />
+		</menu:category>
+		<menu:category id="c_userpermission" z="LmO+mNrsdpuPk7DpT6fmRHPxylo=">
+			<menu:item id="i_userpermission_new" messageCode="global_menu_new"
+				url="/userpermissions?form" z="Fh8jl5xP54VFevhFQGvMDrxG30I=" />
+			<menu:item id="i_userpermission_list" messageCode="global_menu_list"
+				url="/userpermissions?page=1&amp;size=${empty param.size ? 10 : param.size}"
+				z="7R+xvPeTDWR3plL8Nss1w6tUb94=" />
+		</menu:category>
+	</menu:menu>
 </div>

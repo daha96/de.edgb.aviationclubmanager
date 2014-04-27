@@ -265,6 +265,26 @@ public class FlightController {
     }
 
     @PreAuthorize("hasRole('PERMISSION_FLIGHT')")
+    @RequestMapping(value = "/pilotlog", params = { "today" }, method = RequestMethod.GET)
+    public String pilotlogToday(Model uiModel) {
+        uiModel.addAttribute("flights", Flight.findFlightsByPersonAndFlightDateBetweenAndCopilotMode(((UserAccountDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserAccount().getPerson(),
+        		Util.getCurrentDate(), Util.getCurrentDate(), CopilotMode.all));
+        addDateTimeFormatPatterns(uiModel);
+//        uiModel.addAttribute("pilotlog", true);
+        return "flights/pilotlog/list";
+    }
+
+    @PreAuthorize("hasRole('PERMISSION_FLIGHT')")
+    @RequestMapping(value = "/pilotlog", params = { "yesterday" }, method = RequestMethod.GET)
+    public String pilotlogYesterday(Model uiModel) {
+        uiModel.addAttribute("flights", Flight.findFlightsByPersonAndFlightDateBetweenAndCopilotMode(((UserAccountDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserAccount().getPerson(),
+        		Util.getCurrentDate().minusDays(1), Util.getCurrentDate().minusDays(1), CopilotMode.all));
+        addDateTimeFormatPatterns(uiModel);
+//        uiModel.addAttribute("pilotlog", true);
+        return "flights/pilotlog/list";
+    }
+
+    @PreAuthorize("hasRole('PERMISSION_FLIGHT')")
     @RequestMapping(value = "/pilotlog", method = RequestMethod.GET)
     public String pilotlog(@RequestParam("copilotMode") CopilotMode copilotMode, @RequestParam("minFlightDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date minFlightDate, @RequestParam("maxFlightDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date maxFlightDate, Model uiModel) {
         uiModel.addAttribute("flights", Flight.findFlightsByPersonAndFlightDateBetweenAndCopilotMode(((UserAccountDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserAccount().getPerson(), Util.convertDateToLocalDate(minFlightDate), Util.convertDateToLocalDate(maxFlightDate), copilotMode));
