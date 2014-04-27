@@ -3,6 +3,9 @@
 	
 	<jsp:directive.attribute name="id" type="java.lang.String" required="true" rtexprvalue="true" description="The identifier for this tag (do not change!)"/>
 	<jsp:directive.attribute name="label" type="java.lang.String" required="false" rtexprvalue="true" description="The label for this category (if not set the resource bundle is used)"/>
+	
+	<jsp:directive.attribute name="topLevelCategory" type="java.lang.String" required="false" rtexprvalue="true" description=""/>
+	
 	<jsp:directive.attribute name="render" type="java.lang.Boolean" required="false" rtexprvalue="true" description="Indicate if the contents of this tag and all enclosed tags should be rendered (default 'true')" />
 	<jsp:directive.attribute name="z" type="java.lang.String" required="false" description="Used for checking if element has been modified (to recalculate simply provide empty string value)"/>
 	
@@ -12,8 +15,17 @@
 			<spring:message code="menu_category_${fn:toLowerCase(fn:substringAfter(id,'_'))}_label" var="label" htmlEscape="false"/>
 		</c:if>
 
+		<c:choose>
+			<c:when test="${empty topLevelCategory or topLevelCategory}">
+				<c:set value="dijit.PopupMenuBarItem" var="dijitType" />
+			</c:when>
+			<c:otherwise>
+				<c:set value="dijit.PopupMenuItem" var="dijitType" />
+			</c:otherwise>
+		</c:choose>
 
-		<div dojoType="dijit.PopupMenuBarItem" id="${fn:escapeXml(id)}">
+
+		<div dojoType="${dijitType}" id="${fn:escapeXml(id)}">
 			<span> <c:out value="${label}" />
 			</span>
 			<div dojoType="dijit.Menu" id="${fn:escapeXml(id)}_menu">
