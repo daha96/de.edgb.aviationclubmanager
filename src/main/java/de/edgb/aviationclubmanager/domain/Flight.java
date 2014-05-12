@@ -13,24 +13,16 @@ import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
-import org.apache.poi.ss.formula.eval.NotImplementedException;
+import org.apache.commons.lang.NotImplementedException;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 import org.joda.time.Period;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.MessageSource;
-import org.springframework.context.access.ContextSingletonBeanFactoryLocator;
-import org.springframework.context.i18n.LocaleContext;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.orm.hibernate3.LocalCacheProviderProxy;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
 
-import de.edgb.aviationclubmanager.ApplicationContextHolder;
 import de.edgb.aviationclubmanager.web.Util;
 
 @RooJavaBean

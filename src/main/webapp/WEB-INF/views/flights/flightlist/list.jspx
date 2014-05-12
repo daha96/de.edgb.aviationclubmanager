@@ -36,14 +36,14 @@
 					</spring:url> <a href="${link_url}">XLS</a>
 				</span> | <span> <spring:url value="/flights/reports/flightlist"
 						var="link_url">
+						<spring:param name="format" value="ods" />
+						<spring:param name="flightDate" value="${flightlistDate}" />
+					</spring:url> <a href="${link_url}">ODS</a>
+				</span> | <span> <spring:url value="/flights/reports/flightlist"
+						var="link_url">
 						<spring:param name="format" value="csv" />
 						<spring:param name="flightDate" value="${flightlistDate}" />
 					</spring:url> <a href="${link_url}">CSV</a>
-				</span> | <span> <spring:url value="/flights/reports/flightlist"
-						var="link_url">
-						<spring:param name="format" value="html" />
-						<spring:param name="flightDate" value="${flightlistDate}" />
-					</spring:url> <a href="${link_url}">HTML</a>
 				</span> <br /> <br />
 
 				<!-- Bordbücher -->

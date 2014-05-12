@@ -3,7 +3,6 @@ package de.edgb.aviationclubmanager.web;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import org.apache.commons.lang3.StringUtils;
-import org.osgi.application.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;

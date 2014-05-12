@@ -1,26 +1,14 @@
 package de.edgb.aviationclubmanager.domain;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-//import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 import org.apache.commons.lang3.StringUtils;
-import org.joda.time.Duration;
-//import org.apache.commons.lang3.time.DateUtils;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.joda.time.Period;
 import org.springframework.roo.addon.javabean.RooJavaBean;
-import org.springframework.roo.addon.jpa.entity.RooJpaEntity;
 
 import de.edgb.aviationclubmanager.web.Util;
 

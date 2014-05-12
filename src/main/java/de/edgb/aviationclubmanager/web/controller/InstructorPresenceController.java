@@ -4,13 +4,10 @@ import de.edgb.aviationclubmanager.domain.InstructorPresence;
 import de.edgb.aviationclubmanager.domain.validators.InstructorPresenceValidator;
 import de.edgb.aviationclubmanager.web.Util;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.UriUtils;
-import org.springframework.web.util.WebUtils;
 
 @RequestMapping("/instructorpresences")
 @Controller

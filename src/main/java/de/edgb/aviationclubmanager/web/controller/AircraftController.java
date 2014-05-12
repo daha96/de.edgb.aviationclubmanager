@@ -2,7 +2,6 @@ package de.edgb.aviationclubmanager.web.controller;
 import de.edgb.aviationclubmanager.domain.Aircraft;
 import de.edgb.aviationclubmanager.domain.AircraftType;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.UriUtils;
-import org.springframework.web.util.WebUtils;
 
 @RequestMapping("/aircrafts")
 @Controller

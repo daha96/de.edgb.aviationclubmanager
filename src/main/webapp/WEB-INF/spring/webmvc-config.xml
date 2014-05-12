@@ -99,8 +99,8 @@ xmlns:security="http://www.springframework.org/schema/security"
       </list>
     </property>
   </bean>
-<bean class="org.springframework.web.servlet.view.XmlViewResolver" id="jasperReportsXmlViewResolver" p:location="/WEB-INF/spring/jasper-views.xml" p:order="0"/>
-<bean class="de.edgb.aviationclubmanager.web.ApplicationConversionServiceFactoryBean" id="applicationConversionService"/>
+<!-- <bean class="org.springframework.web.servlet.view.XmlViewResolver" id="jasperReportsXmlViewResolver" p:location="/WEB-INF/spring/jasper-views.xml" p:order="0"/>
+ --><bean class="de.edgb.aviationclubmanager.web.ApplicationConversionServiceFactoryBean" id="applicationConversionService"/>
 
 <!-- 
 

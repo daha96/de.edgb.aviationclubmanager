@@ -3,7 +3,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.OneToOne;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 
@@ -11,8 +10,6 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
-
-import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString

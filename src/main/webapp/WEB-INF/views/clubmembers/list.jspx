@@ -26,12 +26,12 @@
 					</spring:url> <a href="${link_url}">XLS</a>
 				</span> | <span> <spring:url
 						value="/clubmembers/reports/clubmemberlist" var="link_url">
-						<spring:param name="format" value="csv" />
-					</spring:url> <a href="${link_url}">CSV</a>
+						<spring:param name="format" value="ods" />
+					</spring:url> <a href="${link_url}">ODS</a>
 				</span> | <span> <spring:url
 						value="/clubmembers/reports/clubmemberlist" var="link_url">
-						<spring:param name="format" value="html" />
-					</spring:url> <a href="${link_url}">HTML</a>
+						<spring:param name="format" value="csv" />
+					</spring:url> <a href="${link_url}">CSV</a>
 				</span> <br /> <br />
 			</div>
 		</div>

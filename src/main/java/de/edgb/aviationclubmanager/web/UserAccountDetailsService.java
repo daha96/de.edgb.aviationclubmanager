@@ -1,8 +1,5 @@
 package de.edgb.aviationclubmanager.web;
 
-
-import javax.persistence.NoResultException;
-
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

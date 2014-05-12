@@ -1,18 +1,14 @@
 package de.edgb.aviationclubmanager.web;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.apache.commons.lang3.time.DateUtils;
-import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 import org.joda.time.Period;
-import org.joda.time.ReadableInstant;
 
 public class Util {
 	public static LocalTime getCurrentTime()

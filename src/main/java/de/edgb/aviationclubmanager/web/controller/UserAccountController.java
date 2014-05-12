@@ -3,24 +3,20 @@ package de.edgb.aviationclubmanager.web.controller;
 import de.edgb.aviationclubmanager.domain.ChangePasswordModelLight;
 import de.edgb.aviationclubmanager.domain.Person;
 import de.edgb.aviationclubmanager.domain.UserAccount;
-import de.edgb.aviationclubmanager.domain.UserRole;
 import de.edgb.aviationclubmanager.domain.validators.ChangePasswordValidatorLight;
 import de.edgb.aviationclubmanager.domain.validators.UserAccountValidator;
 import de.edgb.aviationclubmanager.web.UserAccountDetails;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,8 +26,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.UriUtils;
-import org.springframework.web.util.WebUtils;
 
 @RequestMapping("/useraccounts")
 @Controller

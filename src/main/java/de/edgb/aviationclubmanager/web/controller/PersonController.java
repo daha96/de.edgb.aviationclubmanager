@@ -3,8 +3,6 @@ import de.edgb.aviationclubmanager.domain.ClubMember;
 import de.edgb.aviationclubmanager.domain.Person;
 import de.edgb.aviationclubmanager.web.UserAccountDetails;
 
-import java.io.UnsupportedEncodingException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -19,8 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.UriUtils;
-import org.springframework.web.util.WebUtils;
 
 @RequestMapping("/people")
 @Controller

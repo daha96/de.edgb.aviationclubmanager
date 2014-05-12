@@ -2,7 +2,6 @@ package de.edgb.aviationclubmanager.domain;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
@@ -18,7 +17,6 @@ import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.json.RooJson;
 import org.springframework.roo.addon.tostring.RooToString;
-import org.springframework.security.core.context.SecurityContextHolder;
 
 import de.edgb.aviationclubmanager.web.Util;
 

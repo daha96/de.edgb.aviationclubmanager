@@ -2,31 +2,21 @@ package de.edgb.aviationclubmanager.web.controller;
 import de.edgb.aviationclubmanager.domain.ClubCapacity;
 import de.edgb.aviationclubmanager.domain.ClubMember;
 import de.edgb.aviationclubmanager.domain.ClubMemberState;
-import de.edgb.aviationclubmanager.domain.Flight;
 import de.edgb.aviationclubmanager.domain.Gender;
 import de.edgb.aviationclubmanager.web.UserAccountDetails;
-import de.edgb.aviationclubmanager.web.Util;
+import de.edgb.aviationclubmanager.web.report.ClubMemberListReport;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidParameterException;
+import java.io.IOException;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import org.joda.time.LocalDate;
-import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -38,8 +28,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.UriUtils;
-import org.springframework.web.util.WebUtils;
 
 @RequestMapping("/clubmembers")
 @Controller
@@ -140,7 +128,7 @@ public class ClubMemberController {
 	
 	
 	// Reports
-    @PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
+  /*  @PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
     @RequestMapping(value = "/reports/clubmemberlist", method = RequestMethod.GET)
     public String generateClubmemberlist(@RequestParam(value = "format", required = true) String format, Model uiModel) {
         if (null == format || format.length() <= 0) throw new InvalidParameterException();
@@ -181,13 +169,23 @@ public class ClubMemberController {
         uiModel.addAttribute("clubmemberList", dataSource);
         return "clubmember_clubmemberlist";
     }
-	
-	
+	*/
+
+	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
+	@RequestMapping(value = "/reports/clubmemberlist", method = RequestMethod.GET)
+	public void generateClubmemberlist(
+			@RequestParam(value = "format", required = true) String format,
+			HttpServletResponse response) throws IOException {
+
+		ClubMemberListReport report = new ClubMemberListReport(messageSource);
+		report.setDataSource(ClubMember.findAllClubMembers());
+		report.writeToHttpServletResponse(response, format);
+	}
 	
 	
 	void addDateTimeFormatPatterns(Model uiModel) {
         uiModel.addAttribute("clubMember_birthday_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("clubMember_joiningdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
         uiModel.addAttribute("clubMember_exitdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-    }	
+    }		   
 }

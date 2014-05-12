@@ -34,11 +34,6 @@
             <name>Spring Roo Repository</name>
             <url>http://spring-roo-repository.springsource.org/release</url>
         </repository>
-    <repository>
-            <id>gvNIX Add-on repository</id>
-            <url>https://gvnix.googlecode.com/svn/repo</url>
-            <name>gvNIX Add-on repository</name>
-        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -332,37 +327,55 @@
         	<version>${spring-security.version}</version>
 
         </dependency>
-    <dependency>
-            <groupId>org.gvnix</groupId>
-            <artifactId>org.gvnix.web.report.roo.addon</artifactId>
-            <version>1.2.1-RELEASE</version>
-            <scope>provided</scope>
-        </dependency>
-    <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports</artifactId>
-            <version>${jasperreports.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-collections</groupId>
-                    <artifactId>commons-collections</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+  
         <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>${apachepoi.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports-fonts</artifactId>
-            <version>${jasperreportsfonts.version}</version>
-        </dependency>
-        <dependency>
-        	<groupId>joda-time</groupId>
-        	<artifactId>joda-time-jsptags</artifactId>
-        	<version>1.1.1</version>
+    <groupId>net.sourceforge.dynamicreports</groupId>
+    <artifactId>dynamicreports-core</artifactId>
+    <version>2.3.1</version>
+    <exclusions>
+        <exclusion>
+            <groupId>net.sf.barcode4j</groupId>
+            <artifactId>barcode4j</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>org.codehaus.castor</groupId>
+            <artifactId>castor</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>eclipse</groupId>
+            <artifactId>jdtcore</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>jfree</groupId>
+            <artifactId>jcommon</artifactId>
+        </exclusion>
+        <exclusion>
+            <groupId>bouncycastle</groupId>
+            <artifactId>bcprov-jdk14</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<dependency>
+    <groupId>net.sourceforge.jexcelapi</groupId>
+    <artifactId>jxl</artifactId>
+    <version>2.6.12</version>
+</dependency>
+<dependency>
+         <groupId>joda-time</groupId>
+         <artifactId>joda-time-jsptags</artifactId>
+         <version>1.1.1</version>
         </dependency>
     </dependencies>
     <build>

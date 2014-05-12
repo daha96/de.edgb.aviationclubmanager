@@ -1,7 +1,5 @@
 package de.edgb.aviationclubmanager.domain.validators;
 
-import java.util.Date;
-
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalTime;
 import org.springframework.stereotype.Component;

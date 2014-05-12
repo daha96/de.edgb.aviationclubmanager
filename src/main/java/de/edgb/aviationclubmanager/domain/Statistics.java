@@ -1,15 +1,10 @@
 package de.edgb.aviationclubmanager.domain;
 
 import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.TreeMap;
 
-import org.joda.time.Duration;
 import org.joda.time.LocalDate;
 import org.joda.time.Period;
 
