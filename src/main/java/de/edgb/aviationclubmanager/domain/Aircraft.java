@@ -21,47 +21,56 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord
 public class Aircraft {
 
-    @NotNull
-    private String registration;
+	@NotNull
+	private String registration;
 
-    private String callsign;
+	private String callsign;
 
-    @NotNull
-    @Enumerated
-    private AircraftType type;
+	@NotNull
+	@Enumerated
+	private AircraftType type;
 
-    private String model;
+	private String model;
 
-    private String holder;
+	private String holder;
 
-    @Min(1L)
-    @Value("1")
-    private int seats;
+	@Min(1L)
+	@Value("1")
+	private int seats;
 
-    private String comment;
-    
-    
-    // Finder
-    
-    public static TypedQuery<Aircraft> findAircraftsMinTwoSeats() {
-    	EntityManager em =  Aircraft.entityManager();
-        TypedQuery<Aircraft> q = em.createQuery("SELECT o FROM Aircraft AS o WHERE o.seats >= 2 ORDER BY o.registration", Aircraft.class);
-        return q;
-    }
-    
+	private String comment;
+
+	// Finder
+
+	public static TypedQuery<Aircraft> findAircraftsMinTwoSeats() {
+		EntityManager em = Aircraft.entityManager();
+		TypedQuery<Aircraft> q = em
+				.createQuery(
+						"SELECT o FROM Aircraft AS o WHERE o.seats >= 2 ORDER BY o.registration",
+						Aircraft.class);
+		return q;
+	}
+
 	public static List<Aircraft> findAllAircrafts() {
-        return entityManager().createQuery("SELECT o FROM Aircraft o ORDER BY o.registration", Aircraft.class).getResultList();
-    }
+		return entityManager().createQuery(
+				"SELECT o FROM Aircraft o ORDER BY o.registration",
+				Aircraft.class).getResultList();
+	}
 
-	public static List<Aircraft> findAircraftEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Aircraft o ORDER BY o.registration", Aircraft.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
-	
+	public static List<Aircraft> findAircraftEntries(int firstResult,
+			int maxResults) {
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM Aircraft o ORDER BY o.registration",
+						Aircraft.class).setFirstResult(firstResult)
+				.setMaxResults(maxResults).getResultList();
+	}
+
 	public static class AircraftComparator implements Comparator<Aircraft> {
 
-        @Override
-        public int compare(Aircraft a1, Aircraft a2) {
-            return a1.registration.compareTo(a2.registration);
-        }
-    }
+		@Override
+		public int compare(Aircraft a1, Aircraft a2) {
+			return a1.registration.compareTo(a2.registration);
+		}
+	}
 }

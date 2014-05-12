@@ -1,4 +1,5 @@
 package de.edgb.aviationclubmanager.domain;
+
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -12,39 +13,26 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 @RooJpaActiveRecord
 public class UserPermission {
 
-    /**
-     */
-    @NotNull
-    private String name;
+	@NotNull
+	private String name;
 
-    /**
-     */
-  /*  @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-    private Set<UserRole> userRoles = new HashSet<UserRole>();
-    */
-    
-    public GrantedAuthority getAuthority()
-    {
-    	return new SimpleGrantedAuthority(name);
-    }
-    
-    /**
-     * DEBUG
-     **/
- /*   public static List<GrantedAuthority> getAllAuthorities()
-    {
-    	List<GrantedAuthority> res = new ArrayList<>();
-    	for (UserPermission perm : UserPermission.findAllUserPermissions()) {
-			res.add(perm.getAuthority());
-		}
-    	return res;
-    }*/
+	public GrantedAuthority getAuthority() {
+		return new SimpleGrantedAuthority(name);
+	}
+
+	// Finder
 
 	public static List<UserPermission> findAllUserPermissions() {
-        return entityManager().createQuery("SELECT o FROM UserPermission o ORDER BY o.id", UserPermission.class).getResultList();
-    }
+		return entityManager().createQuery(
+				"SELECT o FROM UserPermission o ORDER BY o.id",
+				UserPermission.class).getResultList();
+	}
 
-	public static List<UserPermission> findUserPermissionEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM UserPermission o ORDER BY o.id", UserPermission.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
+	public static List<UserPermission> findUserPermissionEntries(
+			int firstResult, int maxResults) {
+		return entityManager()
+				.createQuery("SELECT o FROM UserPermission o ORDER BY o.id",
+						UserPermission.class).setFirstResult(firstResult)
+				.setMaxResults(maxResults).getResultList();
+	}
 }

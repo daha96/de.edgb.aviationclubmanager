@@ -14,18 +14,16 @@ public class UserAccountDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
-		
+
 		UserAccount account = null;
-		
-		try
-		{
-			account = UserAccount.findUserAccountsByUsernameEquals(username).getSingleResult();
-		}
-		catch (EmptyResultDataAccessException e)
-		{
+
+		try {
+			account = UserAccount.findUserAccountsByUsernameEquals(username)
+					.getSingleResult();
+		} catch (EmptyResultDataAccessException e) {
 			throw new UsernameNotFoundException("User not found: " + username);
 		}
-		
+
 		return new UserAccountDetails(account);
 	}
 }

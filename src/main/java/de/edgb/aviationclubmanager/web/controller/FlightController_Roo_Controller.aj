@@ -3,6 +3,7 @@
 
 package de.edgb.aviationclubmanager.web.controller;
 
+import de.edgb.aviationclubmanager.domain.Flight;
 import de.edgb.aviationclubmanager.web.controller.FlightController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;

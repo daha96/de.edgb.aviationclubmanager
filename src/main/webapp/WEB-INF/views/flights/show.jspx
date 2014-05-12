@@ -1,23 +1,63 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_de_edgb_aviationclubmanager_domain_Flight" object="${flight}" path="/flights" z="kWg7AgrQ8QoEeVPNI8QqGwtGtss=">
-        <field:display field="flightType" id="s_de_edgb_aviationclubmanager_domain_Flight_flightType" object="${flight}" z="orf3O8zCmuQYb2oCf0YBuA4gtyA="/>
-        <field:display field="aircraft" id="s_de_edgb_aviationclubmanager_domain_Flight_aircraft" object="${flight}" z="HYwmCd3NZT/KF5+0ejgltp8z8QI="/>
-        <field:display field="pilot" id="s_de_edgb_aviationclubmanager_domain_Flight_pilot" object="${flight}" z="SnQOPUy6oRxV4tGk65zRzs/xASQ="/>
-        <field:display field="copilot" id="s_de_edgb_aviationclubmanager_domain_Flight_copilot" object="${flight}" z="Odnxu7JvCwBajrhlUX1q6sHCIlo="/>
-        <field:display field="accounting" id="s_de_edgb_aviationclubmanager_domain_Flight_accounting" object="${flight}" z="IYxe5my/1+U6grFSqZADxl3UKGk="/>
-        <field:display field="flightMode" id="s_de_edgb_aviationclubmanager_domain_Flight_flightMode" object="${flight}" z="pWYz1je/mEwYdV4ZkMMLUrLgM3E="/>
-        <field:display dateTimePattern="${flight_flightdate_date_format}" field="flightDate" id="s_de_edgb_aviationclubmanager_domain_Flight_flightDate" jodaTime="true" object="${flight}" z="user-managed"/>
-        <field:display field="launchMethod" id="s_de_edgb_aviationclubmanager_domain_Flight_launchMethod" object="${flight}" z="vqBJ6nC7k/fCNW4QMuqjnsimO8g="/>
-        <field:display dateTimePattern="${flight_departuretime_date_format}" field="departureTime" id="s_de_edgb_aviationclubmanager_domain_Flight_departureTime" jodaTime="true" object="${flight}" z="user-managed"/>
-        <field:display dateTimePattern="${flight_landingtime_date_format}" field="landingTime" id="s_de_edgb_aviationclubmanager_domain_Flight_landingTime" jodaTime="true" object="${flight}" z="user-managed"/>
-        <field:display field="durationString" id="s_de_edgb_aviationclubmanager_domain_Flight_duration" object="${flight}"/>
-        <field:display field="departureLocation" id="s_de_edgb_aviationclubmanager_domain_Flight_departureLocation" object="${flight}" z="34O5FJGKs1f0W/bEQfrMnm6YVjo="/>
-        <field:display field="landingLocation" id="s_de_edgb_aviationclubmanager_domain_Flight_landingLocation" object="${flight}" z="3qM0s/zFJxIeZZl0NIWiTPk0weI="/>
-        <field:display field="comment" id="s_de_edgb_aviationclubmanager_domain_Flight_comment" object="${flight}" z="OQ1qy5go3tYX1q43xHUXsPfHR3U="/>
-        <field:display field="lastManipulativePerson" id="s_de_edgb_aviationclubmanager_domain_Flight_lastManipulativePerson" object="${flight}" z="rHp5cQH6PKNEtCUu5oK17DjGi3I="/>
-        <field:display dateTimePattern="${flight_lastmanipulationdate_date_format}" field="lastManipulationDate" id="s_de_edgb_aviationclubmanager_domain_Flight_lastManipulationDate" jodaTime="true" object="${flight}" z="user-managed"/>
-    </page:show>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<page:show id="ps_de_edgb_aviationclubmanager_domain_Flight"
+		object="${flight}" path="/flights" z="kWg7AgrQ8QoEeVPNI8QqGwtGtss=">
+		<field:display field="flightType"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_flightType"
+			object="${flight}" z="orf3O8zCmuQYb2oCf0YBuA4gtyA=" />
+		<field:display field="aircraft"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_aircraft"
+			object="${flight}" z="HYwmCd3NZT/KF5+0ejgltp8z8QI=" />
+		<field:display field="pilot"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_pilot"
+			object="${flight}" z="SnQOPUy6oRxV4tGk65zRzs/xASQ=" />
+		<field:display field="copilot"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_copilot"
+			object="${flight}" z="Odnxu7JvCwBajrhlUX1q6sHCIlo=" />
+		<field:display field="accounting"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_accounting"
+			object="${flight}" z="IYxe5my/1+U6grFSqZADxl3UKGk=" />
+		<field:display field="flightMode"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_flightMode"
+			object="${flight}" z="pWYz1je/mEwYdV4ZkMMLUrLgM3E=" />
+		<field:display dateTimePattern="${flight_flightdate_date_format}"
+			field="flightDate"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_flightDate"
+			jodaTime="true" object="${flight}" z="user-managed" />
+		<field:display field="launchMethod"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_launchMethod"
+			object="${flight}" z="vqBJ6nC7k/fCNW4QMuqjnsimO8g=" />
+		<field:display dateTimePattern="${flight_departuretime_date_format}"
+			field="departureTime"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_departureTime"
+			jodaTime="true" object="${flight}" z="user-managed" />
+		<field:display dateTimePattern="${flight_landingtime_date_format}"
+			field="landingTime"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_landingTime"
+			jodaTime="true" object="${flight}" z="user-managed" />
+		<field:display field="durationString"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_duration"
+			object="${flight}" />
+		<field:display field="departureLocation"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_departureLocation"
+			object="${flight}" z="34O5FJGKs1f0W/bEQfrMnm6YVjo=" />
+		<field:display field="landingLocation"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_landingLocation"
+			object="${flight}" z="3qM0s/zFJxIeZZl0NIWiTPk0weI=" />
+		<field:display field="comment"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_comment"
+			object="${flight}" z="OQ1qy5go3tYX1q43xHUXsPfHR3U=" />
+		<field:display field="lastManipulativePerson"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_lastManipulativePerson"
+			object="${flight}" z="rHp5cQH6PKNEtCUu5oK17DjGi3I=" />
+		<field:display
+			dateTimePattern="${flight_lastmanipulationdate_date_format}"
+			field="lastManipulationDate"
+			id="s_de_edgb_aviationclubmanager_domain_Flight_lastManipulationDate"
+			jodaTime="true" object="${flight}" z="user-managed" />
+	</page:show>
 </div>

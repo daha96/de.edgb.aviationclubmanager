@@ -17,35 +17,38 @@ import de.edgb.aviationclubmanager.web.Util;
 @RequestMapping("/statistics")
 @Controller
 public class StatisticsController {
-	
-	@PreAuthorize("hasRole('PERMISSION_STATISTICS')")
-    @RequestMapping(params = { "form" }, method = RequestMethod.GET)
-    public String form(Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
-        return "statistics/find";
-    }
 
-    @PreAuthorize("hasRole('PERMISSION_STATISTICS')")
-    @RequestMapping(method = RequestMethod.GET)
-    public String show(@RequestParam("minDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date minDate, @RequestParam("maxDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date maxDate, Model uiModel) {
-        
-    	Statistics stats = new Statistics(Util.convertDateToLocalDate(minDate), Util.convertDateToLocalDate(maxDate));
-    	
-    	uiModel.addAttribute("statistics", stats);
-   // 	uiModel.addAttribute("flightsPerAircraft", stats.getFlightsPerAircraft().entrySet());
-        
-        
-        
-        addDateTimeFormatPatterns(uiModel);
-        return "statistics/show";
-    }
-    
-    void addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("statistics_date_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("statistics_time_date_format", DateTimeFormat.patternForStyle("-S", LocaleContextHolder.getLocale()));
-       /* uiModel.addAttribute("flight_landingtime_date_format", DateTimeFormat.patternForStyle("-S", LocaleContextHolder.getLocale()));
-        // Duration
-        uiModel.addAttribute("flight_duration_date_format", DateTimeFormat.patternForStyle("-S", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("flight_lastmanipulationdate_date_format", DateTimeFormat.patternForStyle("MM", LocaleContextHolder.getLocale()));
-    */}	
+	@PreAuthorize("hasRole('PERMISSION_STATISTICS')")
+	@RequestMapping(params = { "form" }, method = RequestMethod.GET)
+	public String form(Model uiModel) {
+		addDateTimeFormatPatterns(uiModel);
+		return "statistics/find";
+	}
+
+	@PreAuthorize("hasRole('PERMISSION_STATISTICS')")
+	@RequestMapping(method = RequestMethod.GET)
+	public String show(
+			@RequestParam("minDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date minDate,
+			@RequestParam("maxDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date maxDate,
+			Model uiModel) {
+
+		Statistics stats = new Statistics(Util.convertDateToLocalDate(minDate),
+				Util.convertDateToLocalDate(maxDate));
+
+		uiModel.addAttribute("statistics", stats);
+
+		addDateTimeFormatPatterns(uiModel);
+		return "statistics/show";
+	}
+
+	void addDateTimeFormatPatterns(Model uiModel) {
+		uiModel.addAttribute(
+				"statistics_date_date_format",
+				DateTimeFormat.patternForStyle("M-",
+						LocaleContextHolder.getLocale()));
+		uiModel.addAttribute(
+				"statistics_time_date_format",
+				DateTimeFormat.patternForStyle("-S",
+						LocaleContextHolder.getLocale()));
+	}
 }

@@ -1,15 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <form:create id="fc_de_edgb_aviationclubmanager_domain_Aircraft" modelAttribute="aircraft" path="/aircrafts" render="${empty dependencies}" z="+LC4GS5s/33SUGoemvbUrmGdxrk=">
-        <field:input field="registration" id="c_de_edgb_aviationclubmanager_domain_Aircraft_registration" required="true" z="7Kge6u+n3TTCn9FMoPXlH2WnFUc="/>
-        <field:input field="callsign" id="c_de_edgb_aviationclubmanager_domain_Aircraft_callsign" z="FDJ/iOsCjRpNuCZwLt3d3VS5p5M="/>
-        <field:select field="type" id="c_de_edgb_aviationclubmanager_domain_Aircraft_type" items="${aircrafttypes}" path="aircrafttypes" required="true" z="3b2YU2pheqL70XtMhpvaDAbSEvY="/>
-        <field:input field="model" id="c_de_edgb_aviationclubmanager_domain_Aircraft_model" z="E0mDPRCLlJqtpJSeZ7ZK7dA72qw="/>
-        <field:input field="holder" id="c_de_edgb_aviationclubmanager_domain_Aircraft_holder" z="u5O7QRJjzuoK9Zh0FbsCE4PzQ7Q="/>
-        <field:input field="seats" id="c_de_edgb_aviationclubmanager_domain_Aircraft_seats" min="1" required="true" z="XCfVRHeFGKL6Co0SYJcISuhdSyY="/>
-        <field:input field="comment" id="c_de_edgb_aviationclubmanager_domain_Aircraft_comment" z="khtUGIjnYTzE5JC5iUx5VqNor48="/>
-    </form:create>
-    <form:dependency dependencies="${dependencies}" id="d_de_edgb_aviationclubmanager_domain_Aircraft" render="${not empty dependencies}" z="ymH4ozzgYFQkiDmQz9Ou/18yCpg="/>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<form:create id="fc_de_edgb_aviationclubmanager_domain_Aircraft"
+		modelAttribute="aircraft" path="/aircrafts"
+		render="${empty dependencies}" z="+LC4GS5s/33SUGoemvbUrmGdxrk=">
+		<field:input field="registration"
+			id="c_de_edgb_aviationclubmanager_domain_Aircraft_registration"
+			required="true" z="7Kge6u+n3TTCn9FMoPXlH2WnFUc=" />
+		<field:input field="callsign"
+			id="c_de_edgb_aviationclubmanager_domain_Aircraft_callsign"
+			z="FDJ/iOsCjRpNuCZwLt3d3VS5p5M=" />
+		<field:select field="type"
+			id="c_de_edgb_aviationclubmanager_domain_Aircraft_type"
+			items="${aircrafttypes}" path="aircrafttypes" required="true"
+			z="3b2YU2pheqL70XtMhpvaDAbSEvY=" />
+		<field:input field="model"
+			id="c_de_edgb_aviationclubmanager_domain_Aircraft_model"
+			z="E0mDPRCLlJqtpJSeZ7ZK7dA72qw=" />
+		<field:input field="holder"
+			id="c_de_edgb_aviationclubmanager_domain_Aircraft_holder"
+			z="u5O7QRJjzuoK9Zh0FbsCE4PzQ7Q=" />
+		<field:input field="seats"
+			id="c_de_edgb_aviationclubmanager_domain_Aircraft_seats" min="1"
+			required="true" z="XCfVRHeFGKL6Co0SYJcISuhdSyY=" />
+		<field:input field="comment"
+			id="c_de_edgb_aviationclubmanager_domain_Aircraft_comment"
+			z="khtUGIjnYTzE5JC5iUx5VqNor48=" />
+	</form:create>
+	<form:dependency dependencies="${dependencies}"
+		id="d_de_edgb_aviationclubmanager_domain_Aircraft"
+		render="${not empty dependencies}" z="ymH4ozzgYFQkiDmQz9Ou/18yCpg=" />
 </div>

@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_de_edgb_aviationclubmanager_domain_ClubCapacity" items="${clubcapacitys}" z="En0pLpx24ukk3eUrZD8hW49sBn4=">
-        <table:table data="${clubcapacitys}" id="l_de_edgb_aviationclubmanager_domain_ClubCapacity" path="/clubcapacitys" z="h9ISjlqQ5LjkIkkXI3HQmOQRGMY=">
-            <table:column id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_name" property="name" z="0hyygR9Zk9w70D8qfj/RaQtJN+o="/>
-            <table:column id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_email" property="email" z="erk7KwuE/J/UlLitcKiJwsfwmSM="/>
-            <table:column id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_comment" property="comment" z="gGM8Q3ofuaF/LNrKCcYDWs0HCyE="/>
-        </table:table>
-    </page:list>
+<div xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<page:list id="pl_de_edgb_aviationclubmanager_domain_ClubCapacity"
+		items="${clubcapacitys}" z="En0pLpx24ukk3eUrZD8hW49sBn4=">
+		<table:table data="${clubcapacitys}"
+			id="l_de_edgb_aviationclubmanager_domain_ClubCapacity"
+			path="/clubcapacitys" z="h9ISjlqQ5LjkIkkXI3HQmOQRGMY=">
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_name"
+				property="name" z="0hyygR9Zk9w70D8qfj/RaQtJN+o=" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_email"
+				property="email" z="erk7KwuE/J/UlLitcKiJwsfwmSM=" />
+			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_comment"
+				property="comment" z="gGM8Q3ofuaF/LNrKCcYDWs0HCyE=" />
+		</table:table>
+	</page:list>
 </div>

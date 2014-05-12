@@ -1,4 +1,5 @@
 package de.edgb.aviationclubmanager.domain;
+
 import java.util.Date;
 import java.util.List;
 
@@ -19,41 +20,55 @@ import de.edgb.aviationclubmanager.web.Util;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord//(finders = { "findWinchDriverPresencesByPresenceDateEquals" })
+@RooJpaActiveRecord
 public class WinchDriverPresence {
 
-    @NotNull
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(style = "M-")
-    private Date presenceDate;
-    
-    public LocalDate getPresenceDate() {
-        return Util.convertDateToLocalDate(this.presenceDate);
-    }
-    
-    public void setPresenceDate(LocalDate presenceDate) {
-        this.presenceDate = Util.convertLocalDateToDate(presenceDate);
-    }
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(style = "M-")
+	private Date presenceDate;
 
-    @NotNull
-    @ManyToOne
-    private ClubMember winchDriver;
+	public LocalDate getPresenceDate() {
+		return Util.convertDateToLocalDate(this.presenceDate);
+	}
 
-    private String comment;
+	public void setPresenceDate(LocalDate presenceDate) {
+		this.presenceDate = Util.convertLocalDateToDate(presenceDate);
+	}
+
+	@NotNull
+	@ManyToOne
+	private ClubMember winchDriver;
+
+	private String comment;
 
 	public static List<WinchDriverPresence> findAllWinchDriverPresences() {
-        return entityManager().createQuery("SELECT o FROM WinchDriverPresence o ORDER BY presenceDate", WinchDriverPresence.class).getResultList();
-    }
+		return entityManager().createQuery(
+				"SELECT o FROM WinchDriverPresence o ORDER BY presenceDate",
+				WinchDriverPresence.class).getResultList();
+	}
 
-	public static List<WinchDriverPresence> findWinchDriverPresenceEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM WinchDriverPresence o ORDER BY presenceDate", WinchDriverPresence.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
+	public static List<WinchDriverPresence> findWinchDriverPresenceEntries(
+			int firstResult, int maxResults) {
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM WinchDriverPresence o ORDER BY presenceDate",
+						WinchDriverPresence.class).setFirstResult(firstResult)
+				.setMaxResults(maxResults).getResultList();
+	}
 
-	public static TypedQuery<WinchDriverPresence> findWinchDriverPresencesByPresenceDateGreaterThanEquals(LocalDate presenceDate) {
-        if (presenceDate == null) throw new IllegalArgumentException("The presenceDate argument is required");
-        EntityManager em = WinchDriverPresence.entityManager();
-        TypedQuery<WinchDriverPresence> q = em.createQuery("SELECT o FROM WinchDriverPresence AS o WHERE o.presenceDate >= :presenceDate ORDER BY presenceDate", WinchDriverPresence.class);
-        q.setParameter("presenceDate", Util.convertLocalDateToDate(presenceDate));
-        return q;
-    }
+	public static TypedQuery<WinchDriverPresence> findWinchDriverPresencesByPresenceDateGreaterThanEquals(
+			LocalDate presenceDate) {
+		if (presenceDate == null)
+			throw new IllegalArgumentException(
+					"The presenceDate argument is required");
+		EntityManager em = WinchDriverPresence.entityManager();
+		TypedQuery<WinchDriverPresence> q = em
+				.createQuery(
+						"SELECT o FROM WinchDriverPresence AS o WHERE o.presenceDate >= :presenceDate ORDER BY presenceDate",
+						WinchDriverPresence.class);
+		q.setParameter("presenceDate",
+				Util.convertLocalDateToDate(presenceDate));
+		return q;
+	}
 }

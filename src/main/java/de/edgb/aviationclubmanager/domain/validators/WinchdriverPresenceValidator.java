@@ -10,11 +10,13 @@ public class WinchdriverPresenceValidator extends AbstractValidator {
 
 	@Override
 	protected void addExtraValidation(Object objectForm, Errors errors) {
-		
-		WinchDriverPresence winchDriverPresence = (WinchDriverPresence)objectForm;
-		
+
+		WinchDriverPresence winchDriverPresence = (WinchDriverPresence) objectForm;
+
 		if (!winchDriverPresence.getWinchDriver().getWinchDriver())
-			errors.rejectValue("winchDriver", "de_edgb_aviationclubmanager_domain_winchdriverpresence_clubmember_is_not_winchdriver");
+			errors.rejectValue(
+					"winchDriver",
+					"de_edgb_aviationclubmanager_domain_winchdriverpresence_clubmember_is_not_winchdriver");
 
 	}
 

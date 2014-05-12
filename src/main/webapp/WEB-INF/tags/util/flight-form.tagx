@@ -1,153 +1,149 @@
-<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
-  <jsp:output omit-xml-declaration="yes" />
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:form="http://www.springframework.org/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+	<jsp:output omit-xml-declaration="yes" />
 	<script language="javascript">
-    					
-    					dojo.addOnLoad(function() {
-						
-						dojo.require("dojo.data.ItemFileReadStore");
-						
+		dojo.addOnLoad(function() {
 
-						// FilteringSelect mit AJAX fuellen
-						function fillFilteringSelectFromAjaxUrl(ajaxUrl, filteringSelect)
-						{
-							// TODO: ajaxUrl: mit spring:url aufloesen!
-							
-							
-							
-							var value = filteringSelect.get('value');
-							
-							console.log(value);
-							
-							var xhrArgs = {
-									url : ajaxUrl,
-									handleAs : 'json',
-									load : function(response) {
+			dojo.require("dojo.data.ItemFileReadStore");
 
-										var store = new dojo.data.ItemFileReadStore({
-											data : {
-												"identifier" : "id",
-												"label" : "name",
-												"items" : response
-											}
-										});
-										filteringSelect.store = store;
+			// FilteringSelect mit AJAX fuellen
+			function fillFilteringSelectFromAjaxUrl(ajaxUrl, filteringSelect) {
+				// TODO: ajaxUrl: mit spring:url aufloesen!
 
-									},
-									error : function(e) {
-										console.log("Ajax call failed", e);
-									}
-								};
+				var value = filteringSelect.get('value');
 
-								dojo.xhrGet(xhrArgs);
-								
-								filteringSelect.set('value', value);
-						}
-						
-						
-						// FlightType changed
-						function flightTypeChanged(value)
-						{
-							var aircraft = dijit.byId("_aircraft_id");
-							var pilot = dijit.byId("_pilot_id");
-							var pilotLabel = dojo
-									.byId("_pilot_id_label");
-							var copilot = dijit.byId("_copilot_id");
-							var copilotLabel = dojo
-									.byId("_copilot_id_label");
-							
-							//console.log(value);
-							
-							
-							
-							
-							
-							if (value == "guest") {
-								// Gastflug
-								
-								fillFilteringSelectFromAjaxUrl("./flight/ajax/aircraft/twoseated", aircraft);
-								
-								fillFilteringSelectFromAjaxUrl("./flight/ajax/people/notstudent", pilot);
-								pilotLabel.innerHTML = "Pilot";
-								
-								copilotLabel.innerHTML = "Gast";
-								copilot.set('disabled', true);
-								
-							} else if (value == "training") {
-								// Schulungsflug
-								
-								fillFilteringSelectFromAjaxUrl("./flight/ajax/aircraft/all", aircraft);
-								
-								fillFilteringSelectFromAjaxUrl("./flight/ajax/people/student", pilot);
-								pilotLabel.innerHTML = "Flugschueler";
-								
-								fillFilteringSelectFromAjaxUrl("./flight/ajax/people/instructor", copilot);
-								copilotLabel.innerHTML = "Fluglehrer";
-								copilot.set('disabled', false);
-		
-							} else if (value == "normal") {
-								// Normalflug
-								
-								fillFilteringSelectFromAjaxUrl("./flight/ajax/aircraft/all", aircraft);
-								
-								fillFilteringSelectFromAjaxUrl("./flight/ajax/people/notstudent", pilot);
-								pilotLabel.innerHTML = "Pilot";
-								
-								fillFilteringSelectFromAjaxUrl("./flight/ajax/people/all", copilot);
-								copilotLabel.innerHTML = "Copilot";
-								copilot.set('disabled', false);		
+				console.log(value);
+
+				var xhrArgs = {
+					url : ajaxUrl,
+					handleAs : 'json',
+					load : function(response) {
+
+						var store = new dojo.data.ItemFileReadStore({
+							data : {
+								"identifier" : "id",
+								"label" : "name",
+								"items" : response
 							}
-						}
-						
-						// FlightMode changed
-						function flightModeChanged(value)
-						{
-							var departureTime = dijit.byId("_departureTime_id");
-							var landingTime = dijit.byId("_landingTime_id");
-							
-							//console.log(value);
-							
-							if (value == "local") {
-								// Lokal
+						});
+						filteringSelect.store = store;
 
-								departureTime.set('disabled', false);
-								landingTime.set('disabled', false);
-								
-							} else if (value == "coming") {
-								// Kommt
+					},
+					error : function(e) {
+						console.log("Ajax call failed", e);
+					}
+				};
 
-								departureTime.set('disabled', true);
-								landingTime.set('disabled', false);
-		
-							} else if (value == "leaving") {
-								// Geht
+				dojo.xhrGet(xhrArgs);
 
-								departureTime.set('disabled', false);
-								landingTime.set('disabled', true);	
-							}
-						}
-						
-						
-						
-						// Events
-						
-						dojo.connect(dijit.byId("_flightType_id"),
-										'onChange', function(value) {
-											flightTypeChanged(value);
-										});
-						
-						dojo.connect(dijit.byId("_flightMode_id"),
-								'onChange', function(value) {
-									flightModeChanged(value);
-								});
-				
+				filteringSelect.set('value', value);
+			}
 
-								// Initialisieren
-								
-								dijit.byId("_copilot_id").set('required', false);
-								
-								flightTypeChanged(dijit.byId("_flightType_id").value);
-								flightModeChanged(dijit.byId("_flightMode_id").value);
+			// FlightType changed
+			function flightTypeChanged(value) {
+				var aircraft = dijit.byId("_aircraft_id");
+				var pilot = dijit.byId("_pilot_id");
+				var pilotLabel = dojo.byId("_pilot_id_label");
+				var copilot = dijit.byId("_copilot_id");
+				var copilotLabel = dojo.byId("_copilot_id_label");
 
-							});
-				</script>
+				//console.log(value);
+
+				if (value == "guest") {
+					// Gastflug
+
+					fillFilteringSelectFromAjaxUrl(
+							"./flight/ajax/aircraft/twoseated", aircraft);
+
+					fillFilteringSelectFromAjaxUrl(
+							"./flight/ajax/people/notstudent", pilot);
+					pilotLabel.innerHTML = "Pilot";
+
+					copilotLabel.innerHTML = "Gast";
+					copilot.set('disabled', true);
+
+				} else if (value == "training") {
+					// Schulungsflug
+
+					fillFilteringSelectFromAjaxUrl(
+							"./flight/ajax/aircraft/all", aircraft);
+
+					fillFilteringSelectFromAjaxUrl(
+							"./flight/ajax/people/student", pilot);
+					pilotLabel.innerHTML = "Flugschueler";
+
+					fillFilteringSelectFromAjaxUrl(
+							"./flight/ajax/people/instructor", copilot);
+					copilotLabel.innerHTML = "Fluglehrer";
+					copilot.set('disabled', false);
+
+				} else if (value == "normal") {
+					// Normalflug
+
+					fillFilteringSelectFromAjaxUrl(
+							"./flight/ajax/aircraft/all", aircraft);
+
+					fillFilteringSelectFromAjaxUrl(
+							"./flight/ajax/people/notstudent", pilot);
+					pilotLabel.innerHTML = "Pilot";
+
+					fillFilteringSelectFromAjaxUrl("./flight/ajax/people/all",
+							copilot);
+					copilotLabel.innerHTML = "Copilot";
+					copilot.set('disabled', false);
+				}
+			}
+
+			// FlightMode changed
+			function flightModeChanged(value) {
+				var departureTime = dijit.byId("_departureTime_id");
+				var landingTime = dijit.byId("_landingTime_id");
+
+				//console.log(value);
+
+				if (value == "local") {
+					// Lokal
+
+					departureTime.set('disabled', false);
+					landingTime.set('disabled', false);
+
+				} else if (value == "coming") {
+					// Kommt
+
+					departureTime.set('disabled', true);
+					landingTime.set('disabled', false);
+
+				} else if (value == "leaving") {
+					// Geht
+
+					departureTime.set('disabled', false);
+					landingTime.set('disabled', true);
+				}
+			}
+
+			// Events
+
+			dojo.connect(dijit.byId("_flightType_id"), 'onChange', function(
+					value) {
+				flightTypeChanged(value);
+			});
+
+			dojo.connect(dijit.byId("_flightMode_id"), 'onChange', function(
+					value) {
+				flightModeChanged(value);
+			});
+
+			// Initialisieren
+
+			dijit.byId("_copilot_id").set('required', false);
+
+			flightTypeChanged(dijit.byId("_flightType_id").value);
+			flightModeChanged(dijit.byId("_flightMode_id").value);
+
+		});
+	</script>
 </jsp:root>

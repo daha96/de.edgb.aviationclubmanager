@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 @Controller
 public class IndexController {
-	
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-    public String form(Model uiModel, Principal principal) {
+	public String form(Model uiModel, Principal principal) {
 		if (principal != null)
 			return "index";
 		else
 			return "redirect:/login";
-    }
-	
+	}
+
 }

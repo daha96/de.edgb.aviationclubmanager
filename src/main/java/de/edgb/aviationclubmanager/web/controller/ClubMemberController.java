@@ -1,4 +1,5 @@
 package de.edgb.aviationclubmanager.web.controller;
+
 import de.edgb.aviationclubmanager.domain.ClubCapacity;
 import de.edgb.aviationclubmanager.domain.ClubMember;
 import de.edgb.aviationclubmanager.domain.ClubMemberState;
@@ -33,143 +34,123 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RooWebScaffold(path = "clubmembers", formBackingObject = ClubMember.class)
 public class ClubMemberController {
-	
+
 	@Autowired
-    MessageSource messageSource;	
+	MessageSource messageSource;
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER_CREATE')")
-    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String create(@Valid ClubMember clubMember, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, clubMember);
-            return "clubmembers/create";
-        }
-        uiModel.asMap().clear();
-        clubMember.persist();
-        return "redirect:/clubmembers/" + encodeUrlPathSegment(clubMember.getId().toString(), httpServletRequest);
-    }
+	@RequestMapping(method = RequestMethod.POST, produces = "text/html")
+	public String create(@Valid ClubMember clubMember,
+			BindingResult bindingResult, Model uiModel,
+			HttpServletRequest httpServletRequest) {
+		if (bindingResult.hasErrors()) {
+			populateEditForm(uiModel, clubMember);
+			return "clubmembers/create";
+		}
+		uiModel.asMap().clear();
+		clubMember.persist();
+		return "redirect:/clubmembers/"
+				+ encodeUrlPathSegment(clubMember.getId().toString(),
+						httpServletRequest);
+	}
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER_CREATE')")
-    @RequestMapping(params = "form", produces = "text/html")
-    public String createForm(Model uiModel) {
-        populateEditForm(uiModel, new ClubMember());
-        return "clubmembers/create";
-    }
+	@RequestMapping(params = "form", produces = "text/html")
+	public String createForm(Model uiModel) {
+		populateEditForm(uiModel, new ClubMember());
+		return "clubmembers/create";
+	}
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
-    @RequestMapping(value = "/{id}", produces = "text/html")
-    public String show(@PathVariable("id") Long id, Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("clubmember", ClubMember.findClubMember(id));
-        uiModel.addAttribute("itemId", id);
-        return "clubmembers/show";
-    }
+	@RequestMapping(value = "/{id}", produces = "text/html")
+	public String show(@PathVariable("id") Long id, Model uiModel) {
+		addDateTimeFormatPatterns(uiModel);
+		uiModel.addAttribute("clubmember", ClubMember.findClubMember(id));
+		uiModel.addAttribute("itemId", id);
+		return "clubmembers/show";
+	}
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
-    @RequestMapping(produces = "text/html")
-    public String list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        if (page != null || size != null) {
-            int sizeNo = size == null ? 10 : size.intValue();
-            final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("clubmembers", ClubMember.findClubMemberEntries(firstResult, sizeNo));
-            float nrOfPages = (float) ClubMember.countClubMembers() / sizeNo;
-            uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
-        } else {
-            uiModel.addAttribute("clubmembers", ClubMember.findAllClubMembers());
-        }
-        addDateTimeFormatPatterns(uiModel);
-        return "clubmembers/list";
-    }
+	@RequestMapping(produces = "text/html")
+	public String list(
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "size", required = false) Integer size,
+			Model uiModel) {
+		if (page != null || size != null) {
+			int sizeNo = size == null ? 10 : size.intValue();
+			final int firstResult = page == null ? 0 : (page.intValue() - 1)
+					* sizeNo;
+			uiModel.addAttribute("clubmembers",
+					ClubMember.findClubMemberEntries(firstResult, sizeNo));
+			float nrOfPages = (float) ClubMember.countClubMembers() / sizeNo;
+			uiModel.addAttribute(
+					"maxPages",
+					(int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1
+							: nrOfPages));
+		} else {
+			uiModel.addAttribute("clubmembers", ClubMember.findAllClubMembers());
+		}
+		addDateTimeFormatPatterns(uiModel);
+		return "clubmembers/list";
+	}
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER_UPDATE')")
-    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String update(@Valid ClubMember clubMember, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, clubMember);
-            return "clubmembers/update";
-        }
-        uiModel.asMap().clear();
-        clubMember.merge();
-        return "redirect:/clubmembers/" + encodeUrlPathSegment(clubMember.getId().toString(), httpServletRequest);
-    }
+	@RequestMapping(method = RequestMethod.PUT, produces = "text/html")
+	public String update(@Valid ClubMember clubMember,
+			BindingResult bindingResult, Model uiModel,
+			HttpServletRequest httpServletRequest) {
+		if (bindingResult.hasErrors()) {
+			populateEditForm(uiModel, clubMember);
+			return "clubmembers/update";
+		}
+		uiModel.asMap().clear();
+		clubMember.merge();
+		return "redirect:/clubmembers/"
+				+ encodeUrlPathSegment(clubMember.getId().toString(),
+						httpServletRequest);
+	}
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER_UPDATE')")
-    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
-    public String updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, ClubMember.findClubMember(id));
-        return "clubmembers/update";
-    }
+	@RequestMapping(value = "/{id}", params = "form", produces = "text/html")
+	public String updateForm(@PathVariable("id") Long id, Model uiModel) {
+		populateEditForm(uiModel, ClubMember.findClubMember(id));
+		return "clubmembers/update";
+	}
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER_DELETE')")
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
-    public String delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        ClubMember clubMember = ClubMember.findClubMember(id);
-        
-     // TODO: Fehlermeldung!
-        // aktueller Benutzer kann nicht gelöscht werden!
-        if (clubMember.getId().equals(((UserAccountDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserAccount().getPerson().getId()))
-        	throw new AccessDeniedException("Access denied!");
-        
-        clubMember.remove();
-        uiModel.asMap().clear();
-        uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
-        uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
-        return "redirect:/clubmembers";
-    }
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
+	public String delete(@PathVariable("id") Long id,
+			@RequestParam(value = "page", required = false) Integer page,
+			@RequestParam(value = "size", required = false) Integer size,
+			Model uiModel) {
+		ClubMember clubMember = ClubMember.findClubMember(id);
+
+		// TODO: Fehlermeldung!
+		// aktueller Benutzer kann nicht gelöscht werden!
+		if (clubMember.getId().equals(
+				((UserAccountDetails) SecurityContextHolder.getContext()
+						.getAuthentication().getPrincipal()).getUserAccount()
+						.getPerson().getId()))
+			throw new AccessDeniedException("Access denied!");
+
+		clubMember.remove();
+		uiModel.asMap().clear();
+		uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
+		uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
+		return "redirect:/clubmembers";
+	}
 
 	void populateEditForm(Model uiModel, ClubMember clubMember) {
-        uiModel.addAttribute("clubMember", clubMember);
-        addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("clubcapacitys", ClubCapacity.findAllClubCapacitys());
-        uiModel.addAttribute("clubmemberstates", Arrays.asList(ClubMemberState.values()));
-        uiModel.addAttribute("genders", Arrays.asList(Gender.values()));
-    }
-	
-	
-	
+		uiModel.addAttribute("clubMember", clubMember);
+		addDateTimeFormatPatterns(uiModel);
+		uiModel.addAttribute("clubcapacitys",
+				ClubCapacity.findAllClubCapacitys());
+		uiModel.addAttribute("clubmemberstates",
+				Arrays.asList(ClubMemberState.values()));
+		uiModel.addAttribute("genders", Arrays.asList(Gender.values()));
+	}
+
 	// Reports
-  /*  @PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
-    @RequestMapping(value = "/reports/clubmemberlist", method = RequestMethod.GET)
-    public String generateClubmemberlist(@RequestParam(value = "format", required = true) String format, Model uiModel) {
-        if (null == format || format.length() <= 0) throw new InvalidParameterException();
-        final String REGEX = "(pdf|xls|csv|html)";
-        Pattern pattern = Pattern.compile(REGEX, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(format);
-        if (!matcher.matches()) throw new InvalidParameterException();
-        
-        
-        Collection<ClubMember> dataSource = ClubMember.findAllClubMembers();
-        if (dataSource.isEmpty()) throw new EmptyResultDataAccessException(0);
-        uiModel.addAttribute("format", format);
-        uiModel.addAttribute("filename", "Mitgliederliste_" + DateTimeFormat.forPattern("yyyy-MM-dd").print(Util.getCurrentDate()));
-        uiModel.addAttribute("version", messageSource.getMessage("app.version", null, LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("enumConverter", new Converter<Enum<?>, String>() {
-
-            @Override
-            public String convert(Enum<?> value) {
-                String output = value.toString();
-                try {
-                    output = messageSource.getMessage(value.toString(), null, LocaleContextHolder.getLocale());
-                } catch (NoSuchMessageException e) {
-                    System.err.println("No message resource found for " + value + " add this to the resource bundle");
-                }
-                return output;
-            }
-        });
-        uiModel.addAttribute("localDateConverter", new Converter<LocalDate, String>() {
-            @Override
-            public String convert(LocalDate value) {
-            	if (value == null)
-            		return "";
-            	else
-            		return DateTimeFormat.mediumDate().withLocale(LocaleContextHolder.getLocale()).print(value);
-            }
-        });
-
-        uiModel.addAttribute("clubmemberList", dataSource);
-        return "clubmember_clubmemberlist";
-    }
-	*/
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
 	@RequestMapping(value = "/reports/clubmemberlist", method = RequestMethod.GET)
@@ -181,11 +162,19 @@ public class ClubMemberController {
 		report.setDataSource(ClubMember.findAllClubMembers());
 		report.writeToHttpServletResponse(response, format);
 	}
-	
-	
+
 	void addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("clubMember_birthday_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("clubMember_joiningdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-        uiModel.addAttribute("clubMember_exitdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
-    }		   
+		uiModel.addAttribute(
+				"clubMember_birthday_date_format",
+				DateTimeFormat.patternForStyle("M-",
+						LocaleContextHolder.getLocale()));
+		uiModel.addAttribute(
+				"clubMember_joiningdate_date_format",
+				DateTimeFormat.patternForStyle("M-",
+						LocaleContextHolder.getLocale()));
+		uiModel.addAttribute(
+				"clubMember_exitdate_date_format",
+				DateTimeFormat.patternForStyle("M-",
+						LocaleContextHolder.getLocale()));
+	}
 }

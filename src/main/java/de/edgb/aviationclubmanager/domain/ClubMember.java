@@ -1,4 +1,5 @@
 package de.edgb.aviationclubmanager.domain;
+
 import java.util.Date;
 import java.util.List;
 
@@ -23,100 +24,109 @@ import de.edgb.aviationclubmanager.web.Util;
 @RooJavaBean
 @RooToString
 @RooJson
-@RooJpaActiveRecord(finders = { "findClubMembersByUsernameEquals"/*, "findClubMembersByWinchDriverNot", "findClubMembersByInstructorNot" */})
+@RooJpaActiveRecord(finders = { "findClubMembersByUsernameEquals" })
 public class ClubMember extends Person {
 
-    @Past
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(style = "M-")
-    private Date birthday;
+	@Past
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(style = "M-")
+	private Date birthday;
 
-    @Past
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(style = "M-")
-    private Date joiningDate;
+	@Past
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(style = "M-")
+	private Date joiningDate;
 
-    @Past
-    @Temporal(TemporalType.DATE)
-    @DateTimeFormat(style = "M-")
-    private Date exitDate;
-    
-    public LocalDate getBirthday() {
-        return Util.convertDateToLocalDate(this.birthday);
-    }
-    
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = Util.convertLocalDateToDate(birthday);
-    }
-    
-    public LocalDate getJoiningDate() {
-        return Util.convertDateToLocalDate(this.joiningDate);
-    }
-    
-    public void setJoiningDate(LocalDate joiningDate) {
-        this.joiningDate = Util.convertLocalDateToDate(joiningDate);
-    }
-    
-    public LocalDate getExitDate() {
-        return Util.convertDateToLocalDate(this.exitDate);
-    }
-    
-    public void setExitDate(LocalDate exitDate) {
-        this.exitDate = Util.convertLocalDateToDate(exitDate);
-    }
-    
-    @NotNull
-    @Enumerated
-    private ClubMemberState clubMemberState;
+	@Past
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(style = "M-")
+	private Date exitDate;
 
-    @NotNull
-    @Enumerated
-    private Gender gender;
+	public LocalDate getBirthday() {
+		return Util.convertDateToLocalDate(this.birthday);
+	}
 
-    @NotNull
-    private Boolean glidingFixedRate;
+	public void setBirthday(LocalDate birthday) {
+		this.birthday = Util.convertLocalDateToDate(birthday);
+	}
 
-    @NotNull
-    private Boolean enginedAviationFixedRate;
+	public LocalDate getJoiningDate() {
+		return Util.convertDateToLocalDate(this.joiningDate);
+	}
 
-    @NotNull
-    private Boolean student;
+	public void setJoiningDate(LocalDate joiningDate) {
+		this.joiningDate = Util.convertLocalDateToDate(joiningDate);
+	}
 
-    @NotNull
-    private Boolean cheapPrice;
+	public LocalDate getExitDate() {
+		return Util.convertDateToLocalDate(this.exitDate);
+	}
 
-    @OneToOne
-    private ClubCapacity clubCapacity;
+	public void setExitDate(LocalDate exitDate) {
+		this.exitDate = Util.convertLocalDateToDate(exitDate);
+	}
 
-    @NotNull
-    private Boolean instructor;
+	@NotNull
+	@Enumerated
+	private ClubMemberState clubMemberState;
 
-    @NotNull
-    private Boolean winchDriver;
+	@NotNull
+	@Enumerated
+	private Gender gender;
 
-    
-    // Finder
-  /*  public static ClubMember getCurrentClubMember() {
-        return ClubMember.findClubMembersByUsernameEquals(SecurityContextHolder.getContext().getAuthentication().getName()).getSingleResult();
-    }
-*/
+	@NotNull
+	private Boolean glidingFixedRate;
+
+	@NotNull
+	private Boolean enginedAviationFixedRate;
+
+	@NotNull
+	private Boolean student;
+
+	@NotNull
+	private Boolean cheapPrice;
+
+	@OneToOne
+	private ClubCapacity clubCapacity;
+
+	@NotNull
+	private Boolean instructor;
+
+	@NotNull
+	private Boolean winchDriver;
+
+	// Finder
+
 	public static TypedQuery<ClubMember> findClubMembersBeingWinchDriver() {
-        EntityManager em = ClubMember.entityManager();
-        TypedQuery<ClubMember> q = em.createQuery("SELECT o FROM ClubMember AS o WHERE o.winchDriver IS TRUE ORDER BY o.lastName, o.firstName", ClubMember.class);
-        return q;
-    }
+		EntityManager em = ClubMember.entityManager();
+		TypedQuery<ClubMember> q = em
+				.createQuery(
+						"SELECT o FROM ClubMember AS o WHERE o.winchDriver IS TRUE ORDER BY o.lastName, o.firstName",
+						ClubMember.class);
+		return q;
+	}
 
 	public static TypedQuery<ClubMember> findClubMembersBeingInstructor() {
-        EntityManager em = ClubMember.entityManager();
-        TypedQuery<ClubMember> q = em.createQuery("SELECT o FROM ClubMember AS o WHERE o.instructor IS TRUE ORDER BY o.lastName, o.firstName", ClubMember.class);
-        return q;
-    }
+		EntityManager em = ClubMember.entityManager();
+		TypedQuery<ClubMember> q = em
+				.createQuery(
+						"SELECT o FROM ClubMember AS o WHERE o.instructor IS TRUE ORDER BY o.lastName, o.firstName",
+						ClubMember.class);
+		return q;
+	}
 
 	public static List<ClubMember> findAllClubMembers() {
-        return entityManager().createQuery("SELECT o FROM ClubMember o ORDER BY o.lastName, o.firstName", ClubMember.class).getResultList();
-    }
+		return entityManager().createQuery(
+				"SELECT o FROM ClubMember o ORDER BY o.lastName, o.firstName",
+				ClubMember.class).getResultList();
+	}
 
-	public static List<ClubMember> findClubMemberEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM ClubMember o ORDER BY o.lastName, o.firstName", ClubMember.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
+	public static List<ClubMember> findClubMemberEntries(int firstResult,
+			int maxResults) {
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM ClubMember o ORDER BY o.lastName, o.firstName",
+						ClubMember.class).setFirstResult(firstResult)
+				.setMaxResults(maxResults).getResultList();
+	}
 }

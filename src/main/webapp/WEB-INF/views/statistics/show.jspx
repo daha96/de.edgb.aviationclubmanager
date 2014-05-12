@@ -1,39 +1,56 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <page:show object="${statistics}" path="/statistics?form" id="pl_de_edgb_aviationclubmanager_domain_Statistics" create="false" update="false" delete="false">
-    	
-    	
-    	<!-- <field:table id="l_de_edgb_aviationclubmanager_domain_Statistics_flightsPerAircraft" data="${statistics.mapToArray(statistics.flightsPerAircraft)}" path="/statistics" create="false" update="false" delete="false" show="false">
-    		<field:column id="c_de_edgb_aviationclubmanager_domain_Statistics_flightsPerAircraft_key" property="0" />
-    		<field:column id="c_de_edgb_aviationclubmanager_domain_Statistics_flightsPerAircraft_value" property="1" />
-    	</field:table> -->
-    	<field:display jodaTime="true" dateTimePattern="${statistics_date_date_format}" id="l_de_edgb_aviationclubmanager_domain_Statistics_minDate" object="${statistics}" field="minDate" />
-    	<field:display jodaTime="true" dateTimePattern="${statistics_date_date_format}" id="l_de_edgb_aviationclubmanager_domain_Statistics_maxDate" object="${statistics}" field="maxDate" />
-    	<br />
-    	<field:display map="true" mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperaircraft_key" mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperaircraft_value" id="l_de_edgb_aviationclubmanager_domain_Statistics_flightsPerAircraft" object="${statistics}" field="flightsPerAircraft" />
-    	<field:display map="true" mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flighttimeperaircraft_key" mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flighttimeperaircraft_value" id="l_de_edgb_aviationclubmanager_domain_Statistics_flightTimePerAircraft" object="${statistics}" field="flightTimePerAircraft" />
-    	<field:display map="true" mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperpilot_key" mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperpilot_value" id="l_de_edgb_aviationclubmanager_domain_Statistics_flightsPerPilot" object="${statistics}" field="flightsPerPilot" />
-    	<field:display map="true" mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flighttimeperpilot_key" mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flighttimeperpilot_value" id="l_de_edgb_aviationclubmanager_domain_Statistics_flightTimePerPilot" object="${statistics}" field="flightTimePerPilot" />
-    	<field:display map="true" mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperflighttype_key" mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperflighttype_value" id="l_de_edgb_aviationclubmanager_domain_Statistics_flightsPerFlightType" object="${statistics}" field="flightsPerFlightType" />
-    	<field:display map="true" mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperlaunchmethod_key" mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperlaunchmethod_value" id="l_de_edgb_aviationclubmanager_domain_Statistics_flightsPerLaunchMethod" object="${statistics}" field="flightsPerLaunchMethod" />
-    	
-    <!-- 	<field:display id="l_de_edgb_aviationclubmanager_domain_Statistics_numStudents" object="${statistics}" field="numStudents"></field:display>
-    	<field:display id="l_de_edgb_aviationclubmanager_domain_Statistics_numPilots" object="${statistics}" field="numPilots"></field:display>
-     -->
- <!--    <table:table delete="false" update="false" show="false" data="${planeLogEntries}" id="l_de_edgb_aviationclubmanager_domain_PlaneLogEntry" path="/member/planelog" create="false">            
-            <table:column date="true" dateTimePattern="${planelogentry_flightdate_date_format}" id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_entryDate" property="entryDate" />
-            <table:column id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_aircraft" property="aircraft" />
-            <table:column id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_pilot" property="pilot" />
-            <table:column id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_occupants" property="occupants" />
-            <table:column id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_departureLocation" property="departureLocation" />
-            <table:column id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_landingLocation" property="landingLocation" />
-            <table:column date="true" dateTimePattern="${planelogentry_departuretime_date_format}" id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_departureTime" property="departureTime" />
-            <table:column date="true" dateTimePattern="${planelogentry_landingtime_date_format}" id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_landingTime" property="landingTime" />
-            <table:column date="true" dateTimePattern="${planelogentry_operationtime_date_format}" id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_operationTime" property="operationTime" />
-            <table:column id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_numLandings" property="numLandings" />
-            <table:column id="c_de_edgb_aviationclubmanager_domain_PlaneLogEntry_comments" property="comments" />
-        </table:table> -->
-    </page:show>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<page:show object="${statistics}" path="/statistics?form"
+		id="pl_de_edgb_aviationclubmanager_domain_Statistics" create="false"
+		update="false" delete="false">
+
+		<field:display jodaTime="true"
+			dateTimePattern="${statistics_date_date_format}"
+			id="l_de_edgb_aviationclubmanager_domain_Statistics_minDate"
+			object="${statistics}" field="minDate" />
+		<field:display jodaTime="true"
+			dateTimePattern="${statistics_date_date_format}"
+			id="l_de_edgb_aviationclubmanager_domain_Statistics_maxDate"
+			object="${statistics}" field="maxDate" />
+		<br />
+		<field:display map="true"
+			mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperaircraft_key"
+			mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperaircraft_value"
+			id="l_de_edgb_aviationclubmanager_domain_Statistics_flightsPerAircraft"
+			object="${statistics}" field="flightsPerAircraft" />
+		<field:display map="true"
+			mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flighttimeperaircraft_key"
+			mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flighttimeperaircraft_value"
+			id="l_de_edgb_aviationclubmanager_domain_Statistics_flightTimePerAircraft"
+			object="${statistics}" field="flightTimePerAircraft" />
+		<field:display map="true"
+			mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperpilot_key"
+			mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperpilot_value"
+			id="l_de_edgb_aviationclubmanager_domain_Statistics_flightsPerPilot"
+			object="${statistics}" field="flightsPerPilot" />
+		<field:display map="true"
+			mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flighttimeperpilot_key"
+			mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flighttimeperpilot_value"
+			id="l_de_edgb_aviationclubmanager_domain_Statistics_flightTimePerPilot"
+			object="${statistics}" field="flightTimePerPilot" />
+		<field:display map="true"
+			mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperflighttype_key"
+			mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperflighttype_value"
+			id="l_de_edgb_aviationclubmanager_domain_Statistics_flightsPerFlightType"
+			object="${statistics}" field="flightsPerFlightType" />
+		<field:display map="true"
+			mapKeyCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperlaunchmethod_key"
+			mapValueCode="label_de_edgb_aviationclubmanager_domain_statistics_flightsperlaunchmethod_value"
+			id="l_de_edgb_aviationclubmanager_domain_Statistics_flightsPerLaunchMethod"
+			object="${statistics}" field="flightsPerLaunchMethod" />
+
+	</page:show>
 </div>

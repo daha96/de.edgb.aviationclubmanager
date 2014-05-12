@@ -11,12 +11,10 @@
 			<menu:category id="c_flight">
 				<menu:item id="i_flight_flights" url="/flights/flightlist"
 					requiredPermission="PERMISSION_FLIGHT" />
-
 				<menu:category id="c_flight_aircraftlog" topLevelCategory="false">
-
-
-					<menu:category id="c_flight_aircraftlog_clubaircraft" topLevelCategory="false">
-				 		<menu:item id="i_flight_aircraftlog_clubaircraft_today"
+					<menu:category id="c_flight_aircraftlog_clubaircraft"
+						topLevelCategory="false">
+						<menu:item id="i_flight_aircraftlog_clubaircraft_today"
 							url="/aircraftlog/clubaircraft?today"
 							requiredPermission="PERMISSION_AIRCRAFTLOG" />
 						<menu:item id="i_flight_aircraftlog_clubaircraft_yesterday"
@@ -24,20 +22,11 @@
 							requiredPermission="PERMISSION_AIRCRAFTLOG" />
 						<menu:item id="i_flight_aircraftlog_clubaircraft_form"
 							url="/aircraftlog/clubaircraft?form"
-							requiredPermission="PERMISSION_AIRCRAFTLOG" /> 
+							requiredPermission="PERMISSION_AIRCRAFTLOG" />
 					</menu:category>
-
 					<menu:item id="i_flight_aircraftlog_form" url="/aircraftlog?form"
 						requiredPermission="PERMISSION_AIRCRAFTLOG" />
-
 				</menu:category>
-
-
-
-
-
-
-
 				<menu:item id="i_flight_aircrafts" url="/aircrafts"
 					requiredPermission="PERMISSION_AIRCRAFT" />
 				<menu:item id="i_flight_people" url="/people"
@@ -46,30 +35,6 @@
 					requiredPermission="PERMISSION_ACCOUNTING" />
 				<menu:item id="i_flight_flightdb" url="/flights/flightdb?form"
 					requiredPermission="PERMISSION_FLIGHT" />
-				<!--      	
-            
-            
-            
-                <menu:item id="i_flightmenu_flight_flightlist" url="/member/flight/flightlist?form"/>
-                <menu:item id="i_flightmenu_flight_pilotlog" url="/member/flight/pilotlog?form"/>
-                <menu:item id="i_flightmenu_flight_flightdb" url="/member/flight/flightdb?form"/>
-                <menu:item id="i_flightmenu_planelog" url="/member/planelog?form"/>
-                    <menu:item id="i_flightmenu_flight_show" url="/member/flight"/>
-                 <menu:item id="i_flightmenu_flight_new" url="/member/flight?form"/>  
-                    
-                   <menu:item id="i_membermenu_memberdata_changepassword" url="/member/data/password?form"/>              
-                <menu:item id="i_membermenu_workinghours" url="/member/workinghours"/>
-            <menu:item id="i_membermenu_reservation" url="/member/reservation"/>
-              
-                <menu:item id="i_membermenu_aircraft" url="/member/aircraft"/>
-                <menu:item id="i_membermenu_clubaircraft" url="/member/clubaircraft"/>
-                <menu:item id="i_membermenu_persons" url="/member/persons"/>
-                <menu:item id="i_membermenu_clubcapacity" url="/member/clubcapacity"/>
-                          <menu:item id="i_membermenu_presence" url="/member/presence"/>          
-                <menu:item id="i_membermenu_instructorpresence" url="/member/instructorpresence"/>           
-                <menu:item id="i_membermenu_instructorpresence" url="/member/instructorpresence?latest"/>
-                <menu:item id="i_membermenu_winchdriverpresence" url="/member/winchdriverpresence?latest"/>
-                <menu:item id="i_membermenu_bug" url="/member/bug"/> -->
 			</menu:category>
 
 			<menu:category id="c_user">
@@ -108,9 +73,9 @@
 					requiredPermission="PERMISSION_USERROLE" />
 			</menu:category>
 
-
 		</menu:menu>
 	</sec:authorize>
+
 	<menu:menu id="_menu" render="false" z="user-managed">
 		<menu:category id="c_clubcapacity" z="nJ9tBL73PNPqa8q8lvFaRQIjcaI=">
 			<menu:item id="i_clubcapacity_list" messageCode="global_menu_list"

@@ -51,8 +51,6 @@ public class ClubMemberListReport extends AviationClubManagerReport {
 		createLocalDateColumn(
 				"label_de_edgb_aviationclubmanager_domain_clubmember_birthday",
 				"birthday");
-		// createTextColumn("label_de_edgb_aviationclubmanager_domain_clubmember",
-		// "");
 		createEnumColumn(
 				"label_de_edgb_aviationclubmanager_domain_clubmember_clubmemberstate",
 				"clubMemberState");

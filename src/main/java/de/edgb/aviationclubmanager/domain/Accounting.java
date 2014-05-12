@@ -11,14 +11,20 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooJpaActiveRecord
 public class Accounting {
 
-    @NotNull
-    private String name;
+	@NotNull
+	private String name;
 
 	public static List<Accounting> findAllAccountings() {
-        return entityManager().createQuery("SELECT o FROM Accounting o ORDER BY o.id", Accounting.class).getResultList();
-    }
+		return entityManager().createQuery(
+				"SELECT o FROM Accounting o ORDER BY o.id", Accounting.class)
+				.getResultList();
+	}
 
-	public static List<Accounting> findAccountingEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Accounting o ORDER BY o.id", Accounting.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
+	public static List<Accounting> findAccountingEntries(int firstResult,
+			int maxResults) {
+		return entityManager()
+				.createQuery("SELECT o FROM Accounting o ORDER BY o.id",
+						Accounting.class).setFirstResult(firstResult)
+				.setMaxResults(maxResults).getResultList();
+	}
 }

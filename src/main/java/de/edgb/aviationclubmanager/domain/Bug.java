@@ -21,32 +21,35 @@ import de.edgb.aviationclubmanager.web.Util;
 @RooJpaActiveRecord
 public class Bug {
 
-	// LocalDateTime
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(style = "MM")
-    @NotNull
-    private Date bugDate;
-    
-    public LocalDateTime getBugDate() {
-        return Util.convertDateToLocalDateTime(this.bugDate);
-    }
-    
-    public void setBugDate(LocalDateTime bugDate) {
-        this.bugDate = Util.convertLocalDateTimeToDate(bugDate);
-    }
-    
-    @ManyToOne
-    @NotNull
-    private Person person;
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(style = "MM")
+	@NotNull
+	private Date bugDate;
 
-    @NotNull
-    private String description;
+	public LocalDateTime getBugDate() {
+		return Util.convertDateToLocalDateTime(this.bugDate);
+	}
+
+	public void setBugDate(LocalDateTime bugDate) {
+		this.bugDate = Util.convertLocalDateTimeToDate(bugDate);
+	}
+
+	@ManyToOne
+	@NotNull
+	private Person person;
+
+	@NotNull
+	private String description;
 
 	public static List<Bug> findAllBugs() {
-        return entityManager().createQuery("SELECT o FROM Bug o ORDER BY o.id", Bug.class).getResultList();
-    }
+		return entityManager().createQuery("SELECT o FROM Bug o ORDER BY o.id",
+				Bug.class).getResultList();
+	}
 
 	public static List<Bug> findBugEntries(int firstResult, int maxResults) {
-        return entityManager().createQuery("SELECT o FROM Bug o ORDER BY o.id", Bug.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
-    }
+		return entityManager()
+				.createQuery("SELECT o FROM Bug o ORDER BY o.id", Bug.class)
+				.setFirstResult(firstResult).setMaxResults(maxResults)
+				.getResultList();
+	}
 }

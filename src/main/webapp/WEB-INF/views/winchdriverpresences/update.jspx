@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
-    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
-    <jsp:output omit-xml-declaration="yes"/>
-    <form:update id="fu_de_edgb_aviationclubmanager_domain_WinchDriverPresence" modelAttribute="winchDriverPresence" path="/winchdriverpresences" versionField="Version" z="JxboZBBsjN8fW8FBXkuQi68E550=">
-        <field:datetime dateTimePattern="${winchDriverPresence_presencedate_date_format}" field="presenceDate" id="c_de_edgb_aviationclubmanager_domain_WinchDriverPresence_presenceDate" required="true" z="9rb9uyHYr4k2daYzhAVC6IK+m6c="/>
-        <field:select field="winchDriver" id="c_de_edgb_aviationclubmanager_domain_WinchDriverPresence_winchDriver" itemValue="id" items="${clubmembers}" path="/clubmembers" required="true" z="DgOMasX49na99pLxXIjWx764Vr8="/>
-        <field:input field="comment" id="c_de_edgb_aviationclubmanager_domain_WinchDriverPresence_comment" z="IW6cSgZjaFA/5U+fT6sJWGGcpJA="/>
-    </form:update>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
+	xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+	<form:update
+		id="fu_de_edgb_aviationclubmanager_domain_WinchDriverPresence"
+		modelAttribute="winchDriverPresence" path="/winchdriverpresences"
+		versionField="Version" z="JxboZBBsjN8fW8FBXkuQi68E550=">
+		<field:datetime
+			dateTimePattern="${winchDriverPresence_presencedate_date_format}"
+			field="presenceDate"
+			id="c_de_edgb_aviationclubmanager_domain_WinchDriverPresence_presenceDate"
+			required="true" z="9rb9uyHYr4k2daYzhAVC6IK+m6c=" />
+		<field:select field="winchDriver"
+			id="c_de_edgb_aviationclubmanager_domain_WinchDriverPresence_winchDriver"
+			itemValue="id" items="${clubmembers}" path="/clubmembers"
+			required="true" z="DgOMasX49na99pLxXIjWx764Vr8=" />
+		<field:input field="comment"
+			id="c_de_edgb_aviationclubmanager_domain_WinchDriverPresence_comment"
+			z="IW6cSgZjaFA/5U+fT6sJWGGcpJA=" />
+	</form:update>
 </div>

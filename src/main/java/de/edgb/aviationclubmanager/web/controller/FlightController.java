@@ -89,9 +89,6 @@ public class FlightController {
 
 		if (flightDate != null)
 			flight.setFlightDate(flightDate);
-		// flight.setDepartureLocation(messageSource.getMessage("app.homeLocation",
-		// null, LocaleContextHolder.getLocale()));
-		// flight.setDepartureTime(Util.getCurrentTime());
 
 		populateEditForm(uiModel, flight);
 		List<String[]> dependencies = new ArrayList<String[]>();
@@ -121,9 +118,6 @@ public class FlightController {
 
 		if (flightDate != null)
 			flight.setFlightDate(flightDate);
-		// flight.setDepartureLocation(messageSource.getMessage("app.homeLocation",
-		// null, LocaleContextHolder.getLocale()));
-		// flight.setDepartureTime(Util.getCurrentTime());
 
 		populateEditForm(uiModel, flight);
 		List<String[]> dependencies = new ArrayList<String[]>();
@@ -264,6 +258,7 @@ public class FlightController {
 	}
 
 	// Finder
+
 	@PreAuthorize("hasRole('PERMISSION_FLIGHT')")
 	@RequestMapping(value = "/flightlist", params = { "form" }, method = RequestMethod.GET)
 	public String flightlistForm(Model uiModel) {
@@ -284,7 +279,6 @@ public class FlightController {
 		uiModel.addAttribute("flights",
 				Flight.findFlightsByFlightDateEquals(date));
 		addDateTimeFormatPatterns(uiModel);
-		// uiModel.addAttribute("flightlist", true);
 		uiModel.addAttribute("flightlistDate", date);
 		return "flights/flightlist/list";
 	}
@@ -309,7 +303,6 @@ public class FlightController {
 						Util.getCurrentDate(), Util.getCurrentDate(),
 						CopilotMode.all));
 		addDateTimeFormatPatterns(uiModel);
-		// uiModel.addAttribute("pilotlog", true);
 		return "flights/pilotlog/list";
 	}
 
@@ -325,7 +318,6 @@ public class FlightController {
 						Util.getCurrentDate().minusDays(1), Util
 								.getCurrentDate().minusDays(1), CopilotMode.all));
 		addDateTimeFormatPatterns(uiModel);
-		// uiModel.addAttribute("pilotlog", true);
 		return "flights/pilotlog/list";
 	}
 
@@ -345,7 +337,6 @@ public class FlightController {
 						Util.convertDateToLocalDate(minFlightDate),
 						Util.convertDateToLocalDate(maxFlightDate), copilotMode));
 		addDateTimeFormatPatterns(uiModel);
-		// uiModel.addAttribute("pilotlog", true);
 		return "flights/pilotlog/list";
 	}
 
@@ -368,12 +359,13 @@ public class FlightController {
 						Util.convertDateToLocalDate(minFlightDate),
 						Util.convertDateToLocalDate(maxFlightDate)));
 		addDateTimeFormatPatterns(uiModel);
-		// uiModel.addAttribute("flightdb", true);
 		return "flights/flightdb/list";
 	}
 
 	// AJAX
+
 	// Locations
+
 	@PreAuthorize("hasRole('PERMISSION_FLIGHT')")
 	@RequestMapping(value = "/ajax/locations", produces = "application/json;charset=UTF-8")
 	@ResponseBody
@@ -389,57 +381,6 @@ public class FlightController {
 	}
 
 	// Reports
-	/*
-	 * @PreAuthorize("hasRole('PERMISSION_FLIGHT')")
-	 * 
-	 * @RequestMapping(value = "/reports/flightlist", method =
-	 * RequestMethod.GET) public String
-	 * generateFlightlist(@RequestParam("flightDate")
-	 * @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date
-	 * flightDate, @RequestParam(value = "format", required = true) String
-	 * format, Model uiModel) { if (null == format || format.length() <= 0)
-	 * throw new InvalidParameterException(); final String REGEX =
-	 * "(pdf|xls|csv|html)"; Pattern pattern = Pattern.compile(REGEX,
-	 * Pattern.CASE_INSENSITIVE); Matcher matcher = pattern.matcher(format); if
-	 * (!matcher.matches()) throw new InvalidParameterException();
-	 * 
-	 * LocalDate date = Util.convertDateToLocalDate(flightDate);
-	 * 
-	 * Collection<Flight> dataSource =
-	 * Flight.findFlightsByFlightDateEquals(date); if (dataSource.isEmpty())
-	 * throw new EmptyResultDataAccessException(0);
-	 * uiModel.addAttribute("format", format); uiModel.addAttribute("filename",
-	 * "Startliste_" + DateTimeFormat.forPattern("yyyy-MM-dd").print(date));
-	 * uiModel.addAttribute("location",
-	 * messageSource.getMessage("app.homeLocation", null,
-	 * LocaleContextHolder.getLocale())); uiModel.addAttribute("version",
-	 * messageSource.getMessage("app.version", null,
-	 * LocaleContextHolder.getLocale())); uiModel.addAttribute("numRows",
-	 * dataSource.size()); uiModel.addAttribute("reportDate", date);
-	 * uiModel.addAttribute("enumConverter", new Converter<Enum<?>, String>() {
-	 * 
-	 * @Override public String convert(Enum<?> value) { String output =
-	 * value.toString(); try { output =
-	 * messageSource.getMessage(value.toString(), null,
-	 * LocaleContextHolder.getLocale()); } catch (NoSuchMessageException e) {
-	 * System.err.println("No message resource found for " + value +
-	 * " add this to the resource bundle"); } return output; } });
-	 * uiModel.addAttribute("localDateConverter", new Converter<LocalDate,
-	 * String>() {
-	 * 
-	 * @Override public String convert(LocalDate value) { if (value == null)
-	 * return ""; else return
-	 * DateTimeFormat.mediumDate().withLocale(LocaleContextHolder
-	 * .getLocale()).print(value); } });
-	 * uiModel.addAttribute("localTimeConverter", new Converter<LocalTime,
-	 * String>() {
-	 * 
-	 * @Override public String convert(LocalTime value) { if (value == null)
-	 * return ""; else return
-	 * DateTimeFormat.shortTime().withLocale(LocaleContextHolder
-	 * .getLocale()).print(value); } }); uiModel.addAttribute("flightlistList",
-	 * dataSource); return "flight_flightlist"; }
-	 */
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
 	@RequestMapping(value = "/reports/flightlist", method = RequestMethod.GET)
@@ -457,21 +398,17 @@ public class FlightController {
 		report.writeToHttpServletResponse(response, format);
 	}
 
-	// Jetzt starten/landen
+	// Jetzt starten / landen
 
 	@PreAuthorize("hasRole('PERMISSION_FLIGHT_UPDATE')")
 	@RequestMapping(value = "/{id}", params = "depart", produces = "text/html")
 	public String departNow(@PathVariable("id") Long id, Model uiModel) {
 
 		Flight flight = Flight.findFlight(id);
-		/*
-		 * Date d = Util.getCurrentDate(); Date t = Util.getCurrentTime(); Date
-		 * dt = Util.getCurrentDateTime(); Date n = Util.getNullPoint();
-		 */
+
 		// Nur Flüge von heute!
 		// TODO: Fehlermeldung!
-		if (!flight.getFlightDate().equals(Util.getCurrentDate()))// Util.datesEquals(flight.getFlightDate(),
-																	// Util.getCurrentDate()))
+		if (!flight.getFlightDate().equals(Util.getCurrentDate()))
 			throw new InvalidParameterException();
 
 		// evtl. Startort setzen
@@ -503,8 +440,7 @@ public class FlightController {
 
 		// Nur Flüge von heute!
 		// TODO: Fehlermeldung!
-		if (!flight.getFlightDate().equals(Util.getCurrentDate()))// Util.datesEquals(flight.getFlightDate(),
-																	// Util.getCurrentDate()))
+		if (!flight.getFlightDate().equals(Util.getCurrentDate()))
 			throw new InvalidParameterException();
 
 		// evtl. Landeort setzen

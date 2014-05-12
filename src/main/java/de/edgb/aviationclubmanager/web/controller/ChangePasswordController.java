@@ -21,41 +21,45 @@ import de.edgb.aviationclubmanager.web.UserAccountDetails;
 @RequestMapping("/changepassword")
 @Controller
 public class ChangePasswordController {
-	
+
 	@Autowired
 	ChangePasswordValidator changePasswordValidator;
-	
+
 	@Autowired
 	ShaPasswordEncoder encoder;
 
 	@PreAuthorize("hasRole('PERMISSION_CHANGEPASSWORD')")
-    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String changePassword(@ModelAttribute("changePassword") ChangePasswordModel changePassword, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-			
-		
+	@RequestMapping(method = RequestMethod.PUT, produces = "text/html")
+	public String changePassword(
+			@ModelAttribute("changePassword") ChangePasswordModel changePassword,
+			BindingResult bindingResult, Model uiModel,
+			HttpServletRequest httpServletRequest) {
+
 		changePasswordValidator.validate(changePassword, bindingResult);
-		
-		
-        if (bindingResult.hasErrors()) {
-        	uiModel.addAttribute("changePassword", changePassword);
-    		
-            return "changepassword/form";
-        }
-        uiModel.asMap().clear();
-        
-        UserAccount userAccount = ((UserAccountDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUserAccount();
-        userAccount.setPassword(encoder.encodePassword(changePassword.getNewPassword(), null));
-        userAccount.merge();
-        
-        return "changepassword/success";
-    }
+
+		if (bindingResult.hasErrors()) {
+			uiModel.addAttribute("changePassword", changePassword);
+
+			return "changepassword/form";
+		}
+		uiModel.asMap().clear();
+
+		UserAccount userAccount = ((UserAccountDetails) SecurityContextHolder
+				.getContext().getAuthentication().getPrincipal())
+				.getUserAccount();
+		userAccount.setPassword(encoder.encodePassword(
+				changePassword.getNewPassword(), null));
+		userAccount.merge();
+
+		return "changepassword/success";
+	}
 
 	@PreAuthorize("hasRole('PERMISSION_CHANGEPASSWORD')")
-    @RequestMapping(params = "form", produces = "text/html")
-    public String passwordForm(Model uiModel) {
-		
+	@RequestMapping(params = "form", produces = "text/html")
+	public String passwordForm(Model uiModel) {
+
 		uiModel.addAttribute("changePassword", new ChangePasswordModel());
-		
-        return "changepassword/form";
-    }
+
+		return "changepassword/form";
+	}
 }

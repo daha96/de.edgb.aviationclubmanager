@@ -121,20 +121,22 @@ public abstract class AviationClubManagerReport {
 				type.stringType()).setFixedWidth(fixedWidth));
 	}
 
-	protected <V extends Enum<V>> void createEnumColumn(String messageCode, String propertyName) {
+	protected <V extends Enum<V>> void createEnumColumn(String messageCode,
+			String propertyName) {
 		reportBuilder.addField(field(propertyName, Object.class)).addColumn(
 				col.column(messageSource.getMessage(messageCode, null,
 						LocaleContextHolder.getLocale()), new EnumColumn<V>(
 						propertyName)));
 	}
 
-	protected <V extends Enum<V>> void createEnumColumn(String messageCode, String propertyName, Integer fixedWidth) {
+	protected <V extends Enum<V>> void createEnumColumn(String messageCode,
+			String propertyName, Integer fixedWidth) {
 		reportBuilder.addField(field(propertyName, Object.class)).addColumn(
 				col.column(
 						messageSource.getMessage(messageCode, null,
 								LocaleContextHolder.getLocale()),
-						new EnumColumn<V>(propertyName))
-						.setFixedWidth(fixedWidth));
+						new EnumColumn<V>(propertyName)).setFixedWidth(
+						fixedWidth));
 	}
 
 	protected void createLocalDateColumn(String messageCode, String propertyName) {
@@ -199,10 +201,6 @@ public abstract class AviationClubManagerReport {
 				response.setContentType("text/csv");
 				reportBuilder.toCsv(stream);
 				break;
-		/*	case "html":
-				response.setContentType("text/html");
-				reportBuilder.toHtml(stream);
-				break;*/
 			default:
 				throw new InvalidParameterException();
 			}

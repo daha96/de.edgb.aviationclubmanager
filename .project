@@ -62,7 +62,8 @@
 		<link>
 			<name>eclipseJettyPlugin.AviationClubManager_Jetty.xml</name>
 			<type>1</type>
-			<location>/tmp/eclipseJettyPlugin.AviationClubManager_Jetty.xml</location>
+			<location>/tmp/eclipseJettyPlugin.AviationClubManager_Jetty.xml
+			</location>
 		</link>
 	</linkedResources>
 </projectDescription>
