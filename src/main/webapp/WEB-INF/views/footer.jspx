@@ -30,8 +30,9 @@
 			</c:otherwise>
 		</c:choose>
 
-	</span> <span style="float: right"> <c:out value="Version: " /> <spring:message
-			code="app.version" />
+	</span> <span style="float: right"> <spring:message code="app.version"
+			var="version" /> <spring:message code="version_message"
+			arguments="${version}" />
 	</span>
 
 	<!-- TODO: Debug -->
