@@ -1,0 +1,32 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:spring="http://www.springframework.org/tags"
+	xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+	xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:joda="http://www.joda.org/joda/time/tags"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions" version="2.0">
+	<jsp:directive.page contentType="text/html;charset=UTF-8" />
+	<jsp:output omit-xml-declaration="yes" />
+
+	<spring:message var="title" code="flightemail_success_title"
+		htmlEscape="false" />
+	<util:panel id="title" title="${title}">
+
+		<p>
+			<spring:message code="flightemail_success_message" htmlEscape="false" />
+			<br /> <br />
+			<br />
+
+			<joda:format pattern="${fn:escapeXml(flight_flightdate_date_format)}"
+				value="${date}" var="date" />
+			<spring:url value="/flights/flightlist" var="link_url">
+				<spring:param name="flightDate" value="${date}" />
+			</spring:url>
+
+			<a href="${link_url}"><spring:message
+					code="flightemail_success_link_label" htmlEscape="false" /></a>
+
+		</p>
+
+	</util:panel>
+</div>

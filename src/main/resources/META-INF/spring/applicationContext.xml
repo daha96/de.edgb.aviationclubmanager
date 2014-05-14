@@ -72,4 +72,18 @@
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
 
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="server4.domaincamp.de" />
+		<property name="port" value="587" />
+		<property name="username" value="web108p1" />
+		<property name="password" value="testtest" />
+
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
 </beans>

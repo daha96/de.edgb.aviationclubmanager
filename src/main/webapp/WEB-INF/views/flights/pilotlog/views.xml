@@ -9,5 +9,9 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/flights/pilotlog/form.jspx" />
 	</definition>
+	<definition extends="default" name="flights/pilotlog/mail_success">
+		<put-attribute name="body"
+			value="/WEB-INF/views/flights/pilotlog/mail_success.jspx" />
+	</definition>
 
 </tiles-definitions>

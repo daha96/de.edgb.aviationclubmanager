@@ -15,24 +15,34 @@ import de.edgb.aviationclubmanager.web.report.FlightListReport;
 import flexjson.JSONSerializer;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.roo.addon.web.mvc.controller.scaffold.RooWebScaffold;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -462,5 +472,161 @@ public class FlightController {
 		flight.merge();
 
 		return "redirect:/flights/flightlist";
+	}
+	
+	@Autowired
+	JavaMailSender mailSender;
+
+	@Autowired
+	ConversionService applicationConversionService;
+
+	String[] headerCodes = new String[] {
+			"label_de_edgb_aviationclubmanager_domain_flight_flightdate",
+			"label_de_edgb_aviationclubmanager_domain_flight_flighttype",
+			"label_de_edgb_aviationclubmanager_domain_flight_aircraft",
+			"label_de_edgb_aviationclubmanager_domain_flight_pilot",
+			"label_de_edgb_aviationclubmanager_domain_flight_copilot",
+			"label_de_edgb_aviationclubmanager_domain_flight_launchmethod",
+			"label_de_edgb_aviationclubmanager_domain_flight_departuretime",
+			"label_de_edgb_aviationclubmanager_domain_flight_landingtime",
+			"label_de_edgb_aviationclubmanager_domain_flight_duration",
+			"label_de_edgb_aviationclubmanager_domain_flight_departurelocation",
+			"label_de_edgb_aviationclubmanager_domain_flight_landinglocation",
+			"label_de_edgb_aviationclubmanager_domain_flight_comment",
+			"label_de_edgb_aviationclubmanager_domain_flight_lastmanipulativeperson",
+			"label_de_edgb_aviationclubmanager_domain_flight_lastmanipulationdate" };
+	
+	@PreAuthorize("hasRole('PERMISSION_FLIGHT_SENDEMAIL')")
+	@RequestMapping(value = "/pilotlog/send", produces = "text/html")
+	public String sendPilotlogEmails(
+			@RequestParam("flightDate") @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date flightDate,
+			HttpServletRequest httpServletRequest, Model uiModel)
+			throws UnsupportedEncodingException, NoSuchMessageException,
+			MessagingException {
+
+		LocalDate date = Util.convertDateToLocalDate(flightDate);
+
+		String dateString = date.toString(DateTimeFormat.patternForStyle("M-",
+				LocaleContextHolder.getLocale()));
+
+		List<Flight> flights = Flight.findFlightsByFlightDateEquals(date);
+
+		Set<Person> persons = new HashSet<Person>();
+		for (Flight flight : flights) {
+			persons.add(flight.getPilot());
+			persons.add(flight.getCopilot());
+		}
+
+		for (Person person : persons) {
+			if (person != null && StringUtils.isNotBlank(person.getEmail())) {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper helper = new MimeMessageHelper(message, true,
+						"utf-8");
+				helper.setFrom(messageSource.getMessage(
+						"app.email", null,
+						LocaleContextHolder.getLocale()), messageSource.getMessage(
+						"flightemail_from_label", new String[] { messageSource
+								.getMessage("app.homeLocation", null,
+										LocaleContextHolder.getLocale()) },
+						LocaleContextHolder.getLocale()));
+				helper.setTo(person.getEmail());
+				helper.setSubject(messageSource.getMessage(
+						"flightemail_subject", new String[] { dateString },
+						LocaleContextHolder.getLocale()));
+
+				String text = "<html><body><p>"
+						+ messageSource.getMessage("flightemail_text",
+								new String[] { person.getFirstName(),
+										dateString },
+								LocaleContextHolder.getLocale()) + "</p>"
+						+ "<p><table border=\"1\"><tr>";
+				for (String string : headerCodes) {
+					text = text
+							+ "<th>"
+							+ messageSource.getMessage(string, null,
+									LocaleContextHolder.getLocale()) + "</th>";
+				}
+				text = text + "</tr>";
+
+				for (Flight flight : flights) {
+					if ((flight.getPilot() != null
+							&& (flight.getPilot().equals(person)) || (flight
+							.getCopilot() != null && flight.getCopilot()
+							.equals(person)))) {
+						text = text
+								+ "<tr>"
+								+ addCell(convertLocalDate(flight
+										.getFlightDate()))
+								+ addCell(convertValue(flight.getFlightType()))
+								+ addCell(convertValue(flight.getAircraft()))
+								+ addCell(convertValue(flight.getPilot()))
+								+ addCell(convertValue(flight.getCopilot()))
+								+ addCell(convertValue(flight.getLaunchMethod()))
+								+ addCell(convertLocalTime(flight
+										.getDepartureTime()))
+								+ addCell(convertLocalTime(flight
+										.getLandingTime()))
+								+ addCell(convertValue(flight
+										.getDurationString()))
+								+ addCell(convertValue(flight
+										.getDepartureLocation()))
+								+ addCell(convertValue(flight
+										.getLandingLocation()))
+								+ addCell(convertValue(flight.getComment()))
+								+ addCell(convertValue(flight
+										.getLastManipulativePerson()))
+								+ addCell(convertLocalDateTime(flight
+										.getLastManipulationDate())) + "</tr>";
+					}
+				}
+
+				text = text + "</table></p></body></html>";
+				helper.setText(text, true);
+
+				mailSender.send(message);
+			}
+		}
+
+		addDateTimeFormatPatterns(uiModel);
+		uiModel.addAttribute("date", date);
+
+		return "flights/pilotlog/mail_success";
+	}
+	
+	
+
+	String addCell(String text) {
+		return "<td>" + text + "</td>";
+	}
+
+	private String convertValue(Object value) {
+		if (value == null)
+			return "";
+		else
+			return applicationConversionService.convert(value, String.class);
+	}
+
+	private String convertLocalTime(LocalTime value) {
+		if (value == null)
+			return "";
+		else
+			return DateTimeFormat.shortTime()
+					.withLocale(LocaleContextHolder.getLocale()).print(value);
+	}
+
+	private String convertLocalDate(LocalDate value) {
+		if (value == null)
+			return "";
+		else
+			return DateTimeFormat.mediumDate()
+					.withLocale(LocaleContextHolder.getLocale()).print(value);
+	}
+
+	private String convertLocalDateTime(LocalDateTime value) {
+		if (value == null)
+			return "";
+		else
+			return DateTimeFormat.mediumDateTime()
+					.withLocale(LocaleContextHolder.getLocale()).print(value);
 	}
 }

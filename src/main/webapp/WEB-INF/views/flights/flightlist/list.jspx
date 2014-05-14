@@ -46,7 +46,7 @@
 					</spring:url> <a href="${link_url}">CSV</a>
 				</span> <br /> <br />
 
-				<!-- Bordbücher -->
+				<!-- Bordbücher und E-Mail -->
 				<span> <spring:url value="/aircraftlog" var="aircraftlog_url">
 						<spring:param name="flightDate" value="${flightlistDate}" />
 					</spring:url> <spring:message
@@ -55,8 +55,18 @@
 							arguments="${aircraftlog_label}" code="entity_show"
 							htmlEscape="false" />
 				</a>
+				</span> | <span> <spring:url value="/flights/pilotlog/send"
+						var="link_url">
+						<spring:param name="flightDate" value="${flightlistDate}" />
+					</spring:url> <c:set var="confirm_msg">
+						<spring:message code="flightemail_link_confirm"
+							javaScriptEscape="true" />
+					</c:set> <a href="${link_url}" onclick="return confirm('${confirm_msg}');"><spring:message
+							code="flightemail_link_label" /></a>
 				</span>
 			</div>
+
+
 
 			<!-- Datum ändern -->
 
