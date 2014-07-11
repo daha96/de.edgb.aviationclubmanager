@@ -17,4 +17,9 @@
 			value="/WEB-INF/views/aircraftlog/find.jspx" />
 	</definition>
 
+	<definition extends="default" name="aircraftlog/find_timespan">
+		<put-attribute name="body"
+			value="/WEB-INF/views/aircraftlog/find_timespan.jspx" />
+	</definition>
+
 </tiles-definitions>

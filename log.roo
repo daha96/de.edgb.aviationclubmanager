@@ -103,3 +103,4 @@ finder add --class ~.domain.Flight --finderName findFlightsByFlightDateEqualsAnd
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-05-12 08:06:53
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2014-05-12 08:15:58
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2014-07-11 13:35:43
+finder add --class ~.domain.Flight --finderName findFlightsByFlightDateBetweenAndAircraft

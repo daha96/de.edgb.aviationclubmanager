@@ -41,6 +41,15 @@ public class AircraftLogEntryController {
 	}
 
 	@PreAuthorize("hasRole('PERMISSION_AIRCRAFTLOG')")
+	@RequestMapping(params = { "form_timespan" }, method = RequestMethod.GET)
+	public String aircraftlogTimeSpanForm(Model uiModel) {
+		addDateTimeFormatPatterns(uiModel);
+
+		uiModel.addAttribute("aircrafts", Aircraft.findAllAircrafts());
+		return "aircraftlog/find_timespan";
+	}
+
+	@PreAuthorize("hasRole('PERMISSION_AIRCRAFTLOG')")
 	@RequestMapping(params = { "form" }, value = "/clubaircraft", method = RequestMethod.GET)
 	public String clubaircraftlogForm(Model uiModel) {
 		addDateTimeFormatPatterns(uiModel);
@@ -121,6 +130,29 @@ public class AircraftLogEntryController {
 		else
 			fl = Flight.findFlightsByFlightDateEquals(Util
 					.convertDateToLocalDate(flightDate));
+
+		if (fl.size() > 0)
+			uiModel.addAttribute("aircraftLogEntries",
+					AircraftLogEntry.createAircraftLogEntriesFromFlights(fl));
+		else
+			uiModel.addAttribute("aircraftLogEntries", null);
+
+		addDateTimeFormatPatterns(uiModel);
+		return "aircraftlog/list";
+	}
+
+	@PreAuthorize("hasRole('PERMISSION_AIRCRAFTLOG')")
+	@RequestMapping(value = "/timespan", produces = "text/html")
+	public String listTimeSpan(
+			@RequestParam @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date minDate,
+			@RequestParam @org.springframework.format.annotation.DateTimeFormat(style = "M-") Date maxDate,
+			@RequestParam Aircraft aircraft, Model uiModel) {
+
+		List<Flight> fl;
+
+		fl = Flight.findFlightsByFlightDateBetweenAndAircraft(
+				Util.convertDateToLocalDate(minDate),
+				Util.convertDateToLocalDate(maxDate), aircraft);
 
 		if (fl.size() > 0)
 			uiModel.addAttribute("aircraftLogEntries",

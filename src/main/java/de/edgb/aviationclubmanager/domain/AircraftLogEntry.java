@@ -56,6 +56,10 @@ public class AircraftLogEntry {
 			Flight flight) {
 		if (!flight.getAircraft().equals(previousFlight.getAircraft()))
 			return false;
+		
+		// Flüge müssen am selben Tag stattfinden
+		if (!flight.getFlightDate().equals(previousFlight.getFlightDate()))
+			return false;
 
 		// Only allow if the previous flight and the current flight departs and
 		// lands

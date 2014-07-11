@@ -26,6 +26,9 @@
 					</menu:category>
 					<menu:item id="i_flight_aircraftlog_form" url="/aircraftlog?form"
 						requiredPermission="PERMISSION_AIRCRAFTLOG" />
+					<menu:item id="i_flight_aircraftlog_formtimespan"
+						url="/aircraftlog?form_timespan"
+						requiredPermission="PERMISSION_AIRCRAFTLOG" />
 				</menu:category>
 				<menu:item id="i_flight_aircrafts" url="/aircrafts"
 					requiredPermission="PERMISSION_AIRCRAFT" />
