@@ -5,7 +5,7 @@
 	<groupId>de.edgb.aviationclubmanager</groupId>
 	<artifactId>AviationClubManager</artifactId>
 	<packaging>war</packaging>
-	<version>0.7.0</version>
+	<version>0.8.0</version>
 	<name>AviationClubManager</name>
 	<properties>
 		<aspectj.version>1.7.2</aspectj.version>
