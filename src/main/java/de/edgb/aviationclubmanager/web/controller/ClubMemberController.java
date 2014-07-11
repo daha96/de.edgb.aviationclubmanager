@@ -81,7 +81,7 @@ public class ClubMemberController {
 			final int firstResult = page == null ? 0 : (page.intValue() - 1)
 					* sizeNo;
 			uiModel.addAttribute("clubmembers",
-					ClubMember.findClubMemberEntries(true, firstResult, sizeNo));
+					ClubMember.findClubMemberEntries(firstResult, sizeNo));
 			float nrOfPages = (float) ClubMember.countClubMembers() / sizeNo;
 			uiModel.addAttribute(
 					"maxPages",
