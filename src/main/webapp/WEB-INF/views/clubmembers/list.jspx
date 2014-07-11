@@ -37,6 +37,29 @@
 					<a href="${link_url}">VCF</a>
 				</span> <br /> <br />
 			</div>
+
+			<div>
+				<span> <spring:url value="/clubmembers" var="link_url">
+						<spring:param name="winchdriver" />
+					</spring:url> <spring:message
+						code="label_de_edgb_aviationclubmanager_domain_clubmember_winchdriver"
+						var="entity_label" /> <a href="${link_url}"><spring:message
+							code="entity_find" arguments="${entity_label}" /></a>
+
+
+
+				</span> | <span> <spring:url value="/clubmembers" var="link_url">
+						<spring:param name="instructor" />
+					</spring:url> <spring:message
+						code="label_de_edgb_aviationclubmanager_domain_clubmember_instructor"
+						var="entity_label" /> <a href="${link_url}"><spring:message
+							code="entity_find" arguments="${entity_label}" /></a>
+
+
+
+				</span>
+
+			</div>
 		</div>
 
 

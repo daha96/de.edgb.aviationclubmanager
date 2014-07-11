@@ -4,6 +4,7 @@ import de.edgb.aviationclubmanager.domain.ClubCapacity;
 import de.edgb.aviationclubmanager.domain.ClubMember;
 import de.edgb.aviationclubmanager.domain.ClubMemberState;
 import de.edgb.aviationclubmanager.domain.Gender;
+import de.edgb.aviationclubmanager.domain.InstructorPresence;
 import de.edgb.aviationclubmanager.web.UserAccountDetails;
 import de.edgb.aviationclubmanager.web.Util;
 import de.edgb.aviationclubmanager.web.report.ClubMemberListReport;
@@ -158,6 +159,26 @@ public class ClubMemberController {
 		uiModel.addAttribute("clubmemberstates",
 				Arrays.asList(ClubMemberState.values()));
 		uiModel.addAttribute("genders", Arrays.asList(Gender.values()));
+	}
+	
+	// Finder
+
+	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
+	@RequestMapping(params = "winchdriver", method = RequestMethod.GET)
+	public String findWinchDriver(Model uiModel) {
+		uiModel.addAttribute("clubmembers",
+				ClubMember.findClubMembersBeingWinchDriver().getResultList());
+		addDateTimeFormatPatterns(uiModel);
+		return "clubmembers/list";
+	}
+
+	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
+	@RequestMapping(params = "instructor", method = RequestMethod.GET)
+	public String findInstructor(Model uiModel) {
+		uiModel.addAttribute("clubmembers",
+				ClubMember.findClubMembersBeingInstructor().getResultList());
+		addDateTimeFormatPatterns(uiModel);
+		return "clubmembers/list";
 	}
 
 	// Reports

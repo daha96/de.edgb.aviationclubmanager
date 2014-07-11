@@ -97,7 +97,7 @@ public class ClubMember extends Person {
 		EntityManager em = ClubMember.entityManager();
 		TypedQuery<ClubMember> q = em
 				.createQuery(
-						"SELECT o FROM ClubMember AS o WHERE o.winchDriver AND o.clubMemberState != 4 IS TRUE ORDER BY o.lastName, o.firstName",
+						"SELECT o FROM ClubMember AS o WHERE o.winchDriver IS TRUE AND o.clubMemberState != 4 ORDER BY o.lastName, o.firstName",
 						ClubMember.class);
 		return q;
 	}
@@ -106,7 +106,7 @@ public class ClubMember extends Person {
 		EntityManager em = ClubMember.entityManager();
 		TypedQuery<ClubMember> q = em
 				.createQuery(
-						"SELECT o FROM ClubMember AS o WHERE o.instructor AND o.clubMemberState != 4 IS TRUE ORDER BY o.lastName, o.firstName",
+						"SELECT o FROM ClubMember AS o WHERE o.instructor IS TRUE AND o.clubMemberState != 4 ORDER BY o.lastName, o.firstName",
 						ClubMember.class);
 		return q;
 	}
