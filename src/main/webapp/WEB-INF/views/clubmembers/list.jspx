@@ -32,6 +32,9 @@
 						value="/clubmembers/reports/clubmemberlist" var="link_url">
 						<spring:param name="format" value="csv" />
 					</spring:url> <a href="${link_url}">CSV</a>
+				</span> | <span> <spring:url
+						value="/clubmembers/reports/clubmemberlist/vcard" var="link_url" />
+					<a href="${link_url}">VCF</a>
 				</span> <br /> <br />
 			</div>
 		</div>

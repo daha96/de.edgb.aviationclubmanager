@@ -5,15 +5,24 @@ import de.edgb.aviationclubmanager.domain.ClubMember;
 import de.edgb.aviationclubmanager.domain.ClubMemberState;
 import de.edgb.aviationclubmanager.domain.Gender;
 import de.edgb.aviationclubmanager.web.UserAccountDetails;
+import de.edgb.aviationclubmanager.web.Util;
 import de.edgb.aviationclubmanager.web.report.ClubMemberListReport;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.nio.charset.Charset;
+import java.security.InvalidParameterException;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import net.sf.dynamicreports.report.exception.DRException;
+
+import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -88,7 +97,8 @@ public class ClubMemberController {
 					(int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1
 							: nrOfPages));
 		} else {
-			uiModel.addAttribute("clubmembers", ClubMember.findAllClubMembers(true));
+			uiModel.addAttribute("clubmembers",
+					ClubMember.findAllClubMembers(true));
 		}
 		addDateTimeFormatPatterns(uiModel);
 		return "clubmembers/list";
@@ -161,6 +171,61 @@ public class ClubMemberController {
 		ClubMemberListReport report = new ClubMemberListReport(messageSource);
 		report.setDataSource(ClubMember.findAllClubMembers(false));
 		report.writeToHttpServletResponse(response, format);
+	}
+
+	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
+	@RequestMapping(value = "/reports/clubmemberlist/vcard", method = RequestMethod.GET)
+	public void generateClubmemberlistVCard(HttpServletResponse response)
+			throws IOException {
+
+		response.setHeader(
+				"Content-Disposition",
+				"attachment; filename="
+						+ messageSource
+								.getMessage(
+										"de_edgb_aviationclubmanager_web_report_clubmemberlistreport_vcard_filename",
+										null, LocaleContextHolder.getLocale())
+						+ "_"
+						+ DateTimeFormat.forPattern("yyyy-MM-dd").print(
+								Util.getCurrentDate()) + ".vcf");
+
+		OutputStream stream = response.getOutputStream();
+
+		for (ClubMember m : ClubMember.findAllClubMembers(false)) {
+			String gender;
+			if (m.getGender().equals(Gender.male))
+				gender = "M";
+			else
+				gender = "F";
+			String string = "BEGIN:VCARD\n" + "VERSION:4.0\n" + "N:"
+					+ m.getLastName() + ";" + m.getFirstName() + ";;;\n"
+					+ "FN:" + m.getFirstName() + " " + m.getLastName() + "\n"
+					+ "ADR;TYPE=home:;;" + emptyIfNull(m.getAddress()) + ";" + emptyIfNull(m.getCity())
+					+ ";;" + emptyIfNull(m.getZipCode()) + ";\n"
+					+ "TEL;TYPE=home:" + emptyIfNull(m.getLandline())
+					+ "\n" + "TEL;TYPE=cell:"
+					+ emptyIfNull(m.getCellphone()) + "\n" + "EMAIL:" + emptyIfNull(m.getEmail()) + "\n";
+			LocalDate birthday = m.getBirthday();
+			if (birthday != null)
+				string = string
+						+ "BDAY:"
+						+ DateTimeFormat.forPattern("yyyy-MM-dd").print(
+								birthday) + "\n";
+			string = string + "GENDER:" + gender + "\n" + "NOTE:"
+					+ emptyIfNull(m.getComment()) + "\n" + "END:VCARD\n";
+			stream.write(string.getBytes(Charset.forName("UTF-8")));
+		}
+		stream.close();
+
+		response.setContentType("text/vcard");
+	}
+	
+	String emptyIfNull(String str)
+	{
+		if (str == null)
+			return "";
+		else
+			return str;
 	}
 
 	void addDateTimeFormatPatterns(Model uiModel) {
