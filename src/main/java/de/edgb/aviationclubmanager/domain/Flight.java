@@ -47,7 +47,10 @@ public class Flight {
 	private Person copilot;
 
 	public int getNumPassengers() {
-		return (copilot != null) ? 2 : 1;
+		if (flightType.equals(FlightType.guest))
+			return 2;
+		else
+			return (copilot != null) ? 2 : 1;
 	}
 
 	@NotNull
