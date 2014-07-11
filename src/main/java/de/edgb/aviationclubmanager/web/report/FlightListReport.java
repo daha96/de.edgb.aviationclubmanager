@@ -15,6 +15,8 @@ import de.edgb.aviationclubmanager.web.Util;
 
 public class FlightListReport extends AviationClubManagerReport {
 
+	LocalDate date;
+
 	public FlightListReport(MessageSource messageSource, LocalDate date,
 			Integer numFlights) {
 		super(
@@ -26,6 +28,8 @@ public class FlightListReport extends AviationClubManagerReport {
 										"app.homeLocation", null,
 										LocaleContextHolder.getLocale()) },
 								LocaleContextHolder.getLocale()));
+
+		this.date = date;
 
 		String dateText = messageSource
 				.getMessage(
@@ -118,8 +122,6 @@ public class FlightListReport extends AviationClubManagerReport {
 				.getMessage(
 						"de_edgb_aviationclubmanager_web_report_flightlistreport_filename",
 						null, LocaleContextHolder.getLocale())
-				+ "_"
-				+ DateTimeFormat.forPattern("yyyy-MM-dd").print(
-						Util.getCurrentDate());
+				+ "_" + DateTimeFormat.forPattern("yyyy-MM-dd").print(date);
 	}
 }
