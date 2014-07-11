@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
-	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
-	xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
-	<jsp:directive.page contentType="text/html;charset=UTF-8" />
-	<jsp:output omit-xml-declaration="yes" />
-	<form:update id="fu_de_edgb_aviationclubmanager_domain_Accounting"
-		modelAttribute="accounting" path="/accountings" versionField="Version"
-		z="EY4F5eLv6niU15wupAOMRCM9p0g=">
-		<field:input field="name"
-			id="c_de_edgb_aviationclubmanager_domain_Accounting_name"
-			required="true" z="cZe+UeTwSwpMYvksTJhc2gucxAo=" />
-	</form:update>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_de_edgb_aviationclubmanager_domain_Accounting" modelAttribute="accounting" path="/accountings" versionField="Version" z="EY4F5eLv6niU15wupAOMRCM9p0g=">
+        <field:input field="name" id="c_de_edgb_aviationclubmanager_domain_Accounting_name" required="true" z="cZe+UeTwSwpMYvksTJhc2gucxAo="/>
+        <field:input field="comment" id="c_de_edgb_aviationclubmanager_domain_Accounting_comment" z="SenDE5cPc6Fn6sqcEbLQPo6tIf0="/>
+    </form:update>
 </div>

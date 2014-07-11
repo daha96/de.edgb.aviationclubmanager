@@ -11,6 +11,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.support.FormattingConversionServiceFactoryBean;
 import org.springframework.roo.addon.web.mvc.controller.converter.RooConversionService;
+import de.edgb.aviationclubmanager.domain.Accounting;
 import de.edgb.aviationclubmanager.domain.Aircraft;
 import de.edgb.aviationclubmanager.domain.ClubCapacity;
 import de.edgb.aviationclubmanager.domain.ClubMember;
@@ -178,4 +179,12 @@ public class ApplicationConversionServiceFactoryBean extends
 			}
 		};
 	}
+
+	public Converter<Accounting, String> getAccountingToStringConverter() {
+        return new Converter<Accounting, java.lang.String>() {
+            public String convert(Accounting accounting) {
+                return accounting.getName();
+            }
+        };
+    }
 }

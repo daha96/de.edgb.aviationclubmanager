@@ -13,6 +13,8 @@ public class Accounting {
 
 	@NotNull
 	private String name;
+	
+	private String comment;
 
 	public static List<Accounting> findAllAccountings() {
 		return entityManager().createQuery(

@@ -23,14 +23,6 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
     
-    public Converter<Accounting, String> ApplicationConversionServiceFactoryBean.getAccountingToStringConverter() {
-        return new org.springframework.core.convert.converter.Converter<de.edgb.aviationclubmanager.domain.Accounting, java.lang.String>() {
-            public String convert(Accounting accounting) {
-                return new StringBuilder().append(accounting.getName()).toString();
-            }
-        };
-    }
-    
     public Converter<Long, Accounting> ApplicationConversionServiceFactoryBean.getIdToAccountingConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, de.edgb.aviationclubmanager.domain.Accounting>() {
             public de.edgb.aviationclubmanager.domain.Accounting convert(java.lang.Long id) {

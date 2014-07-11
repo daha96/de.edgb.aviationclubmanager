@@ -15,4 +15,12 @@ privileged aspect Accounting_Roo_JavaBean {
         this.name = name;
     }
     
+    public String Accounting.getComment() {
+        return this.comment;
+    }
+    
+    public void Accounting.setComment(String comment) {
+        this.comment = comment;
+    }
+    
 }
