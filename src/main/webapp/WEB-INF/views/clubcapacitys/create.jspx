@@ -12,6 +12,10 @@
 		<field:input field="name"
 			id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_name"
 			required="true" z="3GVb87A1CygDFsW+RPHlzhNhZao=" />
+		<field:select field="clubMember"
+			id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_clubMember"
+			itemValue="id" items="${clubmembers}" path="/clubmembers"
+			z="nBL4XjocWQVX8QxrUbfq86paD48=" />
 		<field:input field="email"
 			id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_email"
 			validationMessageCode="field_invalid_email"

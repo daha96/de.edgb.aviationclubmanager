@@ -4,6 +4,7 @@
 package de.edgb.aviationclubmanager.domain;
 
 import de.edgb.aviationclubmanager.domain.ClubCapacity;
+import de.edgb.aviationclubmanager.domain.ClubMember;
 
 privileged aspect ClubCapacity_Roo_JavaBean {
     
@@ -13,6 +14,14 @@ privileged aspect ClubCapacity_Roo_JavaBean {
     
     public void ClubCapacity.setName(String name) {
         this.name = name;
+    }
+    
+    public ClubMember ClubCapacity.getClubMember() {
+        return this.clubMember;
+    }
+    
+    public void ClubCapacity.setClubMember(ClubMember clubMember) {
+        this.clubMember = clubMember;
     }
     
     public String ClubCapacity.getEmail() {

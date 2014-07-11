@@ -13,6 +13,9 @@
 				id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_name"
 				property="name" z="0hyygR9Zk9w70D8qfj/RaQtJN+o=" />
 			<table:column
+				id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_clubMember"
+				property="clubMember" z="Bn6vPSzWjZOKB17NJaGnoBbwVDk=" />
+			<table:column
 				id="c_de_edgb_aviationclubmanager_domain_ClubCapacity_email"
 				property="email" z="erk7KwuE/J/UlLitcKiJwsfwmSM=" />
 			<table:column

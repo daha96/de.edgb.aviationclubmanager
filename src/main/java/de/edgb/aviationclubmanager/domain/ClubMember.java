@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.TypedQuery;
@@ -86,9 +85,6 @@ public class ClubMember extends Person {
 	@NotNull
 	private Boolean cheapPrice;
 
-	@OneToOne
-	private ClubCapacity clubCapacity;
-
 	@NotNull
 	private Boolean instructor;
 
@@ -131,10 +127,12 @@ public class ClubMember extends Person {
 				.getResultList();
 	}
 
-	public static List<ClubMember> findClubMemberEntries(
-			int firstResult, int maxResults) {
-		return entityManager().createQuery("SELECT o FROM ClubMember o ORDER BY o.lastName, o.firstName", ClubMember.class)
-				.setFirstResult(firstResult).setMaxResults(maxResults)
-				.getResultList();
+	public static List<ClubMember> findClubMemberEntries(int firstResult,
+			int maxResults) {
+		return entityManager()
+				.createQuery(
+						"SELECT o FROM ClubMember o ORDER BY o.lastName, o.firstName",
+						ClubMember.class).setFirstResult(firstResult)
+				.setMaxResults(maxResults).getResultList();
 	}
 }

@@ -3,7 +3,6 @@
 
 package de.edgb.aviationclubmanager.domain;
 
-import de.edgb.aviationclubmanager.domain.ClubCapacity;
 import de.edgb.aviationclubmanager.domain.ClubMember;
 import de.edgb.aviationclubmanager.domain.ClubMemberState;
 import de.edgb.aviationclubmanager.domain.Gender;
@@ -69,14 +68,6 @@ privileged aspect ClubMember_Roo_JavaBean {
     
     public void ClubMember.setCheapPrice(Boolean cheapPrice) {
         this.cheapPrice = cheapPrice;
-    }
-    
-    public ClubCapacity ClubMember.getClubCapacity() {
-        return this.clubCapacity;
-    }
-    
-    public void ClubMember.setClubCapacity(ClubCapacity clubCapacity) {
-        this.clubCapacity = clubCapacity;
     }
     
     public Boolean ClubMember.getInstructor() {

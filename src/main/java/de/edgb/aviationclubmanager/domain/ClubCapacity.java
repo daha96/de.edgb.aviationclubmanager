@@ -2,6 +2,7 @@ package de.edgb.aviationclubmanager.domain;
 
 import java.util.List;
 
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -15,6 +16,9 @@ public class ClubCapacity {
 
 	@NotNull
 	private String name;
+
+	@OneToOne
+	private ClubMember clubMember;
 
 	private String email;
 

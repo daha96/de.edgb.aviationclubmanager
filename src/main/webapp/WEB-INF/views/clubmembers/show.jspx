@@ -34,19 +34,18 @@
 		<field:display field="comment"
 			id="s_de_edgb_aviationclubmanager_domain_ClubMember_comment"
 			object="${clubmember}" z="DO3npTqURFjI9Cq0aKbL1y1ARck=" />
-		<field:display jodaTime="true"
-			dateTimePattern="${clubMember_birthday_date_format}" field="birthday"
+		<field:display dateTimePattern="${clubMember_birthday_date_format}"
+			field="birthday"
 			id="s_de_edgb_aviationclubmanager_domain_ClubMember_birthday"
-			object="${clubmember}" />
-		<field:display jodaTime="true"
-			dateTimePattern="${clubMember_joiningdate_date_format}"
+			jodaTime="true" object="${clubmember}" />
+		<field:display dateTimePattern="${clubMember_joiningdate_date_format}"
 			field="joiningDate"
 			id="s_de_edgb_aviationclubmanager_domain_ClubMember_joiningDate"
-			object="${clubmember}" />
-		<field:display jodaTime="true"
-			dateTimePattern="${clubMember_exitdate_date_format}" field="exitDate"
+			jodaTime="true" object="${clubmember}" />
+		<field:display dateTimePattern="${clubMember_exitdate_date_format}"
+			field="exitDate"
 			id="s_de_edgb_aviationclubmanager_domain_ClubMember_exitDate"
-			object="${clubmember}" />
+			jodaTime="true" object="${clubmember}" />
 		<field:display field="clubMemberState"
 			id="s_de_edgb_aviationclubmanager_domain_ClubMember_clubMemberState"
 			object="${clubmember}" z="lAv7LjzZglKSnWlJZBYYNRAKXCk=" />
@@ -65,9 +64,6 @@
 		<field:display field="cheapPrice"
 			id="s_de_edgb_aviationclubmanager_domain_ClubMember_cheapPrice"
 			object="${clubmember}" z="o24vfLi9j0yQk3jtz7zpCtWKxtE=" />
-		<field:display field="clubCapacity"
-			id="s_de_edgb_aviationclubmanager_domain_ClubMember_clubCapacity"
-			object="${clubmember}" z="q5UdRVwanukZEjZkPXPRMDU8dk4=" />
 		<field:display field="instructor"
 			id="s_de_edgb_aviationclubmanager_domain_ClubMember_instructor"
 			object="${clubmember}" z="4VP5NBnwkZ2Ud1vBZm+y3ou6+8s=" />

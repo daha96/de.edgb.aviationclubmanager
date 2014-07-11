@@ -1,6 +1,7 @@
 package de.edgb.aviationclubmanager.web.controller;
 
 import de.edgb.aviationclubmanager.domain.ClubCapacity;
+import de.edgb.aviationclubmanager.domain.ClubMember;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -115,5 +116,6 @@ public class ClubCapacityController {
 
 	void populateEditForm(Model uiModel, ClubCapacity clubCapacity) {
 		uiModel.addAttribute("clubCapacity", clubCapacity);
+        uiModel.addAttribute("clubmembers", ClubMember.findAllClubMembers());
 	}
 }

@@ -10,6 +10,9 @@
 		<field:display field="name"
 			id="s_de_edgb_aviationclubmanager_domain_ClubCapacity_name"
 			object="${clubcapacity}" z="j+59NdmTpJE0Qwv4zzdE4n1hR8s=" />
+		<field:display field="clubMember"
+			id="s_de_edgb_aviationclubmanager_domain_ClubCapacity_clubMember"
+			object="${clubcapacity}" z="+h5UVch5J2KR3dzvs7xCHqFGDQI=" />
 		<field:display field="email"
 			id="s_de_edgb_aviationclubmanager_domain_ClubCapacity_email"
 			object="${clubcapacity}" z="1WejYvVfwTHCnfN6KizdlPtcw2k=" />

@@ -70,10 +70,6 @@
 		<field:checkbox field="cheapPrice"
 			id="c_de_edgb_aviationclubmanager_domain_ClubMember_cheapPrice"
 			z="+NqVXrzNhjWKbdSugP7FV6Dzc/U=" />
-		<field:select field="clubCapacity"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_clubCapacity"
-			itemValue="id" items="${clubcapacitys}" path="/clubcapacitys"
-			z="sQRUCCfIJzxnmmFqqMooHo+Q3Do=" />
 		<field:checkbox field="instructor"
 			id="c_de_edgb_aviationclubmanager_domain_ClubMember_instructor"
 			z="NQfyZ9jtJZakL6rhw6uSheEiQH0=" />
