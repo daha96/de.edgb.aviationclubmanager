@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <div xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
-	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:spring="http://www.springframework.org/tags" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 	<page:list id="pl_de_edgb_aviationclubmanager_domain_UserRole"
 		items="${userroles}" z="DMmKGBvOz/djsL+PbUe2C6HQB6c=">
+		<p style="font-weight: bold;">
+			<spring:message code="security_relogin_message" />
+		</p>
 		<table:table data="${userroles}"
 			id="l_de_edgb_aviationclubmanager_domain_UserRole" path="/userroles"
 			z="3ThCDTULfM3oVB5bmXMfZuZk6ZQ=">
