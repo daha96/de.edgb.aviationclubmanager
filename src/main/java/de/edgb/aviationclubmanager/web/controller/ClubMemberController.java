@@ -81,14 +81,14 @@ public class ClubMemberController {
 			final int firstResult = page == null ? 0 : (page.intValue() - 1)
 					* sizeNo;
 			uiModel.addAttribute("clubmembers",
-					ClubMember.findClubMemberEntries(firstResult, sizeNo));
+					ClubMember.findClubMemberEntries(true, firstResult, sizeNo));
 			float nrOfPages = (float) ClubMember.countClubMembers() / sizeNo;
 			uiModel.addAttribute(
 					"maxPages",
 					(int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1
 							: nrOfPages));
 		} else {
-			uiModel.addAttribute("clubmembers", ClubMember.findAllClubMembers());
+			uiModel.addAttribute("clubmembers", ClubMember.findAllClubMembers(true));
 		}
 		addDateTimeFormatPatterns(uiModel);
 		return "clubmembers/list";
@@ -159,7 +159,7 @@ public class ClubMemberController {
 			HttpServletResponse response) throws IOException {
 
 		ClubMemberListReport report = new ClubMemberListReport(messageSource);
-		report.setDataSource(ClubMember.findAllClubMembers());
+		report.setDataSource(ClubMember.findAllClubMembers(false));
 		report.writeToHttpServletResponse(response, format);
 	}
 

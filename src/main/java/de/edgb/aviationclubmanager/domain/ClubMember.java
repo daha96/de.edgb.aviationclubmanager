@@ -101,7 +101,7 @@ public class ClubMember extends Person {
 		EntityManager em = ClubMember.entityManager();
 		TypedQuery<ClubMember> q = em
 				.createQuery(
-						"SELECT o FROM ClubMember AS o WHERE o.winchDriver IS TRUE ORDER BY o.lastName, o.firstName",
+						"SELECT o FROM ClubMember AS o WHERE o.winchDriver AND o.clubMemberState != 4 IS TRUE ORDER BY o.lastName, o.firstName",
 						ClubMember.class);
 		return q;
 	}
@@ -110,23 +110,42 @@ public class ClubMember extends Person {
 		EntityManager em = ClubMember.entityManager();
 		TypedQuery<ClubMember> q = em
 				.createQuery(
-						"SELECT o FROM ClubMember AS o WHERE o.instructor IS TRUE ORDER BY o.lastName, o.firstName",
+						"SELECT o FROM ClubMember AS o WHERE o.instructor AND o.clubMemberState != 4 IS TRUE ORDER BY o.lastName, o.firstName",
 						ClubMember.class);
 		return q;
 	}
 
 	public static List<ClubMember> findAllClubMembers() {
-		return entityManager().createQuery(
-				"SELECT o FROM ClubMember o ORDER BY o.lastName, o.firstName",
-				ClubMember.class).getResultList();
+		return findAllClubMembers(false);
+	}
+
+	public static List<ClubMember> findAllClubMembers(
+			boolean includeDeceasedClubMember) {
+		String query;
+		if (includeDeceasedClubMember)
+			query = "SELECT o FROM ClubMember o ORDER BY o.lastName, o.firstName";
+		else
+			query = "SELECT o FROM ClubMember o WHERE o.clubMemberState != 4 ORDER BY o.lastName, o.firstName";
+
+		return entityManager().createQuery(query, ClubMember.class)
+				.getResultList();
 	}
 
 	public static List<ClubMember> findClubMemberEntries(int firstResult,
 			int maxResults) {
-		return entityManager()
-				.createQuery(
-						"SELECT o FROM ClubMember o ORDER BY o.lastName, o.firstName",
-						ClubMember.class).setFirstResult(firstResult)
-				.setMaxResults(maxResults).getResultList();
+		return findClubMemberEntries(false, firstResult, maxResults);
+	}
+
+	public static List<ClubMember> findClubMemberEntries(
+			boolean includeDeceasedClubMember, int firstResult, int maxResults) {
+		String query;
+		if (includeDeceasedClubMember)
+			query = "SELECT o FROM ClubMember o ORDER BY o.lastName, o.firstName";
+		else
+			query = "SELECT o FROM ClubMember o WHERE o.clubMemberState != 4 ORDER BY o.lastName, o.firstName";
+
+		return entityManager().createQuery(query, ClubMember.class)
+				.setFirstResult(firstResult).setMaxResults(maxResults)
+				.getResultList();
 	}
 }
