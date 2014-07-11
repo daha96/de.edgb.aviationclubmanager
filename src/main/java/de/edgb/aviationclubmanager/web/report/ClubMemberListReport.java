@@ -38,13 +38,16 @@ public class ClubMemberListReport extends AviationClubManagerReport {
 				"zipCode");
 		createTextColumn(
 				"label_de_edgb_aviationclubmanager_domain_clubmember_city",
-				"city", 100);
+				"city", 75);
 		createTextColumn(
 				"label_de_edgb_aviationclubmanager_domain_clubmember_landline",
 				"landline");
 		createTextColumn(
 				"label_de_edgb_aviationclubmanager_domain_clubmember_cellphone",
 				"cellphone");
+		createTextColumn(
+				"label_de_edgb_aviationclubmanager_domain_clubmember_fax",
+				"fax");
 		createTextColumn(
 				"label_de_edgb_aviationclubmanager_domain_clubmember_email",
 				"email", 125);
@@ -56,7 +59,7 @@ public class ClubMemberListReport extends AviationClubManagerReport {
 				"clubMemberState");
 		createTextColumn(
 				"label_de_edgb_aviationclubmanager_domain_clubmember_comment",
-				"comment", 60);
+				"comment", 40);
 	}
 
 	@Override

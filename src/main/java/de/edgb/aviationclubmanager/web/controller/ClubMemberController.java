@@ -200,11 +200,13 @@ public class ClubMemberController {
 			String string = "BEGIN:VCARD\n" + "VERSION:4.0\n" + "N:"
 					+ m.getLastName() + ";" + m.getFirstName() + ";;;\n"
 					+ "FN:" + m.getFirstName() + " " + m.getLastName() + "\n"
-					+ "ADR;TYPE=home:;;" + emptyIfNull(m.getAddress()) + ";" + emptyIfNull(m.getCity())
-					+ ";;" + emptyIfNull(m.getZipCode()) + ";\n"
-					+ "TEL;TYPE=home:" + emptyIfNull(m.getLandline())
-					+ "\n" + "TEL;TYPE=cell:"
-					+ emptyIfNull(m.getCellphone()) + "\n" + "EMAIL:" + emptyIfNull(m.getEmail()) + "\n";
+					+ "ADR;TYPE=home:;;" + emptyIfNull(m.getAddress()) + ";"
+					+ emptyIfNull(m.getCity()) + ";;"
+					+ emptyIfNull(m.getZipCode()) + ";\n" + "TEL;TYPE=home:"
+					+ emptyIfNull(m.getLandline()) + "\n" + "TEL;TYPE=cell:"
+					+ emptyIfNull(m.getCellphone()) + "\n" + "TEL;TYPE=fax:"
+					+ emptyIfNull(m.getFax()) + "\n" + "EMAIL:"
+					+ emptyIfNull(m.getEmail()) + "\n";
 			LocalDate birthday = m.getBirthday();
 			if (birthday != null)
 				string = string
@@ -219,9 +221,8 @@ public class ClubMemberController {
 
 		response.setContentType("text/vcard");
 	}
-	
-	String emptyIfNull(String str)
-	{
+
+	String emptyIfNull(String str) {
 		if (str == null)
 			return "";
 		else

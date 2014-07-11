@@ -63,6 +63,14 @@ privileged aspect Person_Roo_JavaBean {
         this.cellphone = cellphone;
     }
     
+    public String Person.getFax() {
+        return this.fax;
+    }
+    
+    public void Person.setFax(String fax) {
+        this.fax = fax;
+    }
+    
     public String Person.getEmail() {
         return this.email;
     }

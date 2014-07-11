@@ -27,6 +27,9 @@
 		<field:display field="cellphone"
 			id="s_de_edgb_aviationclubmanager_domain_Person_cellphone"
 			object="${person}" z="HpEUf2mnHhkWqyu0Vo6Yizn2Q6c=" />
+		<field:display field="fax"
+			id="s_de_edgb_aviationclubmanager_domain_Person_fax"
+			object="${person}" z="KH3n8udvWBJtCzQ9MIhcd1k2ozs=" />
 		<field:display field="email"
 			id="s_de_edgb_aviationclubmanager_domain_Person_email"
 			object="${person}" z="I0kM7tpX63+UcI5sXhr1Ijtaihc=" />

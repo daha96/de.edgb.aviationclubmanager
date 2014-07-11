@@ -30,6 +30,9 @@
 		<field:input field="cellphone"
 			id="c_de_edgb_aviationclubmanager_domain_ClubMember_cellphone"
 			z="j+j0EUtyw6r9syaa4UZwYRTLGSo=" />
+		<field:input field="fax"
+			id="c_de_edgb_aviationclubmanager_domain_ClubMember_fax"
+			z="j+j0EUtyw6r9syaa4UZwYRTLGSo=" />
 		<field:input field="email"
 			id="c_de_edgb_aviationclubmanager_domain_ClubMember_email"
 			validationMessageCode="field_invalid_email"

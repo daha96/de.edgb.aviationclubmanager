@@ -33,6 +33,8 @@ public class Person {
 	private String landline;
 
 	private String cellphone;
+	
+	private String fax;
 
 	private String email;
 
