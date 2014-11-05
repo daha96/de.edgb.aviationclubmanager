@@ -4,6 +4,7 @@
 package de.edgb.aviationclubmanager.domain;
 
 import de.edgb.aviationclubmanager.domain.WinchDriverPresence;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,8 @@ privileged aspect WinchDriverPresence_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
     transient EntityManager WinchDriverPresence.entityManager;
+    
+    public static final List<String> WinchDriverPresence.fieldNames4OrderClauseFilter = java.util.Arrays.asList("presenceDate", "winchDriver", "comment");
     
     public static final EntityManager WinchDriverPresence.entityManager() {
         EntityManager em = new WinchDriverPresence().entityManager;
@@ -23,9 +26,31 @@ privileged aspect WinchDriverPresence_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT COUNT(o) FROM WinchDriverPresence o", Long.class).getSingleResult();
     }
     
+    public static List<WinchDriverPresence> WinchDriverPresence.findAllWinchDriverPresences(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM WinchDriverPresence o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, WinchDriverPresence.class).getResultList();
+    }
+    
     public static WinchDriverPresence WinchDriverPresence.findWinchDriverPresence(Long id) {
         if (id == null) return null;
         return entityManager().find(WinchDriverPresence.class, id);
+    }
+    
+    public static List<WinchDriverPresence> WinchDriverPresence.findWinchDriverPresenceEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM WinchDriverPresence o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, WinchDriverPresence.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

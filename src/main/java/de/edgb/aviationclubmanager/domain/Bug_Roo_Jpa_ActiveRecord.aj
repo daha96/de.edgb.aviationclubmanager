@@ -4,6 +4,7 @@
 package de.edgb.aviationclubmanager.domain;
 
 import de.edgb.aviationclubmanager.domain.Bug;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,8 @@ privileged aspect Bug_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
     transient EntityManager Bug.entityManager;
+    
+    public static final List<String> Bug.fieldNames4OrderClauseFilter = java.util.Arrays.asList("bugDate", "person", "description");
     
     public static final EntityManager Bug.entityManager() {
         EntityManager em = new Bug().entityManager;
@@ -23,9 +26,31 @@ privileged aspect Bug_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT COUNT(o) FROM Bug o", Long.class).getSingleResult();
     }
     
+    public static List<Bug> Bug.findAllBugs(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Bug o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Bug.class).getResultList();
+    }
+    
     public static Bug Bug.findBug(Long id) {
         if (id == null) return null;
         return entityManager().find(Bug.class, id);
+    }
+    
+    public static List<Bug> Bug.findBugEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Bug o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Bug.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

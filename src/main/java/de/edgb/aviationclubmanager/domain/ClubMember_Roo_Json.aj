@@ -13,27 +13,33 @@ import java.util.List;
 privileged aspect ClubMember_Roo_Json {
     
     public String ClubMember.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
+        return new JSONSerializer()
+        .exclude("*.class").serialize(this);
     }
     
     public String ClubMember.toJson(String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(this);
+        return new JSONSerializer()
+        .include(fields).exclude("*.class").serialize(this);
     }
     
     public static ClubMember ClubMember.fromJsonToClubMember(String json) {
-        return new JSONDeserializer<ClubMember>().use(null, ClubMember.class).deserialize(json);
+        return new JSONDeserializer<ClubMember>()
+        .use(null, ClubMember.class).deserialize(json);
     }
     
     public static String ClubMember.toJsonArray(Collection<ClubMember> collection) {
-        return new JSONSerializer().exclude("*.class").serialize(collection);
+        return new JSONSerializer()
+        .exclude("*.class").serialize(collection);
     }
     
     public static String ClubMember.toJsonArray(Collection<ClubMember> collection, String[] fields) {
-        return new JSONSerializer().include(fields).exclude("*.class").serialize(collection);
+        return new JSONSerializer()
+        .include(fields).exclude("*.class").serialize(collection);
     }
     
     public static Collection<ClubMember> ClubMember.fromJsonArrayToClubMembers(String json) {
-        return new JSONDeserializer<List<ClubMember>>().use(null, ArrayList.class).use("values", ClubMember.class).deserialize(json);
+        return new JSONDeserializer<List<ClubMember>>()
+        .use("values", ClubMember.class).deserialize(json);
     }
     
 }

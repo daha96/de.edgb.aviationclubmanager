@@ -4,6 +4,7 @@
 package de.edgb.aviationclubmanager.domain;
 
 import de.edgb.aviationclubmanager.domain.InstructorPresence;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,8 @@ privileged aspect InstructorPresence_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
     transient EntityManager InstructorPresence.entityManager;
+    
+    public static final List<String> InstructorPresence.fieldNames4OrderClauseFilter = java.util.Arrays.asList("presenceDate", "instructor", "comment");
     
     public static final EntityManager InstructorPresence.entityManager() {
         EntityManager em = new InstructorPresence().entityManager;
@@ -23,9 +26,31 @@ privileged aspect InstructorPresence_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT COUNT(o) FROM InstructorPresence o", Long.class).getSingleResult();
     }
     
+    public static List<InstructorPresence> InstructorPresence.findAllInstructorPresences(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM InstructorPresence o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, InstructorPresence.class).getResultList();
+    }
+    
     public static InstructorPresence InstructorPresence.findInstructorPresence(Long id) {
         if (id == null) return null;
         return entityManager().find(InstructorPresence.class, id);
+    }
+    
+    public static List<InstructorPresence> InstructorPresence.findInstructorPresenceEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM InstructorPresence o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, InstructorPresence.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

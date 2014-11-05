@@ -4,6 +4,7 @@
 package de.edgb.aviationclubmanager.domain;
 
 import de.edgb.aviationclubmanager.domain.Person;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,8 @@ privileged aspect Person_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
     transient EntityManager Person.entityManager;
+    
+    public static final List<String> Person.fieldNames4OrderClauseFilter = java.util.Arrays.asList("lastName", "firstName", "address", "zipCode", "city", "landline", "cellphone", "fax", "email", "comment");
     
     public static final EntityManager Person.entityManager() {
         EntityManager em = new Person().entityManager;
@@ -23,9 +26,31 @@ privileged aspect Person_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT COUNT(o) FROM Person o", Long.class).getSingleResult();
     }
     
+    public static List<Person> Person.findAllPeople(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Person o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Person.class).getResultList();
+    }
+    
     public static Person Person.findPerson(Long id) {
         if (id == null) return null;
         return entityManager().find(Person.class, id);
+    }
+    
+    public static List<Person> Person.findPersonEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Person o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Person.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

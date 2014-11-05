@@ -4,17 +4,42 @@
 package de.edgb.aviationclubmanager.domain;
 
 import de.edgb.aviationclubmanager.domain.ClubMember;
+import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 privileged aspect ClubMember_Roo_Jpa_ActiveRecord {
+    
+    public static final List<String> ClubMember.fieldNames4OrderClauseFilter = java.util.Arrays.asList("birthday", "joiningDate", "exitDate", "clubMemberState", "gender", "glidingFixedRate", "enginedAviationFixedRate", "student", "cheapPrice", "instructor", "winchDriver");
     
     public static long ClubMember.countClubMembers() {
         return entityManager().createQuery("SELECT COUNT(o) FROM ClubMember o", Long.class).getSingleResult();
     }
     
+    public static List<ClubMember> ClubMember.findAllClubMembers(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM ClubMember o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, ClubMember.class).getResultList();
+    }
+    
     public static ClubMember ClubMember.findClubMember(Long id) {
         if (id == null) return null;
         return entityManager().find(ClubMember.class, id);
+    }
+    
+    public static List<ClubMember> ClubMember.findClubMemberEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM ClubMember o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, ClubMember.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional

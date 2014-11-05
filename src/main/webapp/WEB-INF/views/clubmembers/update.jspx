@@ -1,81 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields"
-	xmlns:form="urn:jsptagdir:/WEB-INF/tags/form"
-	xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
-	<jsp:directive.page contentType="text/html;charset=UTF-8" />
-	<jsp:output omit-xml-declaration="yes" />
-	<form:update id="fu_de_edgb_aviationclubmanager_domain_ClubMember"
-		modelAttribute="clubMember" path="/clubmembers" versionField="Version"
-		z="Djehr9a20KAxy54mus9gbuq78fA=">
-		<field:input field="lastName"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_lastName"
-			required="true" z="M8qV40wQc7zaELCwytaEjIqG3yk=" />
-		<field:input field="firstName"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_firstName"
-			required="true" z="z55+4CkekwqA6lKnbB8Pu9tATXE=" />
-		<field:input field="address"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_address"
-			z="tHMz2lkQ6bwMW7R/k9wHW0LIc18=" />
-		<field:input field="zipCode"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_zipCode"
-			z="/645Qtpk8kB8tokAWT+OGsBhGqM=" />
-		<field:input field="city"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_city"
-			z="V6rLiJSPzADCotfphPoVNiQS6HQ=" />
-		<field:input field="landline"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_landline"
-			z="zshIrWolIHUaAmiAxRq6s0BB6ss=" />
-		<field:input field="fax"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_fax"
-			z="j+j0EUtyw6r9syaa4UZwYRTLGSo=" />
-		<field:input field="cellphone"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_cellphone"
-			z="j+j0EUtyw6r9syaa4UZwYRTLGSo=" />
-		<field:input field="email"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_email"
-			validationMessageCode="field_invalid_email"
-			z="T5ayjrNHYaGToTmMzKRlO7j4F80=" />
-		<field:input field="comment"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_comment"
-			z="/OfrH74vYBXV3pRTgX/ZuYi7P1U=" />
-		<field:datetime dateTimePattern="${clubMember_birthday_date_format}"
-			field="birthday"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_birthday"
-			past="true" z="cu/1UGOd8zkKmw8dqnJbZ3dzLUg=" />
-		<field:datetime
-			dateTimePattern="${clubMember_joiningdate_date_format}"
-			field="joiningDate"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_joiningDate"
-			past="true" z="gWpiYxFhu0n6wJ7arUl1a8CtfgE=" />
-		<field:datetime dateTimePattern="${clubMember_exitdate_date_format}"
-			field="exitDate"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_exitDate"
-			past="true" z="mpAWezjyryCWZtxvlNjHT4xItA0=" />
-		<field:select field="clubMemberState"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_clubMemberState"
-			items="${clubmemberstates}" path="clubmemberstates" required="true"
-			z="sDAQc6q1+/TwF/QHKo+ely4iMlc=" />
-		<field:select field="gender"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_gender"
-			items="${genders}" path="genders" required="true"
-			z="88lkLqiZvQEam6AK0Wmt1TrypvM=" />
-		<field:checkbox field="glidingFixedRate"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_glidingFixedRate"
-			z="IaMPfqGx1X6398J3QyAs3OJJZu0=" />
-		<field:checkbox field="enginedAviationFixedRate"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_enginedAviationFixedRate"
-			z="k/TdxGmehyo/C7JaZKTtmgOFQTo=" />
-		<field:checkbox field="student"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_student"
-			z="piPt2+vuRiDzJrhIauEuWgNDlss=" />
-		<field:checkbox field="cheapPrice"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_cheapPrice"
-			z="+NqVXrzNhjWKbdSugP7FV6Dzc/U=" />
-		<field:checkbox field="instructor"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_instructor"
-			z="NQfyZ9jtJZakL6rhw6uSheEiQH0=" />
-		<field:checkbox field="winchDriver"
-			id="c_de_edgb_aviationclubmanager_domain_ClubMember_winchDriver"
-			z="Y/CJBzG35AnkAjkHTCPKQQaCS58=" />
-	</form:update>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_de_edgb_aviationclubmanager_domain_ClubMember" modelAttribute="clubMember" path="/clubmembers" versionField="Version" z="Djehr9a20KAxy54mus9gbuq78fA=">
+        <field:input field="lastName" id="c_de_edgb_aviationclubmanager_domain_ClubMember_lastName" required="true" z="M8qV40wQc7zaELCwytaEjIqG3yk="/>
+        <field:input field="firstName" id="c_de_edgb_aviationclubmanager_domain_ClubMember_firstName" required="true" z="z55+4CkekwqA6lKnbB8Pu9tATXE="/>
+        <field:input field="address" id="c_de_edgb_aviationclubmanager_domain_ClubMember_address" z="tHMz2lkQ6bwMW7R/k9wHW0LIc18="/>
+        <field:input field="zipCode" id="c_de_edgb_aviationclubmanager_domain_ClubMember_zipCode" z="/645Qtpk8kB8tokAWT+OGsBhGqM="/>
+        <field:input field="city" id="c_de_edgb_aviationclubmanager_domain_ClubMember_city" z="V6rLiJSPzADCotfphPoVNiQS6HQ="/>
+        <field:input field="landline" id="c_de_edgb_aviationclubmanager_domain_ClubMember_landline" z="zshIrWolIHUaAmiAxRq6s0BB6ss="/>
+        <field:input field="fax" id="c_de_edgb_aviationclubmanager_domain_ClubMember_fax" z="user-managed"/>
+        <field:input field="cellphone" id="c_de_edgb_aviationclubmanager_domain_ClubMember_cellphone" z="j+j0EUtyw6r9syaa4UZwYRTLGSo="/>
+        <field:input field="email" id="c_de_edgb_aviationclubmanager_domain_ClubMember_email" validationMessageCode="field_invalid_email" z="T5ayjrNHYaGToTmMzKRlO7j4F80="/>
+        <field:input field="comment" id="c_de_edgb_aviationclubmanager_domain_ClubMember_comment" z="/OfrH74vYBXV3pRTgX/ZuYi7P1U="/>
+        <field:datetime dateTimePattern="${clubMember_birthday_date_format}" field="birthday" id="c_de_edgb_aviationclubmanager_domain_ClubMember_birthday" past="true" z="cu/1UGOd8zkKmw8dqnJbZ3dzLUg="/>
+        <field:datetime dateTimePattern="${clubMember_joiningdate_date_format}" field="joiningDate" id="c_de_edgb_aviationclubmanager_domain_ClubMember_joiningDate" past="true" z="gWpiYxFhu0n6wJ7arUl1a8CtfgE="/>
+        <field:datetime dateTimePattern="${clubMember_exitdate_date_format}" field="exitDate" id="c_de_edgb_aviationclubmanager_domain_ClubMember_exitDate" past="true" z="mpAWezjyryCWZtxvlNjHT4xItA0="/>
+        <field:select field="clubMemberState" id="c_de_edgb_aviationclubmanager_domain_ClubMember_clubMemberState" items="${clubmemberstates}" path="clubmemberstates" required="true" z="sDAQc6q1+/TwF/QHKo+ely4iMlc="/>
+        <field:select field="gender" id="c_de_edgb_aviationclubmanager_domain_ClubMember_gender" items="${genders}" path="genders" required="true" z="88lkLqiZvQEam6AK0Wmt1TrypvM="/>
+        <field:checkbox field="glidingFixedRate" id="c_de_edgb_aviationclubmanager_domain_ClubMember_glidingFixedRate" z="IaMPfqGx1X6398J3QyAs3OJJZu0="/>
+        <field:checkbox field="enginedAviationFixedRate" id="c_de_edgb_aviationclubmanager_domain_ClubMember_enginedAviationFixedRate" z="k/TdxGmehyo/C7JaZKTtmgOFQTo="/>
+        <field:checkbox field="student" id="c_de_edgb_aviationclubmanager_domain_ClubMember_student" z="piPt2+vuRiDzJrhIauEuWgNDlss="/>
+        <field:checkbox field="cheapPrice" id="c_de_edgb_aviationclubmanager_domain_ClubMember_cheapPrice" z="+NqVXrzNhjWKbdSugP7FV6Dzc/U="/>
+        <field:checkbox field="instructor" id="c_de_edgb_aviationclubmanager_domain_ClubMember_instructor" z="NQfyZ9jtJZakL6rhw6uSheEiQH0="/>
+        <field:checkbox field="winchDriver" id="c_de_edgb_aviationclubmanager_domain_ClubMember_winchDriver" z="Y/CJBzG35AnkAjkHTCPKQQaCS58="/>
+    </form:update>
 </div>

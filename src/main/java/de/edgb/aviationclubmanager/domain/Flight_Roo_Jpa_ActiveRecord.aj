@@ -4,6 +4,7 @@
 package de.edgb.aviationclubmanager.domain;
 
 import de.edgb.aviationclubmanager.domain.Flight;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,8 @@ privileged aspect Flight_Roo_Jpa_ActiveRecord {
     
     @PersistenceContext
     transient EntityManager Flight.entityManager;
+    
+    public static final List<String> Flight.fieldNames4OrderClauseFilter = java.util.Arrays.asList("flightType", "aircraft", "pilot", "copilot", "accounting", "flightMode", "flightDate", "launchMethod", "departureLocation", "departureTime", "landingLocation", "landingTime", "comment", "lastManipulativePerson", "lastManipulationDate");
     
     public static final EntityManager Flight.entityManager() {
         EntityManager em = new Flight().entityManager;
@@ -23,9 +26,31 @@ privileged aspect Flight_Roo_Jpa_ActiveRecord {
         return entityManager().createQuery("SELECT COUNT(o) FROM Flight o", Long.class).getSingleResult();
     }
     
+    public static List<Flight> Flight.findAllFlights(String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Flight o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Flight.class).getResultList();
+    }
+    
     public static Flight Flight.findFlight(Long id) {
         if (id == null) return null;
         return entityManager().find(Flight.class, id);
+    }
+    
+    public static List<Flight> Flight.findFlightEntries(int firstResult, int maxResults, String sortFieldName, String sortOrder) {
+        String jpaQuery = "SELECT o FROM Flight o";
+        if (fieldNames4OrderClauseFilter.contains(sortFieldName)) {
+            jpaQuery = jpaQuery + " ORDER BY " + sortFieldName;
+            if ("ASC".equalsIgnoreCase(sortOrder) || "DESC".equalsIgnoreCase(sortOrder)) {
+                jpaQuery = jpaQuery + " " + sortOrder;
+            }
+        }
+        return entityManager().createQuery(jpaQuery, Flight.class).setFirstResult(firstResult).setMaxResults(maxResults).getResultList();
     }
     
     @Transactional
