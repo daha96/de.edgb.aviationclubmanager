@@ -35,17 +35,20 @@ public abstract class AviationClubManagerReport {
 			.setHorizontalAlignment(HorizontalAlignment.CENTER).setFontSize(16);
 	StyleBuilder columnTitleStyle = stl.style().bold().setFontSize(8);
 	StyleBuilder pageOfStyle = stl.style().setHorizontalAlignment(
-			HorizontalAlignment.RIGHT);
+			HorizontalAlignment.RIGHT).setFontSize(10);
 	StyleBuilder versionStyle = stl.style().setHorizontalAlignment(
-			HorizontalAlignment.CENTER);
+			HorizontalAlignment.CENTER).setFontSize(7);
 	StyleBuilder createTimestampStyle = stl.style().setHorizontalAlignment(
-			HorizontalAlignment.LEFT);
+			HorizontalAlignment.LEFT).setFontSize(7);
 
 	protected StyleBuilder getcolumnStyle() {
 		return stl.style().setFontSize(7);
 	}
 
 	protected void addExtraLayout(JasperReportBuilder reportBuilder) {
+	}
+	
+	protected void addDataLayout(JasperReportBuilder reportBuilder) {
 	}
 
 	public MessageSource getMessageSource() {
@@ -75,6 +78,8 @@ public abstract class AviationClubManagerReport {
 
 		reportBuilder = report().setPageFormat(PageType.A4,
 				PageOrientation.LANDSCAPE);
+		
+		
 
 		if (format.equals("pdf")) {
 			reportBuilder
@@ -113,6 +118,8 @@ public abstract class AviationClubManagerReport {
 		} else
 			reportBuilder.setColumnTitleStyle(columnTitleStyle)
 					.setColumnStyle(getcolumnStyle()).setIgnorePagination(true);
+		
+		addDataLayout(reportBuilder);
 	}
 
 	protected void createTextColumn(String messageCode, String propertyName) {

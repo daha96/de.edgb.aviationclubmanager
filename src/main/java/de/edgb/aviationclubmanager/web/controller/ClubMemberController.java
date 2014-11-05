@@ -6,6 +6,7 @@ import de.edgb.aviationclubmanager.domain.ClubMemberState;
 import de.edgb.aviationclubmanager.domain.Gender;
 import de.edgb.aviationclubmanager.web.UserAccountDetails;
 import de.edgb.aviationclubmanager.web.Util;
+import de.edgb.aviationclubmanager.web.report.ClubMemberBirthdayStateReport;
 import de.edgb.aviationclubmanager.web.report.ClubMemberListReport;
 
 import java.io.IOException;
@@ -235,6 +236,17 @@ public class ClubMemberController {
 		stream.close();
 
 		response.setContentType("text/vcard");
+	}
+	
+	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
+	@RequestMapping(value = "/reports/clubmemberbirthdaystate", method = RequestMethod.GET)
+	public void generateClubMemberBirthdayStateReport(
+			@RequestParam(value = "format", required = true) String format,
+			HttpServletResponse response) throws IOException {
+
+		ClubMemberBirthdayStateReport report = new ClubMemberBirthdayStateReport(messageSource,
+				format);
+		report.writeToHttpServletResponse(response);
 	}
 
 	String emptyIfNull(String str) {

@@ -2,7 +2,8 @@
 <div xmlns:spring="http://www.springframework.org/tags"
 	xmlns:jsp="http://java.sun.com/JSP/Page"
 	xmlns:page="urn:jsptagdir:/WEB-INF/tags/form"
-	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+	xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields"
+	xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" version="2.0">
 	<jsp:directive.page contentType="text/html;charset=UTF-8" />
 	<jsp:output omit-xml-declaration="yes" />
 
@@ -13,7 +14,36 @@
 			<!-- Links zum Report -->
 
 			<div style="float: right;">
-
+<spring:message
+						code="de_edgb_aviationclubmanager_web_report_report_panel_title"
+						var="report_panel_label" />
+			<util:panel id="p_de_edgb_aviationclubmanager_web_report_report_panel" title="${report_panel_label}" openPane="false">
+			
+			
+			<spring:message
+					code="de_edgb_aviationclubmanager_web_report_clubmemberbirthdaystate_label" />
+				<span> <spring:url
+						value="/clubmembers/reports/clubmemberbirthdaystate" var="link_url">
+						<spring:param name="format" value="pdf" />
+					</spring:url> <a href="${link_url}">PDF</a>
+				</span> | <span> <spring:url
+						value="/clubmembers/reports/clubmemberbirthdaystate" var="link_url">
+						<spring:param name="format" value="xls" />
+					</spring:url> <a href="${link_url}">XLS</a>
+				</span> | <span> <spring:url
+						value="/clubmembers/reports/clubmemberbirthdaystate" var="link_url">
+						<spring:param name="format" value="ods" />
+					</spring:url> <a href="${link_url}">ODS</a>
+				</span> | <span> <spring:url
+						value="/clubmembers/reports/clubmemberbirthdaystate" var="link_url">
+						<spring:param name="format" value="csv" />
+					</spring:url> <a href="${link_url}">CSV</a>
+				</span>
+			
+			
+			
+			</util:panel>
+			<br /> 
 				<spring:message
 					code="de_edgb_aviationclubmanager_domain_clubmerbers_clubmberlist_export_as" />
 				<span> <spring:url
@@ -36,6 +66,8 @@
 						value="/clubmembers/reports/clubmemberlist/vcard" var="link_url" />
 					<a href="${link_url}">VCF</a>
 				</span> <br /> <br />
+				
+				
 			</div>
 
 			<div>
@@ -60,6 +92,8 @@
 				</span>
 
 			</div>
+			
+			
 		</div>
 
 
