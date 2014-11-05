@@ -74,14 +74,15 @@ public class Statistics {
 		}
 
 		for (Flight flight : flights) {
-			if (!flightTimePerAircraft.containsKey(flight.getAircraft()))
-				flightTimePerAircraft.put(flight.getAircraft(),
-						flight.getDuration());
-			else if (flight.getDuration() != null)
-				flightTimePerAircraft.put(
-						flight.getAircraft(),
-						flightTimePerAircraft.get(flight.getAircraft()).plus(
-								flight.getDuration()));
+			if (flight.getDuration() != null) {
+				if (!flightTimePerAircraft.containsKey(flight.getAircraft()))
+					flightTimePerAircraft.put(flight.getAircraft(),
+							flight.getDuration());
+				else
+					flightTimePerAircraft.put(flight.getAircraft(),
+							flightTimePerAircraft.get(flight.getAircraft())
+									.plus(flight.getDuration()));
+			}
 		}
 
 		for (Flight flight : flights) {
@@ -93,11 +94,16 @@ public class Statistics {
 		}
 
 		for (Flight flight : flights) {
-			if (!flightTimePerPilot.containsKey(flight.getPilot()))
-				flightTimePerPilot.put(flight.getPilot(), flight.getDuration());
-			else if (flight.getDuration() != null)
-				flightTimePerPilot.put(flight.getPilot(), flightTimePerPilot
-						.get(flight.getPilot()).plus(flight.getDuration()));
+			if (flight.getDuration() != null) {
+				if (!flightTimePerPilot.containsKey(flight.getPilot()))
+					flightTimePerPilot.put(flight.getPilot(),
+							flight.getDuration());
+				else
+					flightTimePerPilot.put(
+							flight.getPilot(),
+							flightTimePerPilot.get(flight.getPilot()).plus(
+									flight.getDuration()));
+			}
 		}
 
 		for (Flight flight : flights) {
