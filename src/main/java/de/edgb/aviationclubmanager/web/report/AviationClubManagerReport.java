@@ -13,6 +13,8 @@ import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import net.sf.dynamicreports.report.builder.style.StyleBuilder;
 import net.sf.dynamicreports.report.constant.HorizontalAlignment;
+import net.sf.dynamicreports.report.constant.PageOrientation;
+import net.sf.dynamicreports.report.constant.PageType;
 import net.sf.dynamicreports.report.definition.ReportParameters;
 import net.sf.dynamicreports.report.exception.DRException;
 
@@ -43,21 +45,21 @@ public abstract class AviationClubManagerReport {
 		return stl.style().setFontSize(7);
 	}
 
-	JasperReportBuilder reportBuilder;
-
-	public JasperReportBuilder getReportBuilder() {
-		return reportBuilder;
+	protected void addExtraLayout(JasperReportBuilder reportBuilder) {
 	}
-
-	MessageSource messageSource;
 
 	public MessageSource getMessageSource() {
 		return messageSource;
 	}
 
+	MessageSource messageSource;
+	JasperReportBuilder reportBuilder;
+	String format;
+
 	protected AviationClubManagerReport(MessageSource messageSource,
-			String reportTitle) {
+			String reportTitle, String format) {
 		this.messageSource = messageSource;
+		this.format = format;
 
 		String timestampText = messageSource.getMessage(
 				"de_edgb_aviationclubmanager_web_report_createtimestamp",
@@ -71,39 +73,46 @@ public abstract class AviationClubManagerReport {
 						LocaleContextHolder.getLocale()) }, LocaleContextHolder
 						.getLocale());
 
-		reportBuilder = report()
+		reportBuilder = report().setPageFormat(PageType.A4,
+				PageOrientation.LANDSCAPE);
 
-				// Page
-				.setPageMargin(margin(20))
+		if (format.equals("pdf")) {
+			reportBuilder
 
-				// Page Header
-				.setPageHeaderStyle(stl.style().setBottomPadding(20))
-				.pageHeader(cmp.text(reportTitle).setStyle(titleStyle))
+					// Page
+					.setPageMargin(margin(20))
 
-				// Column Header
-				.columnHeader(cmp.line())
-				.setColumnHeaderStyle(stl.style().setBottomPadding(5))
+					// Page Header
+					.setPageHeaderStyle(stl.style().setBottomPadding(20))
+					.pageHeader(cmp.text(reportTitle).setStyle(titleStyle))
 
-				// Column Title
-				.setColumnTitleStyle(columnTitleStyle)
+					// Column Header
+					.columnHeader(cmp.line())
+					.setColumnHeaderStyle(stl.style().setBottomPadding(5))
 
-				// Column
-				.setColumnStyle(getcolumnStyle())
-				.highlightDetailEvenRows()
+					// Column Title
+					.setColumnTitleStyle(columnTitleStyle)
 
-				// Column Footer
-				.columnFooter(cmp.line())
-				.setColumnFooterStyle(stl.style().setTopPadding(5))
+					// Column
+					.setColumnStyle(getcolumnStyle()).highlightDetailEvenRows()
 
-				// Page Footer
-				.setPageFooterStyle(stl.style().setTopPadding(20))
+					// Column Footer
+					.columnFooter(cmp.line())
+					.setColumnFooterStyle(stl.style().setTopPadding(5))
 
-				.pageFooter(
-						cmp.horizontalList().add(
-								cmp.text(timestampText).setStyle(
-										createTimestampStyle),
-								cmp.text(versionText).setStyle(versionStyle),
-								cmp.pageXslashY().setStyle(pageOfStyle)));
+					// Page Footer
+					.setPageFooterStyle(stl.style().setTopPadding(20))
+
+					.pageFooter(
+							cmp.horizontalList().add(
+									cmp.text(timestampText).setStyle(
+											createTimestampStyle),
+									cmp.text(versionText)
+											.setStyle(versionStyle),
+									cmp.pageXslashY().setStyle(pageOfStyle)));
+		} else
+			reportBuilder.setColumnTitleStyle(columnTitleStyle)
+					.setColumnStyle(getcolumnStyle()).setIgnorePagination(true);
 	}
 
 	protected void createTextColumn(String messageCode, String propertyName) {
@@ -175,8 +184,8 @@ public abstract class AviationClubManagerReport {
 
 	protected abstract String getFilename();
 
-	public void writeToHttpServletResponse(HttpServletResponse response,
-			String format) throws IOException {
+	public void writeToHttpServletResponse(HttpServletResponse response)
+			throws IOException {
 
 		try {
 
@@ -187,19 +196,24 @@ public abstract class AviationClubManagerReport {
 			switch (format) {
 			case "pdf":
 				response.setContentType("application/pdf");
-				reportBuilder.toPdf(stream);
+				addExtraLayout(reportBuilder);
+				reportBuilder.toPdf(export.pdfExporter(stream));
 				break;
 			case "xls":
 				response.setContentType("application/vnd.ms-excel");
-				reportBuilder.toXls(stream);
+				reportBuilder.toXls(export.xlsExporter(stream)
+						.setDetectCellType(true).setIgnorePageMargins(true)
+						.setWhitePageBackground(false)
+						.setRemoveEmptySpaceBetweenColumns(true));
 				break;
 			case "ods":
 				response.setContentType("application/vnd.oasis.opendocument.spreadsheet");
-				reportBuilder.toOds(stream);
+				reportBuilder.toOds(export.odsExporter(stream)
+						.setIgnorePageMargins(true));
 				break;
 			case "csv":
 				response.setContentType("text/csv");
-				reportBuilder.toCsv(stream);
+				reportBuilder.toCsv(export.csvExporter(stream));
 				break;
 			default:
 				throw new InvalidParameterException();
@@ -211,7 +225,7 @@ public abstract class AviationClubManagerReport {
 
 	}
 
-	public void setDataSource(Collection<?> dataSource) {
+	protected void setDataSource(Collection<?> dataSource) {
 		if (dataSource.isEmpty())
 			throw new EmptyResultDataAccessException(0);
 		reportBuilder.setDataSource(dataSource);

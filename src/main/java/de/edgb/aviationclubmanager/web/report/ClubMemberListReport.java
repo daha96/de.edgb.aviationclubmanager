@@ -1,17 +1,15 @@
 package de.edgb.aviationclubmanager.web.report;
 
-import net.sf.dynamicreports.report.constant.PageOrientation;
-import net.sf.dynamicreports.report.constant.PageType;
-
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
+import de.edgb.aviationclubmanager.domain.ClubMember;
 import de.edgb.aviationclubmanager.web.Util;
 
 public class ClubMemberListReport extends AviationClubManagerReport {
 
-	public ClubMemberListReport(MessageSource messageSource) {
+	public ClubMemberListReport(MessageSource messageSource, String format) {
 		super(
 				messageSource,
 				messageSource
@@ -20,9 +18,9 @@ public class ClubMemberListReport extends AviationClubManagerReport {
 								new String[] { messageSource.getMessage(
 										"app.club", null,
 										LocaleContextHolder.getLocale()) },
-								LocaleContextHolder.getLocale()));
-		getReportBuilder()
-				.setPageFormat(PageType.A4, PageOrientation.LANDSCAPE);
+								LocaleContextHolder.getLocale()), format);
+
+		setDataSource(ClubMember.findAllClubMembers(false));
 
 		createTextColumn(
 				"label_de_edgb_aviationclubmanager_domain_clubmember_lastname",

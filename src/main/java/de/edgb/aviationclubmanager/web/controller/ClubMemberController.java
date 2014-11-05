@@ -4,24 +4,18 @@ import de.edgb.aviationclubmanager.domain.ClubCapacity;
 import de.edgb.aviationclubmanager.domain.ClubMember;
 import de.edgb.aviationclubmanager.domain.ClubMemberState;
 import de.edgb.aviationclubmanager.domain.Gender;
-import de.edgb.aviationclubmanager.domain.InstructorPresence;
 import de.edgb.aviationclubmanager.web.UserAccountDetails;
 import de.edgb.aviationclubmanager.web.Util;
 import de.edgb.aviationclubmanager.web.report.ClubMemberListReport;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.nio.charset.Charset;
-import java.security.InvalidParameterException;
 import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
-import net.sf.dynamicreports.report.exception.DRException;
 
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
@@ -160,14 +154,14 @@ public class ClubMemberController {
 				Arrays.asList(ClubMemberState.values()));
 		uiModel.addAttribute("genders", Arrays.asList(Gender.values()));
 	}
-	
+
 	// Finder
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
 	@RequestMapping(params = "winchdriver", method = RequestMethod.GET)
 	public String findWinchDriver(Model uiModel) {
-		uiModel.addAttribute("clubmembers",
-				ClubMember.findClubMembersBeingWinchDriver().getResultList());
+		uiModel.addAttribute("clubmembers", ClubMember
+				.findClubMembersBeingWinchDriver().getResultList());
 		addDateTimeFormatPatterns(uiModel);
 		return "clubmembers/list";
 	}
@@ -175,8 +169,8 @@ public class ClubMemberController {
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")
 	@RequestMapping(params = "instructor", method = RequestMethod.GET)
 	public String findInstructor(Model uiModel) {
-		uiModel.addAttribute("clubmembers",
-				ClubMember.findClubMembersBeingInstructor().getResultList());
+		uiModel.addAttribute("clubmembers", ClubMember
+				.findClubMembersBeingInstructor().getResultList());
 		addDateTimeFormatPatterns(uiModel);
 		return "clubmembers/list";
 	}
@@ -189,9 +183,9 @@ public class ClubMemberController {
 			@RequestParam(value = "format", required = true) String format,
 			HttpServletResponse response) throws IOException {
 
-		ClubMemberListReport report = new ClubMemberListReport(messageSource);
-		report.setDataSource(ClubMember.findAllClubMembers(false));
-		report.writeToHttpServletResponse(response, format);
+		ClubMemberListReport report = new ClubMemberListReport(messageSource,
+				format);
+		report.writeToHttpServletResponse(response);
 	}
 
 	@PreAuthorize("hasRole('PERMISSION_CLUBMEMBER')")

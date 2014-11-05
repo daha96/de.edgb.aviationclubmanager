@@ -1,24 +1,27 @@
 package de.edgb.aviationclubmanager.web.report;
 
 import static net.sf.dynamicreports.report.builder.DynamicReports.*;
+
+import java.util.List;
+
+import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.builder.style.StyleBuilder;
 import net.sf.dynamicreports.report.constant.HorizontalAlignment;
-import net.sf.dynamicreports.report.constant.PageOrientation;
-import net.sf.dynamicreports.report.constant.PageType;
 
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 
-import de.edgb.aviationclubmanager.web.Util;
+import de.edgb.aviationclubmanager.domain.Flight;
 
 public class FlightListReport extends AviationClubManagerReport {
 
 	LocalDate date;
+	Integer numFlights;
 
-	public FlightListReport(MessageSource messageSource, LocalDate date,
-			Integer numFlights) {
+	public FlightListReport(MessageSource messageSource, String format,
+			LocalDate date) {
 		super(
 				messageSource,
 				messageSource
@@ -27,50 +30,14 @@ public class FlightListReport extends AviationClubManagerReport {
 								new String[] { messageSource.getMessage(
 										"app.homeLocation", null,
 										LocaleContextHolder.getLocale()) },
-								LocaleContextHolder.getLocale()));
+								LocaleContextHolder.getLocale()), format);
 
 		this.date = date;
 
-		String dateText = messageSource
-				.getMessage(
-						"de_edgb_aviationclubmanager_web_report_flightlistreport_date_label",
-						new String[] { DateTimeFormat.mediumDate()
-								.withLocale(LocaleContextHolder.getLocale())
-								.print(date) }, LocaleContextHolder.getLocale());
+		List<Flight> flights = Flight.findFlightsByFlightDateEquals(date);
+		setDataSource(flights);
 
-		String flightText = numFlights.toString();
-
-		if (numFlights > 1)
-			flightText = flightText
-					+ " "
-					+ messageSource
-							.getMessage(
-									"label_de_edgb_aviationclubmanager_domain_flight_plural",
-									null, LocaleContextHolder.getLocale());
-		else
-			flightText = flightText
-					+ " "
-					+ messageSource.getMessage(
-							"label_de_edgb_aviationclubmanager_domain_flight",
-							null, LocaleContextHolder.getLocale());
-
-		getReportBuilder()
-				.setPageFormat(PageType.A4, PageOrientation.LANDSCAPE)
-				.pageHeader(
-						cmp.horizontalList()
-								.add(cmp.text(flightText)
-										.setStyle(
-												stl.style()
-														.setHorizontalAlignment(
-																HorizontalAlignment.LEFT)
-														.setLeftPadding(15)),
-										cmp.text(dateText)
-												.setStyle(
-														stl.style()
-																.setHorizontalAlignment(
-																		HorizontalAlignment.RIGHT)
-																.setRightPadding(
-																		15))));
+		this.numFlights = flights.size();
 
 		createTextColumn(
 				"label_de_edgb_aviationclubmanager_domain_aircraft_registration",
@@ -110,6 +77,43 @@ public class FlightListReport extends AviationClubManagerReport {
 				"label_de_edgb_aviationclubmanager_domain_flight_comment",
 				"comment", 60);
 	}
+
+	@Override
+	protected void addExtraLayout(JasperReportBuilder reportBuilder) {
+		String dateText = messageSource
+				.getMessage(
+						"de_edgb_aviationclubmanager_web_report_flightlistreport_date_label",
+						new String[] { DateTimeFormat.mediumDate()
+								.withLocale(LocaleContextHolder.getLocale())
+								.print(date) }, LocaleContextHolder.getLocale());
+
+		String flightText = numFlights.toString();
+
+		if (numFlights > 1)
+			flightText = flightText
+					+ " "
+					+ messageSource
+							.getMessage(
+									"label_de_edgb_aviationclubmanager_domain_flight_plural",
+									null, LocaleContextHolder.getLocale());
+		else
+			flightText = flightText
+					+ " "
+					+ messageSource.getMessage(
+							"label_de_edgb_aviationclubmanager_domain_flight",
+							null, LocaleContextHolder.getLocale());
+		reportBuilder.pageHeader(cmp.horizontalList().add(
+				cmp.text(flightText).setStyle(
+						stl.style()
+								.setHorizontalAlignment(
+										HorizontalAlignment.LEFT)
+								.setLeftPadding(15)),
+				cmp.text(dateText).setStyle(
+						stl.style()
+								.setHorizontalAlignment(
+										HorizontalAlignment.RIGHT)
+								.setRightPadding(15))));
+	};
 
 	@Override
 	protected StyleBuilder getcolumnStyle() {

@@ -400,12 +400,10 @@ public class FlightController {
 			HttpServletResponse response) throws IOException {
 
 		LocalDate date = Util.convertDateToLocalDate(flightDate);
-		List<Flight> flights = Flight.findFlightsByFlightDateEquals(date);
 
-		FlightListReport report = new FlightListReport(messageSource, date,
-				flights.size());
-		report.setDataSource(flights);
-		report.writeToHttpServletResponse(response, format);
+		FlightListReport report = new FlightListReport(messageSource, format,
+				date);
+		report.writeToHttpServletResponse(response);
 	}
 
 	// Jetzt starten / landen
@@ -473,7 +471,7 @@ public class FlightController {
 
 		return "redirect:/flights/flightlist";
 	}
-	
+
 	@Autowired
 	JavaMailSender mailSender;
 
@@ -495,7 +493,7 @@ public class FlightController {
 			"label_de_edgb_aviationclubmanager_domain_flight_comment",
 			"label_de_edgb_aviationclubmanager_domain_flight_lastmanipulativeperson",
 			"label_de_edgb_aviationclubmanager_domain_flight_lastmanipulationdate" };
-	
+
 	@PreAuthorize("hasRole('PERMISSION_FLIGHT_SENDEMAIL')")
 	@RequestMapping(value = "/pilotlog/send", produces = "text/html")
 	public String sendPilotlogEmails(
@@ -522,13 +520,13 @@ public class FlightController {
 				MimeMessage message = mailSender.createMimeMessage();
 				MimeMessageHelper helper = new MimeMessageHelper(message, true,
 						"utf-8");
-				helper.setFrom(messageSource.getMessage(
-						"app.email", null,
-						LocaleContextHolder.getLocale()), messageSource.getMessage(
-						"flightemail_from_label", new String[] { messageSource
-								.getMessage("app.homeLocation", null,
+				helper.setFrom(messageSource.getMessage("app.email", null,
+						LocaleContextHolder.getLocale()), messageSource
+						.getMessage("flightemail_from_label",
+								new String[] { messageSource.getMessage(
+										"app.homeLocation", null,
 										LocaleContextHolder.getLocale()) },
-						LocaleContextHolder.getLocale()));
+								LocaleContextHolder.getLocale()));
 				helper.setTo(person.getEmail());
 				helper.setSubject(messageSource.getMessage(
 						"flightemail_subject", new String[] { dateString },
@@ -592,8 +590,6 @@ public class FlightController {
 
 		return "flights/pilotlog/mail_success";
 	}
-	
-	
 
 	String addCell(String text) {
 		return "<td>" + text + "</td>";
